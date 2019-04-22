@@ -1,4 +1,2 @@
-chargebee-js-vue/dist/**
-chargebee-js-vue/node_modules/**
-chargebee-js-react/dist/**
-chargebee-js-react/node_modules/**
+node_modules/
+dist/
