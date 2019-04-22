@@ -37,15 +37,16 @@ export default {
     tokenize () {
       return this.cbInstance.tokenize(this.cbComponent)
     },
-    setCbComponent(component) {
-      if(component.componentOptions) {
-        component.componentOptions.propsData = {
-                ...component.componentOptions.propsData,
+    // Set cbComponent instance to child(slot)
+    setComponentInstance(slot) {
+      if(slot.componentOptions) {
+        slot.componentOptions.propsData = {
+                ...slot.componentOptions.propsData,
                 cbComponent: this.cbComponent
         }
       }
-      component.children && component.children.map((c) => {
-        this.setCbComponent(c);
+      slot.children && slot.children.map((c) => {
+        this.setComponentInstance(c);
       });
     },
   },
@@ -61,7 +62,7 @@ export default {
     }
     cbInstance.load("components").then(() => {
       this.cbInstance = cbInstance;
-      let cbComponent = this.cbInstance.createComponent('card', options);
+      const cbComponent = this.cbInstance.createComponent('card', options);
       this.cbComponent = cbComponent;
       this.moduleLoaded = true;
       // Attach listeners (only applicable for combined field)
@@ -87,7 +88,7 @@ export default {
     if(this.moduleLoaded) {
       if(this.$slots.default) {
         children = this.$slots.default.map(slot => {
-          this.setCbComponent(slot);
+          this.setComponentInstance(slot);
           return slot
         })
       }

@@ -1,10 +1,10 @@
-import CardField from './components/CardField.vue'
+import CardComponent from './components/CardComponent.vue'
 import CardNumber from './components/CardNumber.vue'
 import CardExpiry from './components/CardExpiry.vue'
 import CardCvv from './components/CardCvv.vue'
 
 const components = {
-  CardField,
+  CardComponent,
   CardNumber,
   CardExpiry,
   CardCvv
@@ -12,16 +12,15 @@ const components = {
 
 export default {
   install (Vue) {
-    Vue.component('card-field', CardField);
+    Vue.component('card-component', CardComponent);
     Vue.component('card-number', CardNumber);
     Vue.component('card-expiry', CardExpiry);
     Vue.component('card-cvv', CardCvv);
   }
 }
 
-
 export {
-  CardField,
+  CardComponent,
   CardNumber,
   CardExpiry,
   CardCvv
