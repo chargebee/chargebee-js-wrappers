@@ -1,4 +1,4 @@
-# Chargebee JS React Wrapper
+# Chargebee JS Vue Wrapper
 Vue wrapper for Chargebee Components
 
 ## Examples
@@ -214,9 +214,9 @@ Props | Description | Arguments
 `@blur` | Triggers when component is blurred | [Field State](https://jsdocs.chargebee.com)
 
 #### Field Components ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object))
-    * CardNumber
-    * CardExpiry
-    * CardCVV
+  * CardNumber
+  * CardExpiry
+  * CardCVV
 
 Props | Description | Datatype
 ------|-------------|---------
