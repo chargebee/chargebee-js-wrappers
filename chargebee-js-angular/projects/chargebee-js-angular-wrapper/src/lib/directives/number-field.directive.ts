@@ -1,9 +1,10 @@
-import {Input, Output, EventEmitter, Directive, ElementRef } from '@angular/core';
+import {Input, Output, EventEmitter, Directive, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { getPropChanges } from '../../utils';
 
 @Directive({
   selector: '[cbNumberField]'
 })
-export class NumberFieldDirective {
+export class NumberFieldDirective implements OnChanges {
   @Input() styles?: object;
   @Input() placeholder?: string;
 
@@ -36,6 +37,17 @@ export class NumberFieldDirective {
 
   onChange = (status: any) => {
     this.change.emit(status);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.field) {
+      const props = ['placeholder', 'styles'];
+      const { hasChanged, currentOptions } = getPropChanges(changes, props);
+
+      if (hasChanged) {
+        this.field.update(currentOptions);
+      }
+    }
   }
 
 }

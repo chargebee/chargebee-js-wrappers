@@ -43,10 +43,31 @@ export default class ChargebeeComponents extends React.Component {
         });
     }
 
-    componentDidUpdate() {
-        if(this.state.cbComponent && this.state.moduleLoaded && this.state.cbComponent.status == 0) {
-            this.state.cbComponent.at('card-field')
-            this.state.cbComponent.mount();
+    componentDidUpdate(prevProps) {
+        const cbComponent = this.state.cbComponent;
+
+        if(cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
+            cbComponent.at('card-field')
+            cbComponent.mount();
+        }
+
+        const prevOptions = {
+            placeholder: prevProps.placeholder,
+            style: prevProps.styles,
+            fonts: prevProps.fonts,
+            classes: prevProps.classes,
+            locale: prevProps.locale,
+        }
+        const currentOptions = {
+            placeholder: this.props.placeholder,
+            style: this.props.styles,
+            fonts: this.props.fonts,
+            classes: this.props.classes,
+            locale: this.props.locale,
+        }
+
+        if(!isEqual(prevOptions, currentOptions) && cbComponent) {
+            cbComponent.update(currentOptions)
         }
     }
 

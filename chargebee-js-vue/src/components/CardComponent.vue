@@ -33,6 +33,19 @@ export default {
     }
   },
 
+  computed: {
+    componentOptions: function() {
+      return {
+        fonts: this.fonts,
+        classes: this.classes,
+        locale: this.locale,
+        style: this.styles,
+        placeholder: this.placeholder,
+        icon: this.icon
+      }
+    }
+  },
+
   methods: {
     tokenize () {
       return this.cbInstance.tokenize(this.cbComponent)
@@ -53,13 +66,7 @@ export default {
 
   created () {
     let cbInstance = Chargebee.getInstance();
-    let options = {
-      fonts: this.fonts,
-      classes: this.classes,
-      style: this.styles,
-      placeholder: this.placeholder,
-      icon: this.icon
-    }
+    let options = this.componentOptions;
     cbInstance.load("components").then(() => {
       this.cbInstance = cbInstance;
       const cbComponent = this.cbInstance.createComponent('card', options);
@@ -80,6 +87,14 @@ export default {
         this.cbComponent.at('card-field')
         this.cbComponent.mount();
       });
+    }
+  },
+
+  watch: {
+    componentOptions: function() {
+      if(this.cbComponent) {
+        this.cbComponent.update(this.componentOptions);
+      }
     }
   },
 

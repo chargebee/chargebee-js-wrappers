@@ -7,21 +7,41 @@ export default {
     }
   },
 
+  props: {
+    styles: {
+      type: Object,
+      default: () => ({})
+    },
+    placeholder: {
+      type: String,
+      default: () => ''
+    },
+  },
+
+  computed: {
+    fieldOptions: function() {
+      return {
+        style: this.styles || {},
+        placeholder: this.placeholder
+      }
+    }
+  },
+
   methods: {
     getField () {
       return this.field
     },
+
     attachListener (listener) {
       this.field.on(listener, (data) => {
         this.$emit(listener, data)
       })
     },
+
     initializeField (cbComponent) {
       if (cbComponent) {
-        this.field = cbComponent.createField(this.id, {
-          style: this.styles || {},
-          placeholder: this.placeholder
-        }).at(`card-${this.id}`)
+        const options = this.fieldOptions;
+        this.field = cbComponent.createField(this.id, options).at(`card-${this.id}`)
         if (this.$parent.onMount) this.$parent.onMount()
 
         // Attach listeners if any
@@ -38,7 +58,14 @@ export default {
       if (!this.field) {
         this.initializeField(cbComponent)
       }
-    }
+    },
+
+    fieldOptions: function () {
+      if(this.field) {
+        const options = this.fieldOptions;
+        this.field.update(options)
+      }
+    },
   },
 
   mounted () {

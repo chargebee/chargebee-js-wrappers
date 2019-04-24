@@ -1,14 +1,15 @@
-import { Input, Directive, Output, EventEmitter, ContentChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Input, Directive, Output, EventEmitter, ContentChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NumberFieldDirective } from './number-field.directive';
 import { ExpiryFieldDirective } from './expiry-field.directive';
 import { CvvFieldDirective } from './cvv-field.directive';
+import { getPropChanges } from '../../utils';
 
 declare var Chargebee: any;
 
 @Directive({
   selector: '[cbCardField]'
 })
-export class CardFieldDirective implements AfterViewInit {
+export class CardFieldDirective implements AfterViewInit, OnChanges {
   id = '';
   cbInstance = null;
   cbComponent = null;
@@ -116,6 +117,17 @@ export class CardFieldDirective implements AfterViewInit {
 
   public tokenize() {
     return this.cbInstance.tokenize(this.cbComponent);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.cbComponent) {
+      const props = [ 'classes', 'fonts', 'locale', 'styles', 'placeholder'];
+      const { currentOptions, hasChanged } = getPropChanges(changes, props);
+
+      if (hasChanged) {
+        this.cbComponent.update(currentOptions);
+      }
+    }
   }
 
 }

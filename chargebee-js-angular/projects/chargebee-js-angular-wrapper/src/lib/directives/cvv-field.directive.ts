@@ -1,9 +1,10 @@
-import { Input, Directive, ElementRef, Output, EventEmitter, AfterViewInit, OnInit } from '@angular/core';
+import { Input, Directive, ElementRef, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { getPropChanges } from '../../utils';
 
 @Directive({
   selector: '[cbCvvField]'
 })
-export class CvvFieldDirective {
+export class CvvFieldDirective implements OnChanges {
   cbComponent = null;
   @Input() styles?: object;
   @Input() placeholder?: string;
@@ -37,6 +38,17 @@ export class CvvFieldDirective {
 
   onChange = (status: any) => {
     this.change.emit(status);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.field) {
+      const props = ['placeholder', 'styles'];
+      const { hasChanged, currentOptions } = getPropChanges(changes, props);
+
+      if (hasChanged) {
+        this.field.update(currentOptions);
+      }
+    }
   }
 
 }

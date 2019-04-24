@@ -25,6 +25,21 @@ class Element extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        const prevOptions = {
+            placeholder: prevProps.placeholder,
+            style: prevProps.styles
+        }
+        const currentOptions = {
+            placeholder: this.props.placeholder,
+            style: this.props.styles,
+        }
+
+        if(!isEqual(prevOptions, currentOptions) && this.field) {
+            this.field.update(currentOptions)
+        }
+    }
+
     componentWillUnmount() {
         this.field.destroy();
     }

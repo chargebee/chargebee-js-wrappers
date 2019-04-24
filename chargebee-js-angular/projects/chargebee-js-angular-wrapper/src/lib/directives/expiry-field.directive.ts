@@ -1,9 +1,10 @@
-import { Input, Output, EventEmitter, Directive, ElementRef } from '@angular/core';
+import { Input, Output, EventEmitter, Directive, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { getPropChanges } from '../../utils';
 
 @Directive({
   selector: '[cbExpiryField]'
 })
-export class ExpiryFieldDirective {
+export class ExpiryFieldDirective implements OnChanges {
   @Input() cbComponent;
   @Input() styles?: object;
   @Input() placeholder?: string;
@@ -37,6 +38,17 @@ export class ExpiryFieldDirective {
 
   onChange = (status: any) => {
     this.change.emit(status);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.field) {
+      const props = ['placeholder', 'styles'];
+      const { hasChanged, currentOptions } = getPropChanges(changes, props);
+
+      if (hasChanged) {
+        this.field.update(currentOptions);
+      }
+    }
   }
 
 }
