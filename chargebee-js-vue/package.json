@@ -1,9 +1,18 @@
 {
-  "name": "chargebee-js-vue-wrapper",
-  "version": "1.0.0",
+  "name": "@chargebee-js/vue-wrapper",
+  "version": "0.1.0",
+  "description": "Vue wrapper for Chargebee.js Components",
+  "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-vue#readme",
+  "bugs": {
+    "url": "https://github.com/chargebee/chargebee-js-wrappers/issues",
+    "email": "support@chargebee.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chargebee/chargebee-js-wrappers.git"
+  },
   "main": "dist/chargebee-js-vue-wrapper.common.js",
   "module": "dist/chargebee-js-vue-wrapper.esm.js",
-  "private": true,
   "files": [
     "dist/*",
     "src/*"
@@ -26,5 +35,18 @@
     "rollup-watch": "^4.3.1",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "license": "MIT",
+  "author": "Vivek <vivek@chargebee.com>",
+  "contributors": [
+    "Dinesh <dinesh@chargebee.com>"
+  ],
+  "keywords": [
+    "chargebee",
+    "chargebee.js",
+    "chargebee components",
+    "chargebee vue",
+    "chargebee vue wrapper",
+    "chargebee.js vue"
+  ]
 }

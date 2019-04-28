@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentContext } from "./ComponentGroup.jsx";
-
+import { isEqual } from '../utils/';
 
 class Element extends React.Component {
     constructor(props) {

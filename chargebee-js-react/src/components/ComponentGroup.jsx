@@ -1,4 +1,5 @@
 import React from 'react'
+import { isEqual } from '../utils/';
 
 const ComponentDefaultContext = {
     cbComponent: null
