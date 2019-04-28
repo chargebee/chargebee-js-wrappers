@@ -1,6 +1,6 @@
 {
-  "name": "chargebee-js-angular",
-  "version": "0.0.0",
+  "name": "@chargebee-js/angular-wrapper",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,16 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "description": "Angular wrapper for Chargebee.js Components",
+  "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-angular#readme",
+  "bugs": {
+    "url": "https://github.com/chargebee/chargebee-js-wrappers/issues",
+    "email": "support@chargebee.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chargebee/chargebee-js-wrappers.git"
+  },
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
@@ -48,5 +57,18 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
-  }
+  },
+  "license": "MIT",
+  "author": "Vivek <vivek@chargebee.com>",
+  "contributors": [
+    "Dinesh <dinesh@chargebee.com>"
+  ],
+  "keywords": [
+    "chargebee",
+    "chargebee.js",
+    "chargebee components",
+    "chargebee angular",
+    "chargebee angular wrapper",
+    "chargebee.js angular"
+  ]
 }

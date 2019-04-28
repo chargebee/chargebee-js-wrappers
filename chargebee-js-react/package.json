@@ -1,13 +1,22 @@
 {
-  "name": "chargebee-js-react-wrapper",
-  "version": "1.0.0",
+  "name": "@chargebee-js/react-wrapper",
+  "version": "0.1.0",
   "main": "dist/chargebee-js-react-wrapper.common.js",
   "module": "dist/chargebee-js-react-wrapper.esm.js",
-  "private": true,
   "files": [
     "dist/*",
     "src/*"
   ],
+  "description": "React wrapper for Chargebee.js Components",
+  "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-react#readme",
+  "bugs": {
+    "url": "https://github.com/chargebee/chargebee-js-wrappers/issues",
+    "email": "support@chargebee.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chargebee/chargebee-js-wrappers.git"
+  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w"
@@ -28,5 +37,18 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-watch": "^4.3.1"
-  }
+  },
+  "license": "MIT",
+  "author": "Vivek <vivek@chargebee.com>",
+  "contributors": [
+    "Dinesh <dinesh@chargebee.com>"
+  ],
+  "keywords": [
+    "chargebee",
+    "chargebee.js",
+    "chargebee components",
+    "chargebee react",
+    "chargebee react wrapper",
+    "chargebee.js react"
+  ]
 }
