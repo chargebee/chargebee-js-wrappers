@@ -1,4 +1,4 @@
-import { Input, Directive, Output, EventEmitter, ContentChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Input, Directive, Output, EventEmitter, ContentChild, ElementRef, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NumberFieldDirective } from './number-field.directive';
 import { ExpiryFieldDirective } from './expiry-field.directive';
 import { CvvFieldDirective } from './cvv-field.directive';
@@ -9,11 +9,12 @@ declare var Chargebee: any;
 @Directive({
   selector: '[cbCardField]'
 })
-export class CardFieldDirective implements AfterViewInit, OnChanges {
+export class CardFieldDirective implements OnInit, OnChanges {
   id = '';
   cbInstance = null;
   cbComponent = null;
 
+  @Input() icon?: boolean;
   @Input() classes?: object;
   @Input() fonts?: object;
   @Input() styles?: object;
@@ -65,8 +66,9 @@ export class CardFieldDirective implements AfterViewInit, OnChanges {
     this.change.emit(status);
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     const options = {
+      icon: typeof this.icon === 'boolean' ? this.icon : true,
       fonts: this.fonts || [],
       style: this.styles || {},
       locale: this.locale || 'en',
@@ -121,7 +123,7 @@ export class CardFieldDirective implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.cbComponent) {
-      const props = [ 'classes', 'fonts', 'locale', 'styles', 'placeholder'];
+      const props = ['icon', 'classes', 'fonts', 'locale', 'styles', 'placeholder'];
       const { currentOptions, hasChanged } = getPropChanges(changes, props);
 
       if (hasChanged) {

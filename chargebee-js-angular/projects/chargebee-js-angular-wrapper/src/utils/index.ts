@@ -71,6 +71,9 @@ export function getPropChanges(changes: SimpleChanges, props: string[]): {
 
     changedProps.map(prop => {
       const change: SimpleChange = changes[prop];
+      if (prop === 'styles') {
+        prop = 'style';
+      }
       prevOptions[prop] = change.previousValue;
       currentOptions[prop] = change.currentValue;
     });
