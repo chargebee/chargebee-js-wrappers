@@ -1,5 +1,5 @@
 {
-  "name": "@chargebee-js/angular-wrapper",
+  "name": "@chargebee/chargebee-js-angular-wrappers",
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chargebee/chargebee-js-wrappers.git"
+    "url": "git+https://github.com/chargebee/chargebee-js-wrappers.git"
   },
   "dependencies": {
     "@angular/animations": "~7.2.0",
@@ -70,5 +70,6 @@
     "chargebee angular",
     "chargebee angular wrapper",
     "chargebee.js angular"
-  ]
+  ],
+  "main": "index.js"
 }

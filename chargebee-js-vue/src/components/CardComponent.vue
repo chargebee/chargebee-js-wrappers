@@ -50,6 +50,19 @@ export default {
     tokenize () {
       return this.cbInstance.tokenize(this.cbComponent)
     },
+
+    focus() {
+      this.cbComponent.focus();
+    },
+
+    blur() {
+      this.cbComponent.blur();
+    },
+
+    clear() {
+      this.cbComponent.clear();
+    },
+    
     // Set cbComponent instance to child(slot)
     setComponentInstance(slot) {
       if(slot.componentOptions) {

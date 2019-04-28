@@ -1,5 +1,5 @@
 {
-  "name": "@chargebee-js/react-wrapper",
+  "name": "@chargebee/chargebee-js-react-wrapper",
   "version": "0.1.0",
   "main": "dist/chargebee-js-react-wrapper.common.js",
   "module": "dist/chargebee-js-react-wrapper.esm.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chargebee/chargebee-js-wrappers.git"
+    "url": "git+https://github.com/chargebee/chargebee-js-wrappers.git"
   },
   "scripts": {
     "build": "rollup -c",
@@ -50,5 +50,6 @@
     "chargebee react",
     "chargebee react wrapper",
     "chargebee.js react"
-  ]
+  ],
+  "dependencies": {}
 }

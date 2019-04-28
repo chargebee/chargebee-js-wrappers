@@ -50,7 +50,20 @@ export default {
         this.attachListener('blur')
         this.attachListener('change')
       }
-    }
+    },
+
+    focus() {
+      this.field.focus();
+    },
+
+    blur() {
+      this.field.blur();
+    },
+
+    clear() {
+      this.field.clear();
+    },
+    
   },
 
   watch: {
