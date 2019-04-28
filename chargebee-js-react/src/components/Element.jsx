@@ -1,8 +1,7 @@
 import React from 'react';
-import { ComponentContext } from "./ComponentGroup.jsx";
 import { isEqual } from '../utils/';
 
-class Element extends React.Component {
+export default class Element extends React.Component {
     constructor(props) {
         super(props);
         this.field = null
@@ -10,11 +9,9 @@ class Element extends React.Component {
     }
 
     componentDidMount() {
-        const {cbComponent, id, styles, listeners, placeholder} = this.props;
-        this.field = cbComponent.createField(id, {
-            placeholder,
-            style: styles,
-        }).at(`card-${id}`);
+        const { cbComponent, id, listeners } = this.props;
+        const options = this.getPropOptions(this.props);
+        this.field = cbComponent.createField(id, options).at(`card-${id}`);
         
         // Attaching listeners if any
         if(listeners) {
@@ -25,15 +22,18 @@ class Element extends React.Component {
         }
     }
 
+    getPropOptions(props) {
+        const { icon, styles: style, placeholder } = props;
+        return {
+            icon,
+            style,
+            placeholder,
+        }
+    }
+
     componentDidUpdate(prevProps) {
-        const prevOptions = {
-            placeholder: prevProps.placeholder,
-            style: prevProps.styles
-        }
-        const currentOptions = {
-            placeholder: this.props.placeholder,
-            style: this.props.styles,
-        }
+        const prevOptions = this.getPropOptions(prevProps)
+        const currentOptions = this.getPropOptions(this.props)
 
         if(!isEqual(prevOptions, currentOptions) && this.field) {
             this.field.update(currentOptions)
@@ -44,6 +44,18 @@ class Element extends React.Component {
         this.field.destroy();
     }
 
+    focus() {
+        this.field.focus();
+    }
+
+    blur() {
+        this.field.blur();
+    }
+
+    clear() {
+        this.field.clear();
+    }
+
     render() {
         const {id, className} = this.props;
         return (
@@ -51,16 +63,5 @@ class Element extends React.Component {
                 {this.props.children}
             </div>
         )
-    }
-}
-
-// Pass Context as props
-export default class _Element extends React.Component {
-    render() {
-        return(
-            <ComponentContext.Consumer>
-                { ctx => <Element cbComponent={ctx.cbComponent} {...this.props}/> }
-            </ComponentContext.Consumer>
-        );
     }
 }

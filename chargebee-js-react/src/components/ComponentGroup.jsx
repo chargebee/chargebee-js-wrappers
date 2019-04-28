@@ -17,16 +17,21 @@ export default class ChargebeeComponents extends React.Component {
         }
     }
 
-    componentWillMount() {
-        const {fonts, classes, icon, styles: style, locale, type, placeholder, onBlur, onChange, onFocus, onReady} = this.props;
-        const options = {
+    getPropOptions(props) {
+        const { fonts, classes, icon, styles: style, locale, placeholder } = props;
+        return {
             fonts,
             classes,
             locale,
             style,
             placeholder,
-            icon
+            icon,
         }
+    }
+
+    componentWillMount() {
+        const {type, onBlur, onChange, onFocus, onReady} = this.props;
+        const options = this.getPropOptions(this.props);
         const cbInstance = Chargebee.getInstance();
         cbInstance.load("components").then(() => {
             let cbComponent = cbInstance.createComponent(type, options)
@@ -52,20 +57,8 @@ export default class ChargebeeComponents extends React.Component {
             cbComponent.mount();
         }
 
-        const prevOptions = {
-            placeholder: prevProps.placeholder,
-            style: prevProps.styles,
-            fonts: prevProps.fonts,
-            classes: prevProps.classes,
-            locale: prevProps.locale,
-        }
-        const currentOptions = {
-            placeholder: this.props.placeholder,
-            style: this.props.styles,
-            fonts: this.props.fonts,
-            classes: this.props.classes,
-            locale: this.props.locale,
-        }
+        const prevOptions = this.getPropOptions(prevProps)
+        const currentOptions = this.getPropOptions(this.props)
 
         if(!isEqual(prevOptions, currentOptions) && cbComponent) {
             cbComponent.update(currentOptions)
@@ -75,6 +68,21 @@ export default class ChargebeeComponents extends React.Component {
     tokenize() {
         const {cbComponent, cbInstance} = this.state;
         return cbInstance.tokenize(cbComponent)
+    }
+
+    focus() {
+        const { cbComponent } = this.state;
+        cbComponent.focus();
+    }
+
+    blur() {
+        const { cbComponent } = this.state;
+        cbComponent.blur();
+    }
+
+    clear() {
+        const { cbComponent } = this.state;
+        cbComponent.clear();
     }
 
     render() {
