@@ -4,12 +4,12 @@ Angular wrapper for Chargebee Components
 ## Examples
 To Quickly get started, check out the [Codepen demo](https://codepen.io) here
 
-For more examples: https://github.com/chargebee/chargebee-checkout-samples/components/angular
+For more examples: https://github.com/chargebee/chargebee-js/tree/component_examples/angular-app/
 
 ## Installation
 Install from npm:
 ```bash
-npm install @chargebee-js/angular
+npm install @chargebee/chargebee-js-angular-wrapper
 ```
 
 ## Usage
