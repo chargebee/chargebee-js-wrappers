@@ -21,6 +21,6 @@ export default {
     }),
     // https://github.com/vuejs/rollup-plugin-vue/commit/fd3dfb9a4440b13b220fb2dc535506274280fa0c
     commonjs(),
-    VuePlugin()
+    VuePlugin({css: false})
   ]
 };

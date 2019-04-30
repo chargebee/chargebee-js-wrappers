@@ -77,7 +77,7 @@ export default {
     },
   },
 
-  created () {
+  mounted () {
     let cbInstance = Chargebee.getInstance();
     let options = this.componentOptions;
     cbInstance.load("components").then(() => {
