@@ -22,7 +22,11 @@ export default {
     icon: {
       type: Boolean,
       default: true
-    }
+    },
+    locale: {
+      type: String,
+      default: 'en'
+    },
   },
 
   data () {
