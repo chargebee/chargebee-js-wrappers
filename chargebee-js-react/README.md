@@ -19,7 +19,7 @@ For more examples: https://github.com/chargebee/chargebee-checkout-samples/compo
 ## Installation
 Install from npm:
 ```bash
-npm install @chargebee-js/react
+npm install @chargebee/chargebee-js-react-wrapper
 ```
 
 ## Usage
