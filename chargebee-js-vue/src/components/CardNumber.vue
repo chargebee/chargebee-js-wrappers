@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:id="'card-'+id" v-bind:class="classname">
+  <div v-bind:id="elementId" v-bind:class="classname">
     <slot></slot>
   </div>
 </template>

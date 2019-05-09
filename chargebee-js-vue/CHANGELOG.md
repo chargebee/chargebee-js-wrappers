@@ -1,3 +1,7 @@
+### v0.1.6 (2019-05-09)
+* * *
+* Mount new syntax
+
 ### v0.1.4 (2019-04-28)
 * * *
 * Added locale update support

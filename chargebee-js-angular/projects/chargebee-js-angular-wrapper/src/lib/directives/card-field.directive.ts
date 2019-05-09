@@ -93,8 +93,7 @@ export class CardFieldDirective implements OnInit, OnChanges {
         this.initializeField(this.cbComponent, this.expiryComponent);
         this.initializeField(this.cbComponent, this.cvvComponent);
 
-        this.cbComponent.at(this.id);
-        this.cbComponent.mount();
+        this.cbComponent.mount(`#${this.id}`);
       });
   }
 
@@ -103,7 +102,7 @@ export class CardFieldDirective implements OnInit, OnChanges {
       const fieldInstance = cbComponent.createField(fieldElement.type, {
         style: fieldElement.styles || {},
         placeholder: fieldElement.placeholder || '',
-      }).at(fieldElement.id);
+      }).at(`#${fieldElement.id}`);
 
       fieldElement.field = fieldInstance;
 

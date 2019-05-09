@@ -10,6 +10,7 @@ export const ComponentContext = React.createContext(ComponentDefaultContext);
 export default class ChargebeeComponents extends React.Component {
     constructor(props) {
         super(props);
+        this.id = `${props.type}-field`;
         this.state = {
             moduleLoaded: false,
             cbComponent: null,
@@ -53,8 +54,7 @@ export default class ChargebeeComponents extends React.Component {
         const cbComponent = this.state.cbComponent;
 
         if(cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
-            cbComponent.at('card-field')
-            cbComponent.mount();
+            cbComponent.mount(`#${this.id}`);
         }
 
         const prevOptions = this.getPropOptions(prevProps)
@@ -88,7 +88,7 @@ export default class ChargebeeComponents extends React.Component {
     render() {
         return (
             <ComponentContext.Provider value={this.state}>
-                <div id={`${this.props.type}-field`} className={this.props.className || ''}>
+                <div id={this.id} className={this.props.className || ''}>
                     {this.state.moduleLoaded && this.props.children || []}
                 </div>
             </ComponentContext.Provider>

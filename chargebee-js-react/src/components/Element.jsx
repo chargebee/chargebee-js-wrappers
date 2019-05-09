@@ -5,13 +5,14 @@ export default class Element extends React.Component {
     constructor(props) {
         super(props);
         this.field = null
+        this.id = `card-${props.id}`;
         this.ElementRef = React.createRef();
     }
 
     componentDidMount() {
         const { cbComponent, id, listeners } = this.props;
         const options = this.getPropOptions(this.props);
-        this.field = cbComponent.createField(id, options).at(`card-${id}`);
+        this.field = cbComponent.createField(id, options).at(`#${this.id}`);
         
         // Attaching listeners if any
         if(listeners) {

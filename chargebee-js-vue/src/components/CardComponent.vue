@@ -47,6 +47,10 @@ export default {
         placeholder: this.placeholder,
         icon: this.icon
       }
+    },
+
+    elementId: function() {
+      return `card-component`
     }
   },
 
@@ -101,8 +105,7 @@ export default {
   updated() {
     if(this.cbComponent && this.moduleLoaded && this.cbComponent.status == 0) {
       this.$nextTick(() => {
-        this.cbComponent.at('card-field')
-        this.cbComponent.mount();
+        this.cbComponent.mount(`#${this.elementId}`);
       });
     }
   },
@@ -131,7 +134,7 @@ export default {
     else {
       children = [];
     }
-    return h('div', { attrs: { id: 'card-field' }, class: this.class }, children)
+    return h('div', { attrs: { id: this.elementId }, class: this.class }, children)
   }
 }
 </script>
