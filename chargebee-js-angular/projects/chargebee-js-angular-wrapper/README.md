@@ -2,9 +2,7 @@
 Angular wrapper for Chargebee Components
 
 ## Examples
-To Quickly get started, check out the [Codepen demo](https://codepen.io) here
-
-For more examples: [Click here](https://github.com/chargebee/chargebee-js/tree/component_examples/angular-app/)
+For detailed examples: [Click here](https://github.com/chargebee/chargebee-checkout-samples/tree/master/components/angular-app#readme)
 
 ## Installation
 Install from npm:
@@ -15,7 +13,7 @@ npm install @chargebee/chargebee-js-angular-wrapper
 ## Usage
 Chargebee Components requires you to initialize chargebee js with `site` and `publishableKey`
 
-> Wondering where to obtain your publishable API key? [Refer here](https://jsdocs.chargebee.com/)
+> Wondering where to obtain your publishable API key? [Refer here](https://www.chargebee.com/docs/api_keys.html)
 
 In your `index.html`:
 ```html
@@ -67,8 +65,8 @@ export class AppComponent {
   onTokenize = (event) => {
     event.preventDefault();
     
-    this.cardComponent.tokenize().then(token => {
-      console.log('chargebee token', token.id)
+    this.cardComponent.tokenize().then(data => {
+      console.log('chargebee token', data.token)
     });
   }
 }
@@ -185,8 +183,8 @@ export class AppComponent {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.cardComponent.tokenize().then(token => {
-      console.log('chargebee token', token.id)
+    this.cardComponent.tokenize().then(data => {
+      console.log('chargebee token', data.token)
     });
   }
 }
@@ -195,43 +193,43 @@ export class AppComponent {
 
 ## Directives and APIs
 
-#### cbCardField Directive ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-component-object))
+#### cbCardField Directive ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-component-object))
 Attributes | Description | Datatype
 -----------|-------------|---------
-`fonts` | An array of font faces or links | [Fonts](https://jsdocs.chargebee.com)
-`classes` | Set of CSS classnames that get substituted for various [events](https://jsdocs.chargebee.com) | [Classes](https://jsdocs.chargebee.com)
-`locale` | Language code | [Locale](https://jsdocs.chargebee.com)
-`styles` | Set of style customizations | [Styles](https://jsdocs.chargebee.com)
-`placeholder` | Set of placeholders for the card fields | [Placeholder](https://jsdocs.chargebee.com)
+`fonts` | An array of font faces or links | [Fonts](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`classes` | Set of CSS classnames that get substituted for various [events](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on) | [Classes](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`locale` | Language code | [Locale](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`styles` | Set of style customizations | [Styles](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`placeholder` | Set of placeholders for the card fields | [Placeholder](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 
-##### Events ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#on))
+##### Events ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on))
 Props | Description | Arguments
 ------|-------------|---------
-`(ready)` | Triggers when component is mounted and ready | [Field](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
-`(change)` | Triggers for every state change | [Field State](https://jsdocs.chargebee.com)
-`(focus)` | Triggers when component is focused | [Field State](https://jsdocs.chargebee.com)
-`(blur)` | Triggers when component is blurred | [Field State](https://jsdocs.chargebee.com)
+`(ready)` | Triggers when component is mounted and ready | [Field](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
+`(change)` | Triggers for every state change | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`(focus)` | Triggers when component is focused | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`(blur)` | Triggers when component is blurred | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
 
-#### Individual Field directives ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object))
+#### Individual Field directives ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object))
   * cbNumberField
   * cbExpiryField
   * cbCvvField
 
 Props | Description | Datatype
 ------|-------------|---------
-`styles` | Styles for inidividual field | [Styles]()
+`styles` | Styles for inidividual field | [Styles](http://localhost:8081/checkout-portal-docs/components-fields-reference.html#parameters-5)
 `placeholder` | Placeholder for the field | String
 
-##### Event Props ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#on-2))
+##### Event Props ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on-2))
 Props | Description | Arguments
 ------|-------------|---------
-`(ready)` | Triggers when component is mounted and ready | [Field](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
-`(change)` | Triggers for every state change | [Field State](https://jsdocs.chargebee.com)
-`(focus)` | Triggers when component is focused | [Field State](https://jsdocs.chargebee.com)
-`(blur)` | Triggers when component is blurred | [Field State](https://jsdocs.chargebee.com)
+`(ready)` | Triggers when component is mounted and ready | [Field](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
+`(change)` | Triggers for every state change | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`(focus)` | Triggers when component is focused | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`(blur)` | Triggers when component is blurred | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
 
 ## Reference:
-[Chargebee Components - JS Docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-integrations.html#quick-start-integration)
+[Chargebee Components - JS Docs](https://chargebee.com/checkout-portal-docs/components-fields-integrations.html#quick-start-integration)
 
 ## Support
 Have any queries regarding the implementation? Reach out to [support@chargebee.com](mailto:support@chargebee.com)

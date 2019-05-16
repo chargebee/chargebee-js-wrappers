@@ -2,19 +2,7 @@
 React wrapper for Chargebee Components
 
 ## Examples
-To Quickly get started, check out the [Codepen demo](https://codepen.io) here
-
-<!-- 
-Source code demo:
-```bash
-git clone https://github.com/chargebee/chargebee-js-wrappers
-
-cd chargebee-js-wrappers/react
-npm install
-npm run start
-``` -->
-
-For more examples: https://github.com/chargebee/chargebee-checkout-samples/components/react
+For detailed examples: [Click here](https://github.com/chargebee/chargebee-checkout-samples/tree/master/components/react-app#readme)
 
 ## Installation
 Install from npm:
@@ -25,7 +13,7 @@ npm install @chargebee/chargebee-js-react-wrapper
 ## Usage
 Chargebee Components requires you to initialize chargebee js with `site` and `publishableKey`
 
-> Wondering where to obtain your publishable API key? [Refer here](https://jsdocs.chargebee.com/)
+> Wondering where to obtain your publishable API key? [Refer here](https://www.chargebee.com/docs/api_keys.html)
 
 In your `index.html`:
 ```html
@@ -49,18 +37,17 @@ In your `index.html`:
 ### Basic usage
 In your react component
 ```jsx
-import { CardComponent } from 'chargebee-js-wrappers/react';
+import { CardComponent } from '@chargebee/chargebee-js-react-wrapper';
 
 class App extends React.Component {
     cardRef = React.createRef()
     ...
     onSubmit = (e) => {
         if(e) e.preventDefault()
-        this.cardRef.current.tokenize().then(
-            (token) => {
-                console.log('chargebee token', token.id)   
-            }
-        );
+        this.cardRef.current.tokenize()
+        .then((data) => {
+          console.log('chargebee token', data.token)
+        });
     }
     ...
     render() {
@@ -138,8 +125,8 @@ class App extends Component {
     if(e) e.preventDefault()
     if(this.cardRef) {
       // Call tokenize method on card element
-      this.cardRef.current.tokenize().then((token) => {
-          console.log('chargebee token', token.id)
+      this.cardRef.current.tokenize().then((data) => {
+          console.log('chargebee token', data.token)
       });
     }
   }
@@ -194,26 +181,26 @@ class App extends Component {
 
 ## Components and APIs
 
-#### Card Component ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-component-object))
+#### Card Component ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-component-object))
 Props | Description | Datatype
 ------|-------------|---------
 `className` | CSS Class name for the container div | String
-`fonts` | An array of font faces or links | [Fonts](https://jsdocs.chargebee.com)
-`classes` | Set of CSS classnames that get substituted for various [events](https://jsdocs.chargebee.com) | [Classes](https://jsdocs.chargebee.com)
-`locale` | Language code | [Locale](https://jsdocs.chargebee.com)
-`styles` | Set of style customizations | [Styles](https://jsdocs.chargebee.com)
-`placeholder` | Set of placeholders for the card fields | [Placeholder](https://jsdocs.chargebee.com)
+`fonts` | An array of font faces or links | [Fonts](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`classes` | Set of CSS classnames that get substituted for various [events](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on) | [Classes](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`locale` | Language code | [Locale](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`styles` | Set of style customizations | [Styles](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`placeholder` | Set of placeholders for the card fields | [Placeholder](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `ref` | React Ref element for tokenizing data | [ReactRef](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs)
 
-##### Event Props ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#on))
+##### Event Props ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on))
 Props | Description | Arguments
 ------|-------------|---------
-`onReady` | Triggers when component is mounted and ready | [Field](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
-`onChange` | Triggers for every state change | [Field State](https://jsdocs.chargebee.com)
-`onFocus` | Triggers when component is focused | [Field State](https://jsdocs.chargebee.com)
-`onBlur` | Triggers when component is blurred | [Field State](https://jsdocs.chargebee.com)
+`onReady` | Triggers when component is mounted and ready | [Field](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
+`onChange` | Triggers for every state change | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`onFocus` | Triggers when component is focused | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`onBlur` | Triggers when component is blurred | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
 
-#### Field Components ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object))
+#### Field Components ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object))
   * CardNumber
   * CardExpiry
   * CardCVV
@@ -221,19 +208,19 @@ Props | Description | Arguments
 Props | Description | Datatype
 ------|-------------|---------
 `className` | CSS Classname for container `div` | String
-`styles` | Styles for inidividual field | [Styles]()
+`styles` | Styles for inidividual field | [Styles](http://localhost:8081/checkout-portal-docs/components-fields-reference.html#parameters-5)
 `placeholder` | Placeholder for the field | String
 
-##### Event Props ([docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#on-2))
+##### Event Props ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on-2))
 Props | Description | Arguments
 ------|-------------|---------
-`onReady` | Triggers when component is mounted and ready | [Field](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
-`onChange` | Triggers for every state change | [Field State](https://jsdocs.chargebee.com)
-`onFocus` | Triggers when component is focused | [Field State](https://jsdocs.chargebee.com)
-`onBlur` | Triggers when component is blurred | [Field State](https://jsdocs.chargebee.com)
+`onReady` | Triggers when component is mounted and ready | [Field](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object)
+`onChange` | Triggers for every state change | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`onFocus` | Triggers when component is focused | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`onBlur` | Triggers when component is blurred | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
 
 ## Reference:
-[Chargebee Components - JS Docs](https://jsdocs.chargebee.com/checkout-portal-docs/components-fields-integrations.html#quick-start-integration)
+[Chargebee Components - JS Docs](https://chargebee.com/checkout-portal-docs/components-fields-integrations.html#quick-start-integration)
 
 ## Support
 Have any queries regarding the implementation? Reach out to [support@chargebee.com](mailto:support@chargebee.com)
