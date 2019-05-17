@@ -314,14 +314,16 @@ function (_React$Component) {
           icon = props.icon,
           style = props.styles,
           locale = props.locale,
-          placeholder = props.placeholder;
+          placeholder = props.placeholder,
+          currency = props.currency;
       return {
         fonts: fonts,
         classes: classes,
         locale: locale,
         style: style,
         placeholder: placeholder,
-        icon: icon
+        icon: icon,
+        currency: currency
       };
     }
   }, {

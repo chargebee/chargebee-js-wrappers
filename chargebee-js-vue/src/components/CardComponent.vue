@@ -27,6 +27,10 @@ export default {
       type: String,
       default: 'en'
     },
+    currency: {
+      type: String,
+      default: 'USD'
+    },
   },
 
   data () {
@@ -45,7 +49,8 @@ export default {
         locale: this.locale,
         style: this.styles,
         placeholder: this.placeholder,
-        icon: this.icon
+        icon: this.icon,
+        currency: this.currency,
       }
     },
 

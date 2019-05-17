@@ -4,6 +4,9 @@ Vue wrapper for Chargebee Components
 ## Examples
 For detailed examples: [Click here](https://github.com/chargebee/chargebee-checkout-samples/tree/master/components/vue/cb-components-examples#readme)
 
+## Live Demo
+View live demo [here](https://www.recur.in/components-examples/vue/#/example1)
+
 ## Installation
 Install from npm:
 ```bash

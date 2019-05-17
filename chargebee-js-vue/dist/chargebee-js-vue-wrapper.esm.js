@@ -65,6 +65,10 @@ var script = {
     locale: {
       type: String,
       "default": 'en'
+    },
+    currency: {
+      type: String,
+      "default": 'USD'
     }
   },
   data: function data() {
@@ -82,7 +86,8 @@ var script = {
         locale: this.locale,
         style: this.styles,
         placeholder: this.placeholder,
-        icon: this.icon
+        icon: this.icon,
+        currency: this.currency
       };
     },
     elementId: function elementId() {

@@ -19,6 +19,7 @@ export class CardFieldDirective implements OnInit, OnChanges {
   @Input() fonts?: object;
   @Input() styles?: object;
   @Input() locale?: string;
+  @Input() currency?: string;
   @Input() placeholder?: {
     number?: string;
     expiry?: string;
@@ -73,6 +74,7 @@ export class CardFieldDirective implements OnInit, OnChanges {
       style: this.styles || {},
       locale: this.locale || 'en',
       classes: this.classes || {},
+      currency: this.currency || 'USD',
       placeholder: this.placeholder || {},
     };
 

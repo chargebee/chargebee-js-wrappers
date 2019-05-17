@@ -1,3 +1,8 @@
+### v0.1.7 (2019-05-17)
+* * *
+* Added currency support
+* Updated README
+
 ### v0.1.6 (2019-05-09)
 * * *
 * Mount new syntax
