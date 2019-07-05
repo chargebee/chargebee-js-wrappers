@@ -1,5 +1,5 @@
 import React from 'react'
-import { isEqual } from '../utils/';
+import { isEqual, genUUID } from '../utils/';
 
 const ComponentDefaultContext = {
     cbComponent: null
@@ -10,7 +10,7 @@ export const ComponentContext = React.createContext(ComponentDefaultContext);
 export default class ChargebeeComponents extends React.Component {
     constructor(props) {
         super(props);
-        this.id = `${props.type}-field`;
+        this.id = `${props.type}-field-${genUUID()}`;
         this.state = {
             moduleLoaded: false,
             cbComponent: null,

@@ -1,3 +1,7 @@
+### v0.1.5 (2019-07-05)
+* * *
+* Bugfixes - Multiple components mounting on same element
+
 ### v0.1.4 (2019-05-17)
 * * *
 * Added currency support

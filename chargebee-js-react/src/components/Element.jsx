@@ -1,18 +1,18 @@
 import React from 'react';
-import { isEqual } from '../utils/';
+import { isEqual, genUUID } from '../utils/';
 
 export default class Element extends React.Component {
     constructor(props) {
         super(props);
         this.field = null
-        this.id = `card-${props.id}`;
+        this.id = `card-${props.type}-${genUUID()}`;
         this.ElementRef = React.createRef();
     }
 
     componentDidMount() {
-        const { cbComponent, id, listeners } = this.props;
+        const { cbComponent, type, listeners } = this.props;
         const options = this.getPropOptions(this.props);
-        this.field = cbComponent.createField(id, options).at(`#${this.id}`);
+        this.field = cbComponent.createField(type, options).at(`#${this.id}`);
         
         // Attaching listeners if any
         if(listeners) {
@@ -58,9 +58,9 @@ export default class Element extends React.Component {
     }
 
     render() {
-        const {id, className} = this.props;
+        const {className} = this.props;
         return (
-            <div id={`card-${id}`} ref={this.ElementRef} className={className}>
+            <div id={this.id} ref={this.ElementRef} className={className}>
                 {this.props.children}
             </div>
         )

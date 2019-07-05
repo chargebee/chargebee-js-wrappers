@@ -8,7 +8,7 @@ export default React.forwardRef((props, ref) => {
 
     return (
         <ComponentContext.Consumer>
-            { ctx => <Element id='number' cbComponent={ctx.cbComponent} ref={ref} listeners={listeners} {...rest}/> }
+            { ctx => <Element type='number' cbComponent={ctx.cbComponent} ref={ref} listeners={listeners} {...rest}/> }
         </ComponentContext.Consumer>
     )
 });

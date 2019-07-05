@@ -181,6 +181,13 @@ function isEqual(left, right) {
 
   return allKeys.every(pred);
 }
+function genUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0,
+        v = c == 'x' ? r : r & 0x3 | 0x8;
+    return v.toString(16);
+  });
+}
 
 var Element =
 /*#__PURE__*/
@@ -194,7 +201,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Element).call(this, props));
     _this.field = null;
-    _this.id = "card-".concat(props.id);
+    _this.id = "card-".concat(props.type, "-").concat(genUUID());
     _this.ElementRef = React.createRef();
     return _this;
   }
@@ -204,10 +211,10 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this$props = this.props,
           cbComponent = _this$props.cbComponent,
-          id = _this$props.id,
+          type = _this$props.type,
           listeners = _this$props.listeners;
       var options = this.getPropOptions(this.props);
-      this.field = cbComponent.createField(id, options).at("#".concat(this.id)); // Attaching listeners if any
+      this.field = cbComponent.createField(type, options).at("#".concat(this.id)); // Attaching listeners if any
 
       if (listeners) {
         if (listeners.onBlur) this.field.on('blur', listeners.onBlur);
@@ -261,11 +268,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          id = _this$props2.id,
-          className = _this$props2.className;
+      var className = this.props.className;
       return React.createElement("div", {
-        id: "card-".concat(id),
+        id: this.id,
         ref: this.ElementRef,
         className: className
       }, this.props.children);
@@ -291,7 +296,7 @@ function (_React$Component) {
     _classCallCheck(this, ChargebeeComponents);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ChargebeeComponents).call(this, props));
-    _this.id = "".concat(props.type, "-field");
+    _this.id = "".concat(props.type, "-field-").concat(genUUID());
     _this.state = {
       moduleLoaded: false,
       cbComponent: null,
@@ -420,7 +425,7 @@ var CardNumber = React.forwardRef(function (props, ref) {
   };
   return React.createElement(ComponentContext.Consumer, null, function (ctx) {
     return React.createElement(Element, _extends({
-      id: "number",
+      type: "number",
       cbComponent: ctx.cbComponent,
       ref: ref,
       listeners: listeners
@@ -443,7 +448,7 @@ var CardExpiry = React.forwardRef(function (props, ref) {
   };
   return React.createElement(ComponentContext.Consumer, null, function (ctx) {
     return React.createElement(Element, _extends({
-      id: "expiry",
+      type: "expiry",
       cbComponent: ctx.cbComponent,
       ref: ref,
       listeners: listeners
@@ -466,7 +471,7 @@ var CardCVV = React.forwardRef(function (props, ref) {
   };
   return React.createElement(ComponentContext.Consumer, null, function (ctx) {
     return React.createElement(Element, _extends({
-      id: "cvv",
+      type: "cvv",
       cbComponent: ctx.cbComponent,
       ref: ref,
       listeners: listeners

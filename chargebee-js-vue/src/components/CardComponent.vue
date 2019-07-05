@@ -1,4 +1,5 @@
 <script>
+import { genUUID } from '../utils/';
 
 export default {
 
@@ -37,7 +38,8 @@ export default {
     return {
       cbInstance: null,
       cbComponent: null,
-      moduleLoaded: false
+      moduleLoaded: false,
+      elementId: `card-component-${genUUID()}`
     }
   },
 
@@ -53,10 +55,6 @@ export default {
         currency: this.currency,
       }
     },
-
-    elementId: function() {
-      return `card-component`
-    }
   },
 
   methods: {

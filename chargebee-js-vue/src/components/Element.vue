@@ -1,4 +1,5 @@
 <script>
+import { genUUID } from '../utils';
 export default {
 
   data () {
@@ -27,7 +28,7 @@ export default {
     },
 
     elementId: function() {
-      return `card-${this.id}`
+      return `card-${this.id}-${genUUID()}`
     }
   },
 
