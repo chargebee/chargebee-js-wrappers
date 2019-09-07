@@ -182,6 +182,53 @@ class App extends Component {
 
 ```
 
+### 3DS Authorization
+In your react component
+```jsx
+import { CardComponent } from '@chargebee/chargebee-js-react-wrapper';
+
+class App extends React.Component {
+    cardRef = React.createRef()
+    ...
+    createPaymentIntent() {
+      // make ajax call to server to create payment intent
+    }
+    ...
+    componentDidMount() {
+      this.createPaymentIntent().then(intent => {
+        this.state.intent = intent;
+      })
+    }
+    ...
+    onSubmit = (e) => {
+        if(e) e.preventDefault()
+        
+        const intent = this.state.intent;
+        const additionalData = this.state.additionalData;
+        
+        this.cardRef.current.authorizeWith3ds(intent, additionalData)
+        .then(authorizedPaymentIntent => {
+          console.log('Authorized payment intent', authorizedPaymentIntent.id)
+        }).catch(error => {
+          console.error('Error occured', error)
+        });
+    }
+    ...
+    render() {
+        // Using combined mode
+        return(
+            <div className="App">
+                <form>
+                    ...
+                    <CardComponent ref={this.cardRef} onChange={this.onChange}/>
+                    <button type="submit" onClick={this.onSubmit}>Submit</button>
+                    ...
+                </form>
+            </div>
+        )
+    }
+}
+
 ## Components and APIs
 
 #### Card Component ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-component-object))

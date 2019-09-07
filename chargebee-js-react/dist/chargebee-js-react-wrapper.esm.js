@@ -371,11 +371,15 @@ function (_React$Component) {
     }
   }, {
     key: "tokenize",
-    value: function tokenize() {
-      var _this$state = this.state,
-          cbComponent = _this$state.cbComponent,
-          cbInstance = _this$state.cbInstance;
-      return cbInstance.tokenize(cbComponent);
+    value: function tokenize(additionalData) {
+      var cbComponent = this.state.cbComponent;
+      return cbComponent.tokenize(additionalData);
+    }
+  }, {
+    key: "authorizeWith3ds",
+    value: function authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+      var cbComponent = this.state.cbComponent;
+      return cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks);
     }
   }, {
     key: "focus",

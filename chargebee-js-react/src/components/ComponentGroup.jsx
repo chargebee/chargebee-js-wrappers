@@ -66,9 +66,14 @@ export default class ChargebeeComponents extends React.Component {
         }
     }
 
-    tokenize() {
-        const {cbComponent, cbInstance} = this.state;
-        return cbInstance.tokenize(cbComponent)
+    tokenize(additionalData) {
+        const { cbComponent } = this.state;
+        return cbComponent.tokenize(additionalData)
+    }
+
+    authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+      const { cbComponent } = this.state;
+      return cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks)
     }
 
     focus() {
