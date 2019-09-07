@@ -228,6 +228,7 @@ class App extends React.Component {
         )
     }
 }
+```
 
 ## Components and APIs
 
