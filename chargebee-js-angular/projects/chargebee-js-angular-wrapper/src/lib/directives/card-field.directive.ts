@@ -3,6 +3,7 @@ import { NumberFieldDirective } from './number-field.directive';
 import { ExpiryFieldDirective } from './expiry-field.directive';
 import { CvvFieldDirective } from './cvv-field.directive';
 import { getPropChanges } from '../../utils';
+import { PaymentIntent, AdditionalData, Callbacks } from '../types';
 
 declare var Chargebee: any;
 
@@ -118,8 +119,12 @@ export class CardFieldDirective implements OnInit, OnChanges {
     return null;
   }
 
-  public tokenize() {
-    return this.cbInstance.tokenize(this.cbComponent);
+  public tokenize(additionalData: any) {
+    return this.cbComponent.tokenize(additionalData);
+  }
+
+  public authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks) {
+    return this.cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks);
   }
 
   ngOnChanges(changes: SimpleChanges) {

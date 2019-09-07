@@ -194,6 +194,55 @@ export class AppComponent {
 
 ```
 
+### 3DS Authorization
+In your angular component
+
+component.html
+```html
+<div class="cell example example3" id="example-3" style="padding: 1em">
+  <form>
+    <div cbCardField id='card-field' (ready)="onReady($event)"></div>
+    <button (click)="authorize($event)">Submit</button>
+  </form>
+</div>
+```
+component.ts
+```js
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent {
+  cardComponent = null;
+  intent = null;
+  additionalData = {
+    // Additional data to improve the chances of frictionless flow
+  }
+
+  onReady = (cardComponent) => {
+    this.cardComponent = cardComponent;
+  }
+
+  createPaymentIntent() {
+    // make ajax call to your server to create a paymentIntent
+    ...
+    this.intent = paymentIntent
+  }
+
+  authorize = (event) => {
+    event.preventDefault();
+    
+    this.cardComponent.authorizeWith3ds(this.intent, this.additionalData).then(authorizedIntent => {
+      console.log('3DS Authorization success', authorizedIntent.id)
+    });
+  }
+}
+
+```
+
 ## Directives and APIs
 
 #### cbCardField Directive ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-component-object))

@@ -1,3 +1,8 @@
+### v0.2.0 (2019-09-07)
+* * *
+* Support for 3DS Authorization
+* Support for passing additional info in tokenize method
+
 ### v0.1.4 (2019-05-17)
 * * *
 * Added currency support
