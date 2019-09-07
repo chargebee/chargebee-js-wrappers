@@ -193,6 +193,66 @@ export default {
 
 ```
 
+
+### 3DS Authorization
+In your vue component
+```js
+<template>
+  <div>
+    <div class="cell example example3" id="example-3" style="padding: 1em">
+      <form>
+        ...
+        <card-component ref="cardComponent" />
+        <button type="submit" id="authorize" v-on:click="onSubmit">Submit</button>
+        ...
+      </form>
+    </div>
+  </div>
+</template>
+
+<script>
+import {CardComponent} from '@chargebee/chargebee-js-vue-wrapper';
+
+export default {
+  name: 'app',
+  components: {
+    'card-component': CardComponent,
+  },
+
+  mounted: function() {
+    this.createPaymentIntent().then(intent => {
+      this.paymentIntent = intent;
+    });
+  },
+
+  data: function() {
+    return {
+      paymentIntent: null,
+      additionalData: {
+        // Additional params to improve chances of frictionless flow
+      }
+    }
+  },
+
+  methods: {
+    createPaymentIntent() {
+      // Make ajax call to server to create a paymentIntent
+    },
+    onSubmit (e) {
+      e.preventDefault()
+      this.$refs.cardComponent.authorizeWith3ds(this.paymentIntent, this.additionalData)
+        .then(authorizedIntent => {
+          console.log('Success', authorizedIntent.id)
+        }).catch(error => {
+          consoel.error('Error', error)
+        })
+    }
+  }
+}
+
+</script>
+```
+
 ## Components and APIs
 
 #### Card Component ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-component-object))

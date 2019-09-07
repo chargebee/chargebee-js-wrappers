@@ -1,3 +1,8 @@
+### v0.2.0 (2019-09-07)
+* * *
+* Support for 3DS
+* Support for passing additional data in tokenize function
+
 ### v0.1.8 (2019-07-05)
 * * *
 * Bugfixes - Multiple components mounting on same element

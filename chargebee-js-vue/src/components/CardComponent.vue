@@ -58,8 +58,12 @@ export default {
   },
 
   methods: {
-    tokenize () {
-      return this.cbInstance.tokenize(this.cbComponent)
+    tokenize (additionalData) {
+      return this.cbComponent.tokenize(additionalData)
+    },
+
+    authorizeWith3ds (paymentIntent, additionalData, callbacks) {
+      return this.cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks)
     },
 
     focus() {

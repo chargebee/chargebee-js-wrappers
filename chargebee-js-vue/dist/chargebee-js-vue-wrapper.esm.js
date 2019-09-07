@@ -101,8 +101,11 @@ var script = {
     }
   },
   methods: {
-    tokenize: function tokenize() {
-      return this.cbInstance.tokenize(this.cbComponent);
+    tokenize: function tokenize(additionalData) {
+      return this.cbComponent.tokenize(additionalData);
+    },
+    authorizeWith3ds: function authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+      return this.cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks);
     },
     focus: function focus() {
       this.cbComponent.focus();
