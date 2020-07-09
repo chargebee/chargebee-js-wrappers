@@ -41,9 +41,14 @@ export default class Element extends React.Component {
         }
     }
 
-    componentWillUnmount() {
-        this.field.destroy();
-    }
+    /**
+     * Commenting to prevent cross origin errors
+     * which occurs when the field component is flushed from DOM
+     * much before the destroy API gets invoked.
+     */
+    // componentWillUnmount() {
+    //     this.field.destroy();
+    // }
 
     focus() {
         this.field.focus();
