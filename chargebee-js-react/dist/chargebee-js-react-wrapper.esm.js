@@ -1,6 +1,8 @@
 import React from 'react';
 
 function _typeof(obj) {
+  "@babel/helpers - typeof";
+
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     _typeof = function (obj) {
       return typeof obj;
@@ -85,6 +87,19 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
@@ -135,6 +150,25 @@ function _possibleConstructorReturn(self, call) {
   }
 
   return _assertThisInitialized(self);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
 }
 
 // Equality comparison for objects
@@ -189,20 +223,20 @@ function genUUID() {
   });
 }
 
-var Element =
-/*#__PURE__*/
-function (_React$Component) {
+var Element = /*#__PURE__*/function (_React$Component) {
   _inherits(Element, _React$Component);
+
+  var _super = _createSuper(Element);
 
   function Element(props) {
     var _this;
 
     _classCallCheck(this, Element);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Element).call(this, props));
+    _this = _super.call(this, props);
     _this.field = null;
     _this.id = "card-".concat(props.type, "-").concat(genUUID());
-    _this.ElementRef = React.createRef();
+    _this.ElementRef = /*#__PURE__*/React.createRef();
     return _this;
   }
 
@@ -246,11 +280,6 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.field.destroy();
-    }
-  }, {
     key: "focus",
     value: function focus() {
       this.field.focus();
@@ -269,7 +298,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var className = this.props.className;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         id: this.id,
         ref: this.ElementRef,
         className: className
@@ -285,17 +314,17 @@ var ComponentDefaultContext = {
 };
 var ComponentContext = React.createContext(ComponentDefaultContext);
 
-var ChargebeeComponents =
-/*#__PURE__*/
-function (_React$Component) {
+var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
   _inherits(ChargebeeComponents, _React$Component);
+
+  var _super = _createSuper(ChargebeeComponents);
 
   function ChargebeeComponents(props) {
     var _this;
 
     _classCallCheck(this, ChargebeeComponents);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ChargebeeComponents).call(this, props));
+    _this = _super.call(this, props);
     _this.id = "".concat(props.type, "-field-").concat(genUUID());
     _this.state = {
       moduleLoaded: false,
@@ -402,9 +431,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return React.createElement(ComponentContext.Provider, {
+      return /*#__PURE__*/React.createElement(ComponentContext.Provider, {
         value: this.state
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         id: this.id,
         className: this.props.className || ''
       }, this.state.moduleLoaded && this.props.children || []));
@@ -414,7 +443,7 @@ function (_React$Component) {
   return ChargebeeComponents;
 }(React.Component);
 
-var CardNumber = React.forwardRef(function (props, ref) {
+var CardNumber = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var onBlur = props.onBlur,
       onChange = props.onChange,
       onFocus = props.onFocus,
@@ -427,8 +456,8 @@ var CardNumber = React.forwardRef(function (props, ref) {
     onFocus: onFocus,
     onReady: onReady
   };
-  return React.createElement(ComponentContext.Consumer, null, function (ctx) {
-    return React.createElement(Element, _extends({
+  return /*#__PURE__*/React.createElement(ComponentContext.Consumer, null, function (ctx) {
+    return /*#__PURE__*/React.createElement(Element, _extends({
       type: "number",
       cbComponent: ctx.cbComponent,
       ref: ref,
@@ -437,7 +466,7 @@ var CardNumber = React.forwardRef(function (props, ref) {
   });
 });
 
-var CardExpiry = React.forwardRef(function (props, ref) {
+var CardExpiry = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var onBlur = props.onBlur,
       onChange = props.onChange,
       onFocus = props.onFocus,
@@ -450,8 +479,8 @@ var CardExpiry = React.forwardRef(function (props, ref) {
     onFocus: onFocus,
     onReady: onReady
   };
-  return React.createElement(ComponentContext.Consumer, null, function (ctx) {
-    return React.createElement(Element, _extends({
+  return /*#__PURE__*/React.createElement(ComponentContext.Consumer, null, function (ctx) {
+    return /*#__PURE__*/React.createElement(Element, _extends({
       type: "expiry",
       cbComponent: ctx.cbComponent,
       ref: ref,
@@ -460,7 +489,7 @@ var CardExpiry = React.forwardRef(function (props, ref) {
   });
 });
 
-var CardCVV = React.forwardRef(function (props, ref) {
+var CardCVV = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var onBlur = props.onBlur,
       onChange = props.onChange,
       onFocus = props.onFocus,
@@ -473,8 +502,8 @@ var CardCVV = React.forwardRef(function (props, ref) {
     onFocus: onFocus,
     onReady: onReady
   };
-  return React.createElement(ComponentContext.Consumer, null, function (ctx) {
-    return React.createElement(Element, _extends({
+  return /*#__PURE__*/React.createElement(ComponentContext.Consumer, null, function (ctx) {
+    return /*#__PURE__*/React.createElement(Element, _extends({
       type: "cvv",
       cbComponent: ctx.cbComponent,
       ref: ref,
@@ -483,8 +512,8 @@ var CardCVV = React.forwardRef(function (props, ref) {
   });
 });
 
-var CardComponent = React.forwardRef(function (props, ref) {
-  return React.createElement(ChargebeeComponents, _extends({
+var CardComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  return /*#__PURE__*/React.createElement(ChargebeeComponents, _extends({
     type: "card"
   }, props, {
     ref: ref

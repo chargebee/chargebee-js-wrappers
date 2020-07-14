@@ -41,10 +41,6 @@ export default class Element extends React.Component {
         }
     }
 
-    componentWillUnmount() {
-        this.field.destroy();
-    }
-
     focus() {
         this.field.focus();
     }
