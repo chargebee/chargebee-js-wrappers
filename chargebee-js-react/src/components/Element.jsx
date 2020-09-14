@@ -3,8 +3,8 @@ import { isEqual, genUUID } from '../utils/';
 
 export default class Element extends React.Component {
     constructor(props) {
-        super(props);
-        this.field = null
+        super();
+        this.field = null;
         this.id = `card-${props.type}-${genUUID()}`;
         this.ElementRef = React.createRef();
     }

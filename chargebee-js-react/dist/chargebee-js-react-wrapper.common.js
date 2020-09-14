@@ -239,7 +239,7 @@ var Element = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Element);
 
-    _this = _super.call(this, props);
+    _this = _super.call(this);
     _this.field = null;
     _this.id = "card-".concat(props.type, "-").concat(genUUID());
     _this.ElementRef = /*#__PURE__*/React.createRef();
@@ -330,7 +330,7 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, ChargebeeComponents);
 
-    _this = _super.call(this, props);
+    _this = _super.call(this);
     _this.id = "".concat(props.type, "-field-").concat(genUUID());
     _this.state = {
       moduleLoaded: false,
@@ -361,8 +361,24 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var cbComponent = this.state.cbComponent;
+
+      if (cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
+        cbComponent.mount("#".concat(this.id));
+      }
+
+      var prevOptions = this.getPropOptions(prevProps);
+      var currentOptions = this.getPropOptions(this.props);
+
+      if (!isEqual(prevOptions, currentOptions) && cbComponent) {
+        cbComponent.update(currentOptions);
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
       var _this$props = this.props,
@@ -387,22 +403,6 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
           moduleLoaded: true
         });
       });
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var cbComponent = this.state.cbComponent;
-
-      if (cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
-        cbComponent.mount("#".concat(this.id));
-      }
-
-      var prevOptions = this.getPropOptions(prevProps);
-      var currentOptions = this.getPropOptions(this.props);
-
-      if (!isEqual(prevOptions, currentOptions) && cbComponent) {
-        cbComponent.update(currentOptions);
-      }
     }
   }, {
     key: "tokenize",
