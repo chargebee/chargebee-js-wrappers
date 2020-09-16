@@ -297,15 +297,19 @@ const __vue_script__ = script;
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var CardComponent = normalizeComponent_1(
+  const __vue_component__ = /*#__PURE__*/normalizeComponent_1(
     {},
     __vue_inject_styles__,
     __vue_script__,
     __vue_scope_id__,
     __vue_is_functional_template__,
     __vue_module_identifier__,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -409,15 +413,19 @@ const __vue_script__$1 = script$1;
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Element = normalizeComponent_1(
+  const __vue_component__$1 = /*#__PURE__*/normalizeComponent_1(
     {},
     __vue_inject_styles__$1,
     __vue_script__$1,
     __vue_scope_id__$1,
     __vue_is_functional_template__$1,
     __vue_module_identifier__$1,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -425,7 +433,7 @@ const __vue_script__$1 = script$1;
 //
 var script$2 = {
   name: 'CardNumber',
-  mixins: [Element],
+  mixins: [__vue_component__$1],
   props: {
     cbComponent: {
       type: Object,
@@ -484,15 +492,19 @@ __vue_render__._withStripped = true;
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var CardNumber = normalizeComponent_1(
+  const __vue_component__$2 = /*#__PURE__*/normalizeComponent_1(
     { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
     __vue_inject_styles__$2,
     __vue_script__$2,
     __vue_scope_id__$2,
     __vue_is_functional_template__$2,
     __vue_module_identifier__$2,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -527,7 +539,7 @@ var script$3 = {
       classname: this["class"]
     };
   },
-  mixins: [Element]
+  mixins: [__vue_component__$1]
 };
 
 /* script */
@@ -559,15 +571,19 @@ __vue_render__$1._withStripped = true;
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var CardExpiry = normalizeComponent_1(
+  const __vue_component__$3 = /*#__PURE__*/normalizeComponent_1(
     { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
     __vue_inject_styles__$3,
     __vue_script__$3,
     __vue_scope_id__$3,
     __vue_is_functional_template__$3,
     __vue_module_identifier__$3,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -602,7 +618,7 @@ var script$4 = {
       classname: this["class"]
     };
   },
-  mixins: [Element]
+  mixins: [__vue_component__$1]
 };
 
 /* script */
@@ -635,27 +651,31 @@ __vue_render__$2._withStripped = true;
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var CardCvv = normalizeComponent_1(
+  const __vue_component__$4 = /*#__PURE__*/normalizeComponent_1(
     { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
     __vue_inject_styles__$4,
     __vue_script__$4,
     __vue_scope_id__$4,
     __vue_is_functional_template__$4,
     __vue_module_identifier__$4,
+    false,
+    undefined,
     undefined,
     undefined
   );
 
 var index = {
   install: function install(Vue) {
-    Vue.component('card-component', CardComponent);
-    Vue.component('card-number', CardNumber);
-    Vue.component('card-expiry', CardExpiry);
-    Vue.component('card-cvv', CardCvv);
+    Vue.component('card-component', __vue_component__);
+    Vue.component('card-number', __vue_component__$2);
+    Vue.component('card-expiry', __vue_component__$3);
+    Vue.component('card-cvv', __vue_component__$4);
   }
 };
 
 export default index;
-export { CardComponent, CardCvv, CardExpiry, CardNumber };
+export { __vue_component__ as CardComponent, __vue_component__$4 as CardCvv, __vue_component__$3 as CardExpiry, __vue_component__$2 as CardNumber };
