@@ -17,5 +17,6 @@ export default {
       exclude: 'node_modules/**' // only transpile our source code
     }),
     commonjs()
-  ]
+  ],
+  external: [ 'react', 'react-dom' ]
 };

@@ -9,7 +9,7 @@ export const ComponentContext = React.createContext(ComponentDefaultContext);
 
 export default class ChargebeeComponents extends React.Component {
     constructor(props) {
-        super(props);
+        super();
         this.id = `${props.type}-field-${genUUID()}`;
         this.state = {
             moduleLoaded: false,
@@ -31,7 +31,22 @@ export default class ChargebeeComponents extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidUpdate(prevProps) {
+        const cbComponent = this.state.cbComponent;
+
+        if(cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
+            cbComponent.mount(`#${this.id}`);
+        }
+
+        const prevOptions = this.getPropOptions(prevProps)
+        const currentOptions = this.getPropOptions(this.props)
+
+        if(!isEqual(prevOptions, currentOptions) && cbComponent) {
+            cbComponent.update(currentOptions)
+        }
+    }
+
+    componentDidMount() {
         const {type, onBlur, onChange, onFocus, onReady} = this.props;
         const options = this.getPropOptions(this.props);
         const cbInstance = Chargebee.getInstance();
@@ -49,21 +64,6 @@ export default class ChargebeeComponents extends React.Component {
                 moduleLoaded: true
             })
         });
-    }
-
-    componentDidUpdate(prevProps) {
-        const cbComponent = this.state.cbComponent;
-
-        if(cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
-            cbComponent.mount(`#${this.id}`);
-        }
-
-        const prevOptions = this.getPropOptions(prevProps)
-        const currentOptions = this.getPropOptions(this.props)
-
-        if(!isEqual(prevOptions, currentOptions) && cbComponent) {
-            cbComponent.update(currentOptions)
-        }
     }
 
     tokenize(additionalData) {
