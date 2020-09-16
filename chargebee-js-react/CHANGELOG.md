@@ -1,3 +1,8 @@
+### v0.4.0 (2020-09-16)
+* * *
+* Removed deprecated lifecycle hooks
+* Added linting
+
 ### v0.3.1 (2020-07-14)
 * * *
 * Updated dependencies
