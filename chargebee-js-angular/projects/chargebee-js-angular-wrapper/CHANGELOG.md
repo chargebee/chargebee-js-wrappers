@@ -1,3 +1,7 @@
+### v0.3.0 (2020-09-16)
+***
+* Security updates
+
 ### v0.2.0 (2019-09-07)
 * * *
 * Support for 3DS Authorization

@@ -27,9 +27,9 @@ export class CardFieldDirective implements OnInit, OnChanges {
     cvv?: string;
   };
 
-  @ContentChild(NumberFieldDirective) numberComponent;
-  @ContentChild(ExpiryFieldDirective) expiryComponent;
-  @ContentChild(CvvFieldDirective) cvvComponent;
+  @ContentChild(NumberFieldDirective, {static: true}) numberComponent;
+  @ContentChild(ExpiryFieldDirective, {static: true}) expiryComponent;
+  @ContentChild(CvvFieldDirective, {static: true}) cvvComponent;
 
   // Below events only for combined-field
   @Output() ready: EventEmitter<any> = new EventEmitter();
