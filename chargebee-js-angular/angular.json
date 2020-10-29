@@ -14,6 +14,11 @@
           "options": {
             "tsConfig": "projects/chargebee-js-angular-wrapper/tsconfig.lib.json",
             "project": "projects/chargebee-js-angular-wrapper/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/chargebee-js-angular-wrapper/ng-package.json"
+            }
           }
         },
         "test": {
