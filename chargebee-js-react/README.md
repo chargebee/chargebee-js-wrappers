@@ -1,5 +1,5 @@
 # Chargebee JS React Wrapper
-React wrapper for Chargebee Components
+React SSR wrapper for Chargebee Components
 
 ## Examples
 For detailed examples: [Click here](https://github.com/chargebee/chargebee-checkout-samples/tree/master/components/react-app#readme)
@@ -9,9 +9,13 @@ View live demo [here](https://www.recur.in/components-examples/react/#/example1)
 
 ## Installation
 Install from npm:
-```bash
-npm install @chargebee/chargebee-js-react-wrapper
-```
+
+For SSR:
+- npm install
+- npm run next:build
+- npm run next:dev
+
+Server : http://localhost:3000
 
 ## Usage
 Chargebee Components requires you to initialize chargebee js with `site` and `publishableKey`

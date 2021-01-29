@@ -20,11 +20,10 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "lint": "eslint ."
-  },
-  "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "lint": "eslint .",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -34,8 +33,6 @@
     "@types/react-dom": "^16.9.8",
     "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.20.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "rollup": "^1.32.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^9.3.4",
@@ -44,7 +41,8 @@
   "license": "MIT",
   "author": "Vivek <vivek@chargebee.com>",
   "contributors": [
-    "Dinesh <dinesh@chargebee.com>"
+    "Dinesh <dinesh@chargebee.com>",
+    "Abhishek Rai <abhishek.rai@chargebee.com>"
   ],
   "keywords": [
     "chargebee",
@@ -54,5 +52,10 @@
     "chargebee react wrapper",
     "chargebee.js react"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "next": "^10.0.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
 }
