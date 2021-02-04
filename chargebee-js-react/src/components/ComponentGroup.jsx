@@ -10,7 +10,6 @@ export const ComponentContext = React.createContext(ComponentDefaultContext);
 export default class ChargebeeComponents extends React.Component {
     constructor(props) {
         super();
-        this.id = `${props.type}-field-${genUUID()}`;
         this.state = {
             moduleLoaded: false,
             cbComponent: null,
@@ -47,6 +46,7 @@ export default class ChargebeeComponents extends React.Component {
     }
 
     componentDidMount() {
+        this.id = `${this.props.type}-field-${genUUID()}`;
         const {type, onBlur, onChange, onFocus, onReady} = this.props;
         const options = this.getPropOptions(this.props);
         const cbInstance = Chargebee.getInstance();

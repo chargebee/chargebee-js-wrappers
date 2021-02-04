@@ -325,7 +325,6 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ChargebeeComponents);
 
     _this = _super.call(this);
-    _this.id = "".concat(props.type, "-field-").concat(genUUID());
     _this.state = {
       moduleLoaded: false,
       cbComponent: null,
@@ -375,6 +374,7 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      this.id = "".concat(this.props.type, "-field-").concat(genUUID());
       var _this$props = this.props,
           type = _this$props.type,
           onBlur = _this$props.onBlur,
@@ -520,4 +520,29 @@ var CardComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
   }));
 });
 
-export { CardCVV, CardComponent, CardExpiry, CardNumber };
+var Provider = /*#__PURE__*/function (_React$Component) {
+  _inherits(Provider, _React$Component);
+
+  var _super = _createSuper(Provider);
+
+  function Provider() {
+    _classCallCheck(this, Provider);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Provider, [{
+    key: "render",
+    value: function render() {
+      if (this.props.cbInstanceInited && this.props.cbInstanceInited.inited) {
+        return /*#__PURE__*/React.createElement("div", null, this.props.children);
+      } else {
+        return null;
+      }
+    }
+  }]);
+
+  return Provider;
+}(React.Component);
+
+export { CardCVV, CardComponent, CardExpiry, CardNumber, Provider };
