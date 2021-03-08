@@ -526,30 +526,13 @@ var CardComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
   }));
 });
 
-var Provider = /*#__PURE__*/function (_React$Component) {
-  _inherits(Provider, _React$Component);
-
-  var _super = _createSuper(Provider);
-
-  function Provider() {
-    _classCallCheck(this, Provider);
-
-    return _super.apply(this, arguments);
+var Provider = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  if (props.cbInstanceInited && props.cbInstanceInited.inited) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, props.children);
+  } else {
+    return null;
   }
-
-  _createClass(Provider, [{
-    key: "render",
-    value: function render() {
-      if (this.props.cbInstanceInited && this.props.cbInstanceInited.inited) {
-        return /*#__PURE__*/React.createElement("div", null, this.props.children);
-      } else {
-        return null;
-      }
-    }
-  }]);
-
-  return Provider;
-}(React.Component);
+});
 
 exports.CardCVV = CardCVV;
 exports.CardComponent = CardComponent;
