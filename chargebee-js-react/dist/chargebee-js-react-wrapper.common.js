@@ -527,7 +527,7 @@ var CardComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
 });
 
 var Provider = /*#__PURE__*/React.forwardRef(function (props, ref) {
-  if (props.cbInstanceInited && props.cbInstanceInited.inited) {
+  if (props.cbInstance && props.cbInstance.inited) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, props.children);
   } else {
     return null;

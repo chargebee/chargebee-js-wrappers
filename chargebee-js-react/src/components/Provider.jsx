@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default React.forwardRef((props, ref) => {
-    if (props.cbInstanceInited && props.cbInstanceInited.inited) {
+    if (props.cbInstance && props.cbInstance.inited) {
         return (
             <>
                 {props.children}
