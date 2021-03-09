@@ -1,7 +1,9 @@
 import React from 'react';
+import { validateCbInstance } from '../utils/';
+
 
 export default React.forwardRef((props, ref) => {
-    if (props.cbInstance && props.cbInstance.inited) {
+    if (props.cbInstance && validateCbInstance(props.cbInstance)) {
         return (
             <>
                 {props.children}

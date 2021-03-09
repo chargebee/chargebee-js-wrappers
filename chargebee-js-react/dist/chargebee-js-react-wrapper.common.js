@@ -228,6 +228,15 @@ function genUUID() {
     return v.toString(16);
   });
 }
+function validateCbInstance(cbInstance) {
+  if (cbInstance != null) {
+    var site = cbInstance.site;
+    var key = cbInstance.publishableKey;
+    if (!(site != null && typeof site == "string" && site.length > 0)) return false;
+    if (!(key != null && typeof key == "string" && key.length > 0)) return false;
+    return true;
+  } else return false;
+}
 
 var Element = /*#__PURE__*/function (_React$Component) {
   _inherits(Element, _React$Component);
@@ -527,7 +536,7 @@ var CardComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
 });
 
 var Provider = /*#__PURE__*/React.forwardRef(function (props, ref) {
-  if (props.cbInstance && props.cbInstance.inited) {
+  if (props.cbInstance && validateCbInstance(props.cbInstance)) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, props.children);
   } else {
     return null;
