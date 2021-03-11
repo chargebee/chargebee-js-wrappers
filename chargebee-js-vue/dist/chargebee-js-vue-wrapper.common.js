@@ -2,6 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var vueFragment = require('vue-fragment');
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -42,6 +44,15 @@ function genUUID() {
         v = c == 'x' ? r : r & 0x3 | 0x8;
     return v.toString(16);
   });
+}
+function validateCbInstance(cbInstance) {
+  if (cbInstance != null) {
+    var site = cbInstance.site;
+    var key = cbInstance.publishableKey;
+    if (!(site != null && typeof site == "string" && site.length > 0)) return false;
+    if (!(key != null && typeof key == "string" && key.length > 0)) return false;
+    return true;
+  } else return false;
 }
 
 var script = {
@@ -88,7 +99,7 @@ var script = {
       cbInstance: null,
       cbComponent: null,
       moduleLoaded: false,
-      elementId: "card-component-".concat(genUUID())
+      elementId: ''
     };
   },
   computed: {
@@ -138,19 +149,22 @@ var script = {
   mounted: function mounted() {
     var _this2 = this;
 
-    var cbInstance = Chargebee.getInstance();
-    var options = this.componentOptions;
-    cbInstance.load("components").then(function () {
-      _this2.cbInstance = cbInstance;
+    this.$nextTick(function () {
+      _this2.elementId = "card-component-".concat(genUUID());
+      var cbInstance = Chargebee.getInstance();
+      var options = _this2.componentOptions;
+      cbInstance.load("components").then(function () {
+        _this2.cbInstance = cbInstance;
 
-      var cbComponent = _this2.cbInstance.createComponent('card', options);
+        var cbComponent = _this2.cbInstance.createComponent('card', options);
 
-      _this2.cbComponent = cbComponent;
-      _this2.moduleLoaded = true; // Attach listeners (only applicable for combined field)
+        _this2.cbComponent = cbComponent;
+        _this2.moduleLoaded = true; // Attach listeners (only applicable for combined field)
 
-      Object.keys(_this2.$listeners).map(function (listener) {
-        _this2.cbComponent.on(listener, function (data) {
-          _this2.$emit(listener, data);
+        Object.keys(_this2.$listeners).map(function (listener) {
+          _this2.cbComponent.on(listener, function (data) {
+            _this2.$emit(listener, data);
+          });
         });
       });
     });
@@ -672,12 +686,81 @@ __vue_render__$2._withStripped = true;
     undefined
   );
 
+//
+var script$5 = {
+  name: 'Provider',
+  components: {
+    Fragment: vueFragment.Fragment,
+    validateCbInstance: validateCbInstance
+  },
+  props: {
+    cbInstance: {
+      type: Object,
+      "default": null
+    }
+  },
+  watch: {
+    cbInstance: function cbInstance(newValue) {
+      this.cbInstance = newValue;
+      if (this.cbInstance && validateCbInstance(this.cbInstance)) this.validated = true;else this.validated = false;
+    }
+  },
+  data: function data() {
+    return {
+      validated: false
+    };
+  }
+};
+
+/* script */
+const __vue_script__$5 = script$5;
+
+/* template */
+var __vue_render__$3 = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _vm.validated ? _c("fragment", [_vm._t("default")], 2) : _vm._e()
+};
+var __vue_staticRenderFns__$3 = [];
+__vue_render__$3._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__$5 = undefined;
+  /* scoped */
+  const __vue_scope_id__$5 = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$5 = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$5 = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$5 = /*#__PURE__*/normalizeComponent_1(
+    { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
+    __vue_inject_styles__$5,
+    __vue_script__$5,
+    __vue_scope_id__$5,
+    __vue_is_functional_template__$5,
+    __vue_module_identifier__$5,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
 var index = {
   install: function install(Vue) {
     Vue.component('card-component', __vue_component__);
     Vue.component('card-number', __vue_component__$2);
     Vue.component('card-expiry', __vue_component__$3);
     Vue.component('card-cvv', __vue_component__$4);
+    Vue.component('provider', __vue_component__$5);
   }
 };
 
@@ -685,4 +768,5 @@ exports.CardComponent = __vue_component__;
 exports.CardCvv = __vue_component__$4;
 exports.CardExpiry = __vue_component__$3;
 exports.CardNumber = __vue_component__$2;
+exports.Provider = __vue_component__$5;
 exports.default = index;
