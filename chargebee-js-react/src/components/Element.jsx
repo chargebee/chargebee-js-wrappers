@@ -24,11 +24,12 @@ export default class Element extends React.Component {
     }
 
     getPropOptions(props) {
-        const { icon, styles: style, placeholder } = props;
+        const { icon, styles: style, placeholder, ariaLabel } = props;
         return {
             icon,
             style,
             placeholder,
+            ariaLabel
         }
     }
 
