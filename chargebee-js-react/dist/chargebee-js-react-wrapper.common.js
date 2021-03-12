@@ -320,7 +320,7 @@ var Element = /*#__PURE__*/function (_React$Component) {
 var ComponentDefaultContext = {
   cbComponent: null
 };
-var ComponentContext = /*#__PURE__*/React.createContext(ComponentDefaultContext);
+var ComponentContext = React.createContext(ComponentDefaultContext);
 
 var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
   _inherits(ChargebeeComponents, _React$Component);
