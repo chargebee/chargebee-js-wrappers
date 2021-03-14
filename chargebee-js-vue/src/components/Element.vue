@@ -1,59 +1,64 @@
 <script>
 import { genUUID } from '../utils';
 export default {
-
-  data () {
-    return {
-      field: null
-    }
-  },
-
   props: {
     styles: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     placeholder: {
       type: String,
-      default: () => ''
+      default: () => '',
     },
+  },
+
+  inject: {
+    cardState: {
+      default: () => null,
+    },
+  },
+
+  data() {
+    return {
+      field: null,
+    };
   },
 
   computed: {
     fieldOptions: function() {
       return {
         style: this.styles || {},
-        placeholder: this.placeholder
-      }
+        placeholder: this.placeholder,
+      };
     },
 
     elementId: function() {
-      return `card-${this.id}-${genUUID()}`
-    }
+      return `card-${this.id}-${genUUID()}`;
+    },
   },
 
   methods: {
-    getField () {
-      return this.field
+    getField() {
+      return this.field;
     },
 
-    attachListener (listener) {
+    attachListener(listener) {
       this.field.on(listener, (data) => {
-        this.$emit(listener, data)
-      })
+        this.$emit(listener, data);
+      });
     },
 
-    initializeField (cbComponent) {
+    initializeField(cbComponent) {
       if (cbComponent) {
         const options = this.fieldOptions;
-        this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`)
-        if (this.$parent.onMount) this.$parent.onMount()
+        this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`);
+        if (this.$parent.onMount) this.$parent.onMount();
 
         // Attach listeners if any
-        this.attachListener('ready')
-        this.attachListener('focus')
-        this.attachListener('blur')
-        this.attachListener('change')
+        this.attachListener('ready');
+        this.attachListener('focus');
+        this.attachListener('blur');
+        this.attachListener('change');
       }
     },
 
@@ -68,26 +73,25 @@ export default {
     clear() {
       this.field.clear();
     },
-    
   },
 
   watch: {
-    cbComponent: function (cbComponent, _) {
+    'cardState.cbComponent': function(cbComponent, _) {
       if (!this.field) {
-        this.initializeField(cbComponent)
+        this.initializeField(cbComponent);
       }
     },
 
-    fieldOptions: function () {
-      if(this.field) {
+    fieldOptions: function() {
+      if (this.field) {
         const options = this.fieldOptions;
-        this.field.update(options)
+        this.field.update(options);
       }
     },
   },
 
-  mounted () {
-    this.initializeField(this.cbComponent)
-  }
-}
+  mounted() {
+    this.cardState && this.initializeField(this.cardState.cbComponent);
+  },
+};
 </script>

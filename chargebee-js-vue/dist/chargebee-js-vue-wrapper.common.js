@@ -2,40 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      _defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
 function genUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0,
@@ -104,6 +70,20 @@ var script = {
       };
     }
   },
+  provide: function provide() {
+    var _this = this;
+
+    var cardState = {};
+    Object.defineProperty(cardState, 'cbComponent', {
+      enumerable: true,
+      get: function get() {
+        return _this.cbComponent;
+      }
+    });
+    return {
+      cardState: cardState
+    };
+  },
   methods: {
     tokenize: function tokenize(additionalData) {
       return this.cbComponent.tokenize(additionalData);
@@ -119,20 +99,6 @@ var script = {
     },
     clear: function clear() {
       this.cbComponent.clear();
-    },
-    // Set cbComponent instance to child(slot)
-    setComponentInstance: function setComponentInstance(slot) {
-      var _this = this;
-
-      if (slot.componentOptions) {
-        slot.componentOptions.propsData = _objectSpread({}, slot.componentOptions.propsData, {
-          cbComponent: this.cbComponent
-        });
-      }
-
-      slot.children && slot.children.map(function (c) {
-        _this.setComponentInstance(c);
-      });
     }
   },
   mounted: function mounted() {
@@ -140,7 +106,7 @@ var script = {
 
     var cbInstance = Chargebee.getInstance();
     var options = this.componentOptions;
-    cbInstance.load("components").then(function () {
+    cbInstance.load('components').then(function () {
       _this2.cbInstance = cbInstance;
 
       var cbComponent = _this2.cbInstance.createComponent('card', options);
@@ -172,24 +138,7 @@ var script = {
     }
   },
   render: function render(h) {
-    var _this4 = this;
-
-    var children;
-
-    if (this.moduleLoaded) {
-      if (this.$slots["default"]) {
-        children = this.$slots["default"].map(function (slot) {
-          _this4.setComponentInstance(slot);
-
-          return slot;
-        });
-      } else {
-        children = [];
-      }
-    } else {
-      children = [];
-    }
-
+    var children = this.moduleLoaded && this.$slots["default"] || [];
     return h('div', {
       attrs: {
         id: this.elementId
@@ -319,11 +268,6 @@ const __vue_script__ = script;
   );
 
 var script$1 = {
-  data: function data() {
-    return {
-      field: null
-    };
-  },
   props: {
     styles: {
       type: Object,
@@ -337,6 +281,18 @@ var script$1 = {
         return '';
       }
     }
+  },
+  inject: {
+    cardState: {
+      "default": function _default() {
+        return null;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      field: null
+    };
   },
   computed: {
     fieldOptions: function fieldOptions() {
@@ -383,9 +339,9 @@ var script$1 = {
     }
   },
   watch: {
-    cbComponent: function cbComponent(_cbComponent, _) {
+    'cardState.cbComponent': function cardStateCbComponent(cbComponent, _) {
       if (!this.field) {
-        this.initializeField(_cbComponent);
+        this.initializeField(cbComponent);
       }
     },
     fieldOptions: function fieldOptions() {
@@ -396,7 +352,7 @@ var script$1 = {
     }
   },
   mounted: function mounted() {
-    this.initializeField(this.cbComponent);
+    this.cardState && this.initializeField(this.cardState.cbComponent);
   }
 };
 
@@ -439,12 +395,6 @@ var script$2 = {
   name: 'CardNumber',
   mixins: [__vue_component__$1],
   props: {
-    cbComponent: {
-      type: Object,
-      "default": function _default() {
-        return null;
-      }
-    },
     styles: {
       type: Object,
       "default": function _default() {
@@ -517,12 +467,6 @@ __vue_render__._withStripped = true;
 var script$3 = {
   name: 'CardExpiry',
   props: {
-    cbComponent: {
-      type: Object,
-      "default": function _default() {
-        return null;
-      }
-    },
     styles: {
       type: Object,
       "default": function _default() {
@@ -596,12 +540,6 @@ __vue_render__$1._withStripped = true;
 var script$4 = {
   name: 'CardCvv',
   props: {
-    cbComponent: {
-      type: Object,
-      "default": function _default() {
-        return null;
-      }
-    },
     styles: {
       type: Object,
       "default": function _default() {

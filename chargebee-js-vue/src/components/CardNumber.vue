@@ -5,8 +5,7 @@
 </template>
 
 <script>
-
-import Element from './Element.vue'
+import Element from './Element.vue';
 
 export default {
   name: 'CardNumber',
@@ -14,31 +13,24 @@ export default {
   mixins: [Element],
 
   props: {
-    cbComponent: {
-      type: Object,
-      default: () => null
-    },
     styles: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     placeholder: {
       type: String,
-      default: () => ''
-    }
+      default: () => '',
+    },
   },
 
-  data () {
+  data() {
     return {
       id: 'number',
       loaded: false,
       classname: this.class,
-    }
+    };
   },
-
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
