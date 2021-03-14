@@ -33,8 +33,18 @@
     "svelte-jester": "^1.0.5",
     "svelte-loader": "^2.13.6"
   },
+  "license": "MIT",
+  "author": "chargebee",
+  "contributors": [
+    "Bharathvaj Ganesan <bharathvaj@chargebee.com>"
+  ],
   "keywords": [
-    "svelte"
+    "chargebee",
+    "chargebee.js",
+    "chargebee components",
+    "chargebee svelte",
+    "chargebee svelte wrapper",
+    "chargebee.js svelte"
   ],
   "files": [
     "src",
