@@ -1,7 +1,7 @@
-<script>
-import { genUUID } from '../utils/';
+import { genUUID } from '../utils';
 
 export default {
+  name: 'CardComponent',
   props: {
     fonts: {
       type: Array,
@@ -43,7 +43,7 @@ export default {
   },
 
   computed: {
-    componentOptions: function() {
+    componentOptions: function () {
       return {
         fonts: this.fonts,
         classes: this.classes,
@@ -115,7 +115,7 @@ export default {
   },
 
   watch: {
-    componentOptions: function() {
+    componentOptions: function () {
       if (this.cbComponent) {
         this.cbComponent.update(this.componentOptions);
       }
@@ -127,4 +127,3 @@ export default {
     return h('div', { attrs: { id: this.elementId }, class: this.class }, children);
   },
 };
-</script>

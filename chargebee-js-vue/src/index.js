@@ -1,4 +1,4 @@
-import CardComponent from './components/CardComponent.vue'
+import CardComponent from './components/CardComponent'
 import CardNumber from './components/CardNumber.vue'
 import CardExpiry from './components/CardExpiry.vue'
 import CardCvv from './components/CardCvv.vue'

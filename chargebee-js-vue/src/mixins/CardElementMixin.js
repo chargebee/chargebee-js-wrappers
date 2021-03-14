@@ -1,6 +1,7 @@
-<script>
 import { genUUID } from '../utils';
+
 export default {
+  name: 'CardElementMixin',
   props: {
     styles: {
       type: Object,
@@ -94,4 +95,3 @@ export default {
     this.cardState && this.initializeField(this.cardState.cbComponent);
   },
 };
-</script>

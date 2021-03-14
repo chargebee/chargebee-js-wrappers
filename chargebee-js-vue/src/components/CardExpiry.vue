@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Element from './Element.vue';
+import CardElementMixin from '../mixins/CardElementMixin';
 
 export default {
   name: 'CardExpiry',
@@ -29,7 +29,7 @@ export default {
     };
   },
 
-  mixins: [Element],
+  mixins: [CardElementMixin],
 };
 </script>
 

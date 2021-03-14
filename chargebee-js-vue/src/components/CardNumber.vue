@@ -5,12 +5,10 @@
 </template>
 
 <script>
-import Element from './Element.vue';
+import CardElementMixin from '../mixins/CardElementMixin';
 
 export default {
   name: 'CardNumber',
-
-  mixins: [Element],
 
   props: {
     styles: {
@@ -30,6 +28,8 @@ export default {
       classname: this.class,
     };
   },
+
+  mixins: [CardElementMixin],
 };
 </script>
 
