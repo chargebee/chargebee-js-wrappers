@@ -1,14 +1,7 @@
-import CardComponent from './components/CardComponent'
-import CardNumber from './components/CardNumber.vue'
-import CardExpiry from './components/CardExpiry.vue'
-import CardCvv from './components/CardCvv.vue'
-
-const components = {
-  CardComponent,
-  CardNumber,
-  CardExpiry,
-  CardCvv
-}
+import CardComponent from './components/CardComponent';
+import CardNumber from './components/CardNumber.vue';
+import CardExpiry from './components/CardExpiry.vue';
+import CardCvv from './components/CardCvv.vue';
 
 export default {
   install (Vue) {
