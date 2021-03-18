@@ -386,8 +386,7 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
           onBlur = _this$props.onBlur,
           onChange = _this$props.onChange,
           onFocus = _this$props.onFocus,
-          onReady = _this$props.onReady,
-          onError = _this$props.onError;
+          onReady = _this$props.onReady;
       var options = this.getPropOptions(this.props);
       var cbInstance = Chargebee.getInstance();
       cbInstance.load("components").then(function () {
@@ -397,17 +396,11 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
         cbComponent.on('blur', onBlur);
         cbComponent.on('focus', onFocus);
         cbComponent.on('change', onChange);
-        cbComponent.on('error', onError);
 
         _this2.setState({
           cbComponent: cbComponent,
           cbInstance: cbInstance,
           moduleLoaded: true
-        });
-
-        cbComponent.validateCredentials()["catch"](function (err) {
-          var error = err.toString().replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
-          onError(error);
         });
       });
     }

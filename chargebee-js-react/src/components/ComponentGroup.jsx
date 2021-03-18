@@ -47,7 +47,7 @@ export default class ChargebeeComponents extends React.Component {
     }
 
     componentDidMount() {
-        const {type, onBlur, onChange, onFocus, onReady, onError} = this.props;
+        const {type, onBlur, onChange, onFocus, onReady} = this.props;
         const options = this.getPropOptions(this.props);
         const cbInstance = Chargebee.getInstance();
         cbInstance.load("components").then(() => {
@@ -57,19 +57,12 @@ export default class ChargebeeComponents extends React.Component {
             cbComponent.on('blur', onBlur);
             cbComponent.on('focus', onFocus);
             cbComponent.on('change', onChange);
-            cbComponent.on('error', onError);
 
             this.setState({
                 cbComponent,
                 cbInstance,
                 moduleLoaded: true
             })
-
-            cbComponent.validateCredentials()
-            .catch((err) => {
-                const error = err.toString().replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
-                onError(error);
-            });
         });
     }
 
