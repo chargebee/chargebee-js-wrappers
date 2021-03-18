@@ -1,16 +1,9 @@
-<template>
-    <fragment v-if="validated">
-        <slot />
-    </fragment>
-</template>
-
 <script>
-import { Fragment } from 'vue-fragment'
 import { validateCbInstance } from '../utils/'
 
 export default {
     name: 'Provider',
-    components: { Fragment, validateCbInstance },
+    components: { validateCbInstance },
     props: {
         cbInstance: {
             type: Object,
@@ -30,6 +23,12 @@ export default {
         return {
             validated: false
         }
+    },
+    render() {
+        if (this.validated)
+            return this.$slots.default;
+        else
+            return null;
     }
 }
 </script>

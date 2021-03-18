@@ -2,8 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var vueFragment = require('vue-fragment');
-
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -686,11 +684,9 @@ __vue_render__$2._withStripped = true;
     undefined
   );
 
-//
 var script$5 = {
   name: 'Provider',
   components: {
-    Fragment: vueFragment.Fragment,
     validateCbInstance: validateCbInstance
   },
   props: {
@@ -709,6 +705,9 @@ var script$5 = {
     return {
       validated: false
     };
+  },
+  render: function render() {
+    if (this.validated) return this.$slots["default"];else return null;
   }
 };
 
@@ -716,14 +715,6 @@ var script$5 = {
 const __vue_script__$5 = script$5;
 
 /* template */
-var __vue_render__$3 = function() {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _vm.validated ? _c("fragment", [_vm._t("default")], 2) : _vm._e()
-};
-var __vue_staticRenderFns__$3 = [];
-__vue_render__$3._withStripped = true;
 
   /* style */
   const __vue_inject_styles__$5 = undefined;
@@ -732,7 +723,7 @@ __vue_render__$3._withStripped = true;
   /* module identifier */
   const __vue_module_identifier__$5 = undefined;
   /* functional template */
-  const __vue_is_functional_template__$5 = false;
+  const __vue_is_functional_template__$5 = undefined;
   /* style inject */
   
   /* style inject SSR */
@@ -742,7 +733,7 @@ __vue_render__$3._withStripped = true;
 
   
   const __vue_component__$5 = /*#__PURE__*/normalizeComponent_1(
-    { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
+    {},
     __vue_inject_styles__$5,
     __vue_script__$5,
     __vue_scope_id__$5,

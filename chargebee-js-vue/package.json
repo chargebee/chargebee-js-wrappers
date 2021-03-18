@@ -48,8 +48,5 @@
     "chargebee vue",
     "chargebee vue wrapper",
     "chargebee.js vue"
-  ],
-  "dependencies": {
-    "vue-fragment": "^1.5.2"
-  }
+  ]
 }
