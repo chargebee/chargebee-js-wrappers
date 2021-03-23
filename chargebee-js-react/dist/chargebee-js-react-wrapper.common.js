@@ -228,6 +228,15 @@ function genUUID() {
     return v.toString(16);
   });
 }
+function validateCbInstance(cbInstance) {
+  if (cbInstance != null) {
+    var site = cbInstance.site;
+    var key = cbInstance.publishableKey;
+    if (!(site != null && typeof site == "string" && site.length > 0)) return false;
+    if (!(key != null && typeof key == "string" && key.length > 0)) return false;
+    return true;
+  } else return false;
+}
 
 var Element = /*#__PURE__*/function (_React$Component) {
   _inherits(Element, _React$Component);
@@ -333,7 +342,6 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ChargebeeComponents);
 
     _this = _super.call(this);
-    _this.id = "".concat(props.type, "-field-").concat(genUUID());
     _this.state = {
       moduleLoaded: false,
       cbComponent: null,
@@ -385,6 +393,7 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      this.id = "".concat(this.props.type, "-field-").concat(genUUID());
       var _this$props = this.props,
           type = _this$props.type,
           onBlur = _this$props.onBlur,
@@ -530,7 +539,16 @@ var CardComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
   }));
 });
 
+var Provider = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  if (props.cbInstance && validateCbInstance(props.cbInstance)) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, props.children);
+  } else {
+    return null;
+  }
+});
+
 exports.CardCVV = CardCVV;
 exports.CardComponent = CardComponent;
 exports.CardExpiry = CardExpiry;
 exports.CardNumber = CardNumber;
+exports.Provider = Provider;
