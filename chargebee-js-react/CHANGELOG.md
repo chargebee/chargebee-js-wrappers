@@ -1,3 +1,11 @@
+### v0.4.2 (2021-03-23)
+* * *
+* Added support for Server Side Rendering using Wrapper Component compatible with NextJS Framework
+
+### v0.4.1 (2021-03-12)
+* * *
+* Added support for lineHeight & ariaLables
+
 ### v0.4.0 (2020-09-16)
 * * *
 * Removed deprecated lifecycle hooks
