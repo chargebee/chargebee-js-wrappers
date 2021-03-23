@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-react-wrapper",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "dist/chargebee-js-react-wrapper.common.js",
   "module": "dist/chargebee-js-react-wrapper.esm.js",
   "files": [
