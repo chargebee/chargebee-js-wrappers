@@ -18,13 +18,14 @@ export default class ChargebeeComponents extends React.Component {
     }
 
     getPropOptions(props) {
-        const { fonts, classes, icon, styles: style, locale, placeholder, currency } = props;
+        const { fonts, classes, icon, styles: style, locale, placeholder, currency, ariaLabel } = props;
         return {
             fonts,
             classes,
             locale,
             style,
             placeholder,
+            ariaLabel,
             icon,
             currency,
         }

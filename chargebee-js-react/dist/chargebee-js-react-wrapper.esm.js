@@ -271,11 +271,13 @@ var Element = /*#__PURE__*/function (_React$Component) {
     value: function getPropOptions(props) {
       var icon = props.icon,
           style = props.styles,
-          placeholder = props.placeholder;
+          placeholder = props.placeholder,
+          ariaLabel = props.ariaLabel;
       return {
         icon: icon,
         style: style,
-        placeholder: placeholder
+        placeholder: placeholder,
+        ariaLabel: ariaLabel
       };
     }
   }, {
@@ -321,7 +323,7 @@ var Element = /*#__PURE__*/function (_React$Component) {
 var ComponentDefaultContext = {
   cbComponent: null
 };
-var ComponentContext = /*#__PURE__*/React.createContext(ComponentDefaultContext);
+var ComponentContext = React.createContext(ComponentDefaultContext);
 
 var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
   _inherits(ChargebeeComponents, _React$Component);
@@ -351,13 +353,15 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
           style = props.styles,
           locale = props.locale,
           placeholder = props.placeholder,
-          currency = props.currency;
+          currency = props.currency,
+          ariaLabel = props.ariaLabel;
       return {
         fonts: fonts,
         classes: classes,
         locale: locale,
         style: style,
         placeholder: placeholder,
+        ariaLabel: ariaLabel,
         icon: icon,
         currency: currency
       };
