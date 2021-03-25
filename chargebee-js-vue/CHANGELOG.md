@@ -1,3 +1,7 @@
+### v0.2.2 (2021-03-23)
+* * *
+* Support for Server Side Rendering using Wrapper Component compatible with NuxtJS Framework
+
 ### v0.2.1 (2020-09-16)
 * * *
 * Security fixes
