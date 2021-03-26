@@ -39,7 +39,7 @@ export default {
       cbInstance: null,
       cbComponent: null,
       moduleLoaded: false,
-      elementId: `card-component-${genUUID()}`
+      elementId: ''
     }
   },
 
@@ -91,22 +91,24 @@ export default {
       });
     },
   },
-
   mounted () {
-    let cbInstance = Chargebee.getInstance();
-    let options = this.componentOptions;
-    cbInstance.load("components").then(() => {
-      this.cbInstance = cbInstance;
-      const cbComponent = this.cbInstance.createComponent('card', options);
-      this.cbComponent = cbComponent;
-      this.moduleLoaded = true;
-      // Attach listeners (only applicable for combined field)
-      Object.keys(this.$listeners).map(listener => {
-        this.cbComponent.on(listener, (data) => {
-          this.$emit(listener, data);
-        })
+    this.$nextTick(() => {
+      this.elementId = `card-component-${genUUID()}`;
+      let cbInstance = Chargebee.getInstance();
+      let options = this.componentOptions;
+      cbInstance.load("components").then(() => {
+        this.cbInstance = cbInstance;
+        const cbComponent = this.cbInstance.createComponent('card', options);
+        this.cbComponent = cbComponent;
+        this.moduleLoaded = true;
+        // Attach listeners (only applicable for combined field)
+        Object.keys(this.$listeners).map(listener => {
+          this.cbComponent.on(listener, (data) => {
+            this.$emit(listener, data);
+          })
+        });
       });
-    });
+    })
   },
 
   updated() {

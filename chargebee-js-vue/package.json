@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-vue-wrapper",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Vue wrapper for Chargebee.js Components",
   "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-vue#readme",
   "bugs": {
@@ -48,6 +48,5 @@
     "chargebee vue",
     "chargebee vue wrapper",
     "chargebee.js vue"
-  ],
-  "dependencies": {}
+  ]
 }
