@@ -69,35 +69,37 @@ export class CardFieldDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    const options = {
-      icon: typeof this.icon === 'boolean' ? this.icon : true,
-      fonts: this.fonts || [],
-      style: this.styles || {},
-      locale: this.locale || 'en',
-      classes: this.classes || {},
-      currency: this.currency || 'USD',
-      placeholder: this.placeholder || {},
-    };
+    if (typeof window !== 'undefined' && typeof window['Chargebee'] !== 'undefined') {
+      const options = {
+        icon: typeof this.icon === 'boolean' ? this.icon : true,
+        fonts: this.fonts || [],
+        style: this.styles || {},
+        locale: this.locale || 'en',
+        classes: this.classes || {},
+        currency: this.currency || 'USD',
+        placeholder: this.placeholder || {},
+      };
 
-    this.cbInstance = Chargebee.getInstance();
+      this.cbInstance = window['Chargebee'].getInstance();
 
-    this.cbInstance.load('components')
-      .then(() => {
-        this.cbComponent = this.cbInstance.createComponent('card', options);
-
-        // Attaching listeners if any (only applicable for combined field)
-        this.cbComponent.on('ready', this.onReady);
-        this.cbComponent.on('focus', this.onFocus);
-        this.cbComponent.on('blur', this.onBlur);
-        this.cbComponent.on('change', this.onChange);
-
-        // Initialize inidividual fields (if present)
-        this.initializeField(this.cbComponent, this.numberComponent);
-        this.initializeField(this.cbComponent, this.expiryComponent);
-        this.initializeField(this.cbComponent, this.cvvComponent);
-
-        this.cbComponent.mount(`#${this.id}`);
-      });
+      this.cbInstance.load('components')
+        .then(() => {
+          this.cbComponent = this.cbInstance.createComponent('card', options);
+  
+          // Attaching listeners if any (only applicable for combined field)
+          this.cbComponent.on('ready', this.onReady);
+          this.cbComponent.on('focus', this.onFocus);
+          this.cbComponent.on('blur', this.onBlur);
+          this.cbComponent.on('change', this.onChange);
+  
+          // Initialize inidividual fields (if present)
+          this.initializeField(this.cbComponent, this.numberComponent);
+          this.initializeField(this.cbComponent, this.expiryComponent);
+          this.initializeField(this.cbComponent, this.cvvComponent);
+  
+          this.cbComponent.mount(`#${this.id}`);
+        });
+    }
   }
 
   initializeField(cbComponent, fieldElement) {

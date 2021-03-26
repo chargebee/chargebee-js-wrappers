@@ -1,3 +1,7 @@
+### v0.3.1 (2021-03-26)
+***
+* Support for Server Side Rendering using wrapper component compatible with Angular Universal Framework (with prerendering)
+
 ### v0.3.0 (2020-09-16)
 ***
 * Security updates
