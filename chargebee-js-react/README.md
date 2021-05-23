@@ -26,7 +26,7 @@ In your `index.html`:
         <script src="https://js.chargebee.com/v2/chargebee.js"></script>
         <script>
             Chargebee.init({
-                site: 'your-site'
+                site: 'your-site',
                 publishableKey: 'your-publishable-key'
             })
         </script>
