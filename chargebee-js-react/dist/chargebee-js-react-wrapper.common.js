@@ -99,7 +99,7 @@ function _isNativeReflectConstruct() {
   if (typeof Proxy === "function") return true;
 
   try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
     return true;
   } catch (e) {
     return false;
@@ -329,7 +329,7 @@ var Element = /*#__PURE__*/function (_React$Component) {
 var ComponentDefaultContext = {
   cbComponent: null
 };
-var ComponentContext = React.createContext(ComponentDefaultContext);
+var ComponentContext = /*#__PURE__*/React.createContext(ComponentDefaultContext);
 
 var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
   _inherits(ChargebeeComponents, _React$Component);
@@ -462,12 +462,13 @@ var ChargebeeComponents = /*#__PURE__*/function (_React$Component) {
   return ChargebeeComponents;
 }(React.Component);
 
+var _excluded = ["onBlur", "onChange", "onFocus", "onReady"];
 var CardNumber = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var onBlur = props.onBlur,
       onChange = props.onChange,
       onFocus = props.onFocus,
       onReady = props.onReady,
-      rest = _objectWithoutProperties(props, ["onBlur", "onChange", "onFocus", "onReady"]);
+      rest = _objectWithoutProperties(props, _excluded);
 
   var listeners = {
     onBlur: onBlur,
@@ -485,12 +486,13 @@ var CardNumber = /*#__PURE__*/React.forwardRef(function (props, ref) {
   });
 });
 
+var _excluded$1 = ["onBlur", "onChange", "onFocus", "onReady"];
 var CardExpiry = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var onBlur = props.onBlur,
       onChange = props.onChange,
       onFocus = props.onFocus,
       onReady = props.onReady,
-      rest = _objectWithoutProperties(props, ["onBlur", "onChange", "onFocus", "onReady"]);
+      rest = _objectWithoutProperties(props, _excluded$1);
 
   var listeners = {
     onBlur: onBlur,
@@ -508,12 +510,13 @@ var CardExpiry = /*#__PURE__*/React.forwardRef(function (props, ref) {
   });
 });
 
+var _excluded$2 = ["onBlur", "onChange", "onFocus", "onReady"];
 var CardCVV = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var onBlur = props.onBlur,
       onChange = props.onChange,
       onFocus = props.onFocus,
       onReady = props.onReady,
-      rest = _objectWithoutProperties(props, ["onBlur", "onChange", "onFocus", "onReady"]);
+      rest = _objectWithoutProperties(props, _excluded$2);
 
   var listeners = {
     onBlur: onBlur,
