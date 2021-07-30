@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-react-wrapper",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "dist/chargebee-js-react-wrapper.common.js",
   "module": "dist/chargebee-js-react-wrapper.esm.js",
   "files": [
@@ -23,8 +23,8 @@
     "lint": "eslint ."
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.13.1 || ^17.0.0",
+    "react-dom": "^16.13.1 || ^17.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -1,3 +1,7 @@
+### v0.4.3 (2021-07-30)
+* * *
+* Added support for react 17
+
 ### v0.4.2 (2021-03-23)
 * * *
 * Added support for Server Side Rendering using Wrapper Component compatible with NextJS Framework
