@@ -264,7 +264,7 @@ Props | Description | Datatype
 `fonts` | An array of font faces or links | [Fonts](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `classes` | Set of CSS classnames that get substituted for various [events](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on) | [Classes](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `locale` | Language code | [Locale](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
-`currency` | Desired currency | String
+`currency` | Currency code in ISO 4217 format (USD, EUR) | String
 `styles` | Set of style customizations | [Styles](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `placeholder` | Set of placeholders for the card fields | [Placeholder](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `ref` | Vue reference(ref) for card component | [Vue ref](https://vuejs.org/v2/api/#vm-refs)
