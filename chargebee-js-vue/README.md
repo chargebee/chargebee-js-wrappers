@@ -81,11 +81,12 @@ export default {
   <div>
     <div class="example-3" id="example-3" >
       <form>
-          <card-component class="fieldset" ref="cardComponent" 
-            :fonts="fonts" 
-            :styles="styles" 
-            :locale="locale" 
-            :classes="classes" 
+          <card-component class="fieldset" ref="cardComponent"
+            :fonts="fonts"
+            :styles="styles"
+            :locale="locale"
+            :classes="classes"
+            :currency="currency"
             @ready="onReady"
             @change="onChange"
           >
@@ -145,6 +146,7 @@ export default {
         }
       },
       locale: 'en',
+      currency: 'AUD',
       classes: {
         focus: 'focus',
         complete: 'complete',
@@ -262,6 +264,7 @@ Props | Description | Datatype
 `fonts` | An array of font faces or links | [Fonts](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `classes` | Set of CSS classnames that get substituted for various [events](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on) | [Classes](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `locale` | Language code | [Locale](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
+`currency` | Desired currency | String
 `styles` | Set of style customizations | [Styles](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `placeholder` | Set of placeholders for the card fields | [Placeholder](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `ref` | Vue reference(ref) for card component | [Vue ref](https://vuejs.org/v2/api/#vm-refs)
