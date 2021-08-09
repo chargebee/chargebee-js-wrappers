@@ -228,69 +228,27 @@ import {CardComponent, CardNumber, CardExpiry, CardCVV, Provider} from "@chargeb
 ```
 
 #### Example:
-Detailed SSR example:
-```jsx
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            show: 1,
-            cbInstance: null,
-        }
-
-        this.setExample = this.setExample.bind(this)
-    }
-
-    componentDidMount() {
-        window.Chargebee.init({
-            site: "honeycomics-v3-test",
-            publishableKey: "test_qoH22RugUvm5IcxoqUD5Svdcu9mX5figf"
-        })
-
-        this.setState({
-            cbInstance: window.Chargebee.getInstance()
-        })
-    }
-
-    setExample(show_number) {
-        this.setState({
-            show: show_number
-        })
-    };
-
-    render() {
-        return (
-            <>
-                <script src="https://js.chargebee.com/v2/chargebee.js" ></script>
-                <div >
-                    <ul className="base_page_ul">
-                        <li className="base_page_li" onClick={() => this.setExample(1)}>Example 1</li>
-                        <li className="base_page_li" onClick={() => this.setExample(2)}>Example 2</li>
-                        <li className="base_page_li" onClick={() => this.setExample(3)}>Example 3</li>
-                    </ul>
-                    <div>
-                        { this.state.show == 1 ? 
-                          <Example1 cbInstance={this.state.cbInstance}/> : 
-                          this.state.show == 2 ? 
-                          <Example2 cbInstance={this.state.cbInstance}/> : 
-                          this.state.show == 3 ? 
-                          <Example3 cbInstance={this.state.cbInstance}/> :
-                          null 
-                        }
-                    </div>
-                </div>
-            </>
-        );
-    }
-}
-```
-
-Now, within `Example1` :
+Detailed example :
 ```jsx
 import {CardComponent, CardNumber, CardExpiry, CardCVV, Provider} from "@chargebee/chargebee-js-react-wrapper";
 
 ...
-<Provider cbInstance={this.props.cbInstance}>
+componentDidMount() {
+  window.Chargebee.init({
+    site: "honeycomics-v3-test",
+    publishableKey: "test_qoH22RugUvm5IcxoqUD5Svdcu9mX5figf"
+  })
+
+  this.setState({
+    cbInstance: window.Chargebee.getInstance()
+  })
+}
+
+render() {
+...
+<script src="https://js.chargebee.com/v2/chargebee.js" ></script>
+...
+<Provider cbInstance={this.state.cbInstance}>
   <CardComponent ref={this.cardRef} className="fieldset field"
     styles={style} 
     classes={classes} 
@@ -321,6 +279,7 @@ import {CardComponent, CardNumber, CardExpiry, CardCVV, Provider} from "@chargeb
   </CardComponent>
 </Provider>
 ... 
+}
 ```
 
 #### Run the application
