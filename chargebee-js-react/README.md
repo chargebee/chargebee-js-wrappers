@@ -182,6 +182,159 @@ class App extends Component {
 
 ```
 
+## Server Side Rendering using NextJS
+#### Pre-requisites:
+The chargebee instance should be initialized with `site` and `API Key` and the initiated cb instance should be passed as props to the `Provider` component. A validation is done to check 3 things:
+ * Passed `site` as non-empty string, during initialization call
+ * Passed `API Key` as non-empty string, during initialization call
+ * cbInstance initialized status
+
+Also, a project using `NextJS` should be setup
+
+#### Usage:
+1. Load `chargebee.js script` before any other code/script execution(generally `index.html`). This is to enable `Chargebee` be a part of client side browser `window`
+```html
+<script src="https://js.chargebee.com/v2/chargebee.js"> </script>
+```
+
+2. Initialize chargebee inside componentDidMount(), do not use it in constructor() or render() when using SSR
+```jsx
+componentDidMount() {
+..
+    // initialize with site, publishableKey
+    window.Chargebee.init({
+        site: "...",
+        publishableKey: "..."
+    });
+    
+    // get cb Instance
+    cbInstance = window.Chargebee.getInstance();
+..
+}
+```
+
+3. Import the Provider, CardComponent, etc. components from the module
+```jsx
+import {CardComponent, CardNumber, CardExpiry, CardCVV, Provider} from "@chargebee/chargebee-js-react-wrapper";
+```
+
+4. Within your custom component, wrap the `CardComponent` inside a `Provider` component, pass the cbInstance as props
+```jsx
+<Provider cbInstance={this.props.cbInstance}>
+   <CardComponent ... >
+    ...
+    </CardComponent>
+</Provider>
+```
+
+#### Example:
+Detailed SSR example:
+```jsx
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: 1,
+            cbInstance: null,
+        }
+
+        this.setExample = this.setExample.bind(this)
+    }
+
+    componentDidMount() {
+        window.Chargebee.init({
+            site: "honeycomics-v3-test",
+            publishableKey: "test_qoH22RugUvm5IcxoqUD5Svdcu9mX5figf"
+        })
+
+        this.setState({
+            cbInstance: window.Chargebee.getInstance()
+        })
+    }
+
+    setExample(show_number) {
+        this.setState({
+            show: show_number
+        })
+    };
+
+    render() {
+        return (
+            <>
+                <script src="https://js.chargebee.com/v2/chargebee.js" ></script>
+                <div >
+                    <ul className="base_page_ul">
+                        <li className="base_page_li" onClick={() => this.setExample(1)}>Example 1</li>
+                        <li className="base_page_li" onClick={() => this.setExample(2)}>Example 2</li>
+                        <li className="base_page_li" onClick={() => this.setExample(3)}>Example 3</li>
+                    </ul>
+                    <div>
+                        { this.state.show == 1 ? 
+                          <Example1 cbInstance={this.state.cbInstance}/> : 
+                          this.state.show == 2 ? 
+                          <Example2 cbInstance={this.state.cbInstance}/> : 
+                          this.state.show == 3 ? 
+                          <Example3 cbInstance={this.state.cbInstance}/> :
+                          null 
+                        }
+                    </div>
+                </div>
+            </>
+        );
+    }
+}
+```
+
+Now, within `Example1` :
+```jsx
+import {CardComponent, CardNumber, CardExpiry, CardCVV, Provider} from "@chargebee/chargebee-js-react-wrapper";
+
+...
+<Provider cbInstance={this.props.cbInstance}>
+  <CardComponent ref={this.cardRef} className="fieldset field"
+    styles={style} 
+    classes={classes} 
+    locale={locale}
+    placeholder={placeholder}
+    fonts={fonts}
+  >
+    <div className="ex1-field">
+      {/* Card number component */}
+      <CardNumber className="ex1-input"/>
+      <label className="ex1-label">Card Number</label><i className="ex1-bar"></i>
+    </div>
+
+    <div className="ex1-fields">
+      <div className="ex1-field">
+        {/* Card expiry component */}
+        <CardExpiry className="ex1-input"/>
+        <label className="ex1-label">Expiry</label><i className="ex1-bar"></i>
+      </div>
+
+      <div className="ex1-field">
+        {/* Card cvv component */}
+        <CardCVV className="ex1-input"/>
+        <label className="ex1-label">CVC</label><i className="ex1-bar"></i>
+      </div>
+
+    </div>
+  </CardComponent>
+</Provider>
+... 
+```
+
+#### Run the application
+ * npm install
+ * (NextJS project structure with chargebee-js-react-wrapper installed) -> npm run build / start / dev
+```jsx
+"scripts": {
+   "dev": "next dev",
+   "build": "next build",
+   "start": "next start"
+ }
+```
+   
+
 ### 3DS Authorization
 In your react component
 ```jsx
