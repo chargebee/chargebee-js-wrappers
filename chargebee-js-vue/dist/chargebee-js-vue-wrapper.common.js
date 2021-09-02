@@ -686,9 +686,6 @@ __vue_render__$2._withStripped = true;
 
 var script$5 = {
   name: 'Provider',
-  components: {
-    validateCbInstance: validateCbInstance
-  },
   props: {
     cbInstance: {
       type: Object,
@@ -697,8 +694,7 @@ var script$5 = {
   },
   watch: {
     cbInstance: function cbInstance(newValue) {
-      this.cbInstance = newValue;
-      if (this.cbInstance && validateCbInstance(this.cbInstance)) this.validated = true;else this.validated = false;
+      if (validateCbInstance(newValue)) this.validated = true;else this.validated = false;
     }
   },
   data: function data() {
@@ -708,6 +704,9 @@ var script$5 = {
   },
   render: function render() {
     if (this.validated) return this.$slots["default"];else return null;
+  },
+  created: function created() {
+    if (validateCbInstance(this.cbInstance)) this.validated = true;
   }
 };
 
