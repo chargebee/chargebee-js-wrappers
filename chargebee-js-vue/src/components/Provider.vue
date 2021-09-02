@@ -3,7 +3,6 @@ import { validateCbInstance } from '../utils/'
 
 export default {
     name: 'Provider',
-    components: { validateCbInstance },
     props: {
         cbInstance: {
             type: Object,
@@ -12,8 +11,7 @@ export default {
     },
     watch: {
         cbInstance(newValue) {
-            this.cbInstance = newValue;
-            if (this.cbInstance && validateCbInstance(this.cbInstance))
+            if (validateCbInstance(newValue))
                 this.validated = true;
             else
                 this.validated = false;
@@ -29,6 +27,10 @@ export default {
             return this.$slots.default;
         else
             return null;
+    },
+    created() {
+        if (validateCbInstance(this.cbInstance))
+            this.validated = true;
     }
 }
 </script>
