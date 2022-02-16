@@ -71,7 +71,7 @@ class App extends React.Component {
 
 ### A more complex example:
 ```jsx
-import {CardComponent, CardNumber, CardExpiry, CardCVV} from "react-cb";
+import {CardComponent, CardNumber, CardExpiry, CardCVV} from "@chargebee/chargebee-js-react-wrapper";
 import './App.css'
 
 class App extends Component {
