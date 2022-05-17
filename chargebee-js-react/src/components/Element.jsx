@@ -14,6 +14,11 @@ export default class Element extends React.Component {
         const options = this.getPropOptions(this.props);
         this.field = cbComponent.createField(type, options).at(`#${this.id}`);
         
+        // Can be already mounted, StrictMode and React 18
+        if (this.field) {
+          return;
+        }
+
         // Attaching listeners if any
         if(listeners) {
             if(listeners.onBlur) this.field.on('blur', listeners.onBlur);
