@@ -291,6 +291,11 @@ var Element = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.field.destroy();
+    }
+  }, {
     key: "focus",
     value: function focus() {
       this.field.focus();
