@@ -1,5 +1,6 @@
 <script>
 import { genUUID } from '../utils/';
+import { h } from 'vue'
 
 export default {
 
@@ -102,7 +103,7 @@ export default {
         this.cbComponent = cbComponent;
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
-        Object.keys(this.$listeners).map(listener => {
+        ['ready', 'focus', 'blur', 'change'].map(listener => {
           this.cbComponent.on(listener, (data) => {
             this.$emit(listener, data);
           })
@@ -127,7 +128,7 @@ export default {
     }
   },
 
-  render (h) {
+  render () {
     let children;
     if(this.moduleLoaded) {
       if(this.$slots.default) {
@@ -143,7 +144,7 @@ export default {
     else {
       children = [];
     }
-    return h('div', { attrs: { id: this.elementId }, class: this.class }, children)
+    return h('div', { id: this.elementId, class: this.class }, children)
   }
 }
 </script>

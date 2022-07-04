@@ -6,17 +6,18 @@ export function genUUID() {
 }
 
 export function validateCbInstance(cbInstance) {
-  if (cbInstance != null) {
+  if (cbInstance) {
       const site = cbInstance.site;
       const key = cbInstance.publishableKey;
 
-      if (!(site != null && typeof site == "string" && site.length > 0))
+      if (!(site && typeof site == "string" && site.length > 0))
           return false;
 
-      if (!(key != null && typeof key == "string" && key.length > 0))
+      if (!(key && typeof key == "string" && key.length > 0))
           return false;
 
       return true;
-  } else
-      return false;
-} 
+  } else {
+    return false;
+  }
+}
