@@ -1,3 +1,8 @@
+### v0.5.0 (2022-06-27)
+* * *
+* Added support for react 18
+* Removed support for react 16
+
 ### v0.4.3 (2021-07-30)
 * * *
 * Added support for react 17
