@@ -86,16 +86,18 @@ const _sfc_main$5 = {
     clear() {
       this.cbComponent.clear();
     },
-    setComponentInstance(slot) {
-      if (slot.componentOptions) {
-        slot.componentOptions.propsData = {
-          ...slot.componentOptions.propsData,
+    setComponentInstance(vnode) {
+      if (vnode && vnode.props) {
+        vnode.props = {
+          ...vnode.props,
           cbComponent: this.cbComponent
         };
       }
-      slot.children && slot.children.map((c) => {
-        this.setComponentInstance(c);
-      });
+      if (vnode.children && vnode.children.default) {
+        vnode.children.default().map((c) => {
+          this.setComponentInstance(c);
+        });
+      }
     }
   },
   mounted() {
@@ -134,9 +136,9 @@ const _sfc_main$5 = {
     let children;
     if (this.moduleLoaded) {
       if (this.$slots.default) {
-        children = this.$slots.default.map((slot) => {
-          this.setComponentInstance(slot);
-          return slot;
+        children = this.$slots.default().map((vnode) => {
+          this.setComponentInstance(vnode);
+          return vnode;
         });
       } else {
         children = [];
