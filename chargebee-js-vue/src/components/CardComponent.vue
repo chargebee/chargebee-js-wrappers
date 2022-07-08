@@ -1,50 +1,50 @@
 <script>
-import { genUUID } from '../utils/';
+import { genUUID } from "../utils/";
+import { h } from "vue";
 
 export default {
-
   props: {
     fonts: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     classes: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     styles: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     placeholder: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     icon: {
       type: Boolean,
-      default: true
+      default: true,
     },
     locale: {
       type: String,
-      default: 'en'
+      default: "en",
     },
     currency: {
       type: String,
-      default: 'USD'
+      default: "USD",
     },
   },
 
-  data () {
+  data() {
     return {
       cbInstance: null,
       cbComponent: null,
       moduleLoaded: false,
-      elementId: ''
-    }
+      elementId: "",
+    };
   },
 
   computed: {
-    componentOptions: function() {
+    componentOptions: function () {
       return {
         fonts: this.fonts,
         classes: this.classes,
@@ -53,17 +53,21 @@ export default {
         placeholder: this.placeholder,
         icon: this.icon,
         currency: this.currency,
-      }
+      };
     },
   },
 
   methods: {
-    tokenize (additionalData) {
-      return this.cbComponent.tokenize(additionalData)
+    tokenize(additionalData) {
+      return this.cbComponent.tokenize(additionalData);
     },
 
-    authorizeWith3ds (paymentIntent, additionalData, callbacks) {
-      return this.cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks)
+    authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+      return this.cbComponent.authorizeWith3ds(
+        paymentIntent,
+        additionalData,
+        callbacks
+      );
     },
 
     focus() {
@@ -77,42 +81,45 @@ export default {
     clear() {
       this.cbComponent.clear();
     },
-    
+
     // Set cbComponent instance to child(slot)
-    setComponentInstance(slot) {
-      if(slot.componentOptions) {
-        slot.componentOptions.propsData = {
-                ...slot.componentOptions.propsData,
-                cbComponent: this.cbComponent
-        }
+    setComponentInstance(vnode) {
+      if (vnode && vnode.props) {
+        vnode.props = {
+          ...vnode.props,
+          cbComponent: this.cbComponent,
+        };
       }
-      slot.children && slot.children.map((c) => {
-        this.setComponentInstance(c);
-      });
+
+      if(vnode.children && vnode.children.default) {
+        vnode.children.default().map((c) => {
+          this.setComponentInstance(c);
+        });
+      }
     },
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
       this.elementId = `card-component-${genUUID()}`;
       let cbInstance = Chargebee.getInstance();
       let options = this.componentOptions;
       cbInstance.load("components").then(() => {
         this.cbInstance = cbInstance;
-        const cbComponent = this.cbInstance.createComponent('card', options);
+        const cbComponent = this.cbInstance.createComponent("card", options);
         this.cbComponent = cbComponent;
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
-        Object.keys(this.$listeners).map(listener => {
+        ["ready", "focus", "blur", "change"].map((listener) => {
           this.cbComponent.on(listener, (data) => {
             this.$emit(listener, data);
-          })
+          });
         });
       });
-    })
+    });
   },
 
   updated() {
-    if(this.cbComponent && this.moduleLoaded && this.cbComponent.status == 0) {
+    if (this.cbComponent && this.moduleLoaded && this.cbComponent.status == 0) {
       this.$nextTick(() => {
         this.cbComponent.mount(`#${this.elementId}`);
       });
@@ -120,30 +127,28 @@ export default {
   },
 
   watch: {
-    componentOptions: function() {
-      if(this.cbComponent) {
+    componentOptions: function () {
+      if (this.cbComponent) {
         this.cbComponent.update(this.componentOptions);
       }
-    }
+    },
   },
 
-  render (h) {
+  render() {
     let children;
-    if(this.moduleLoaded) {
-      if(this.$slots.default) {
-        children = this.$slots.default.map(slot => {
-          this.setComponentInstance(slot);
-          return slot
-        })
-      }
-      else {
+    if (this.moduleLoaded) {
+      if (this.$slots.default) {
+        children = this.$slots.default().map((vnode) => {
+          this.setComponentInstance(vnode);
+          return vnode;
+        });
+      } else {
         children = [];
       }
-    }
-    else {
+    } else {
       children = [];
     }
-    return h('div', { attrs: { id: this.elementId }, class: this.class }, children)
-  }
-}
+    return h("div", { id: this.elementId, class: this.class }, children);
+  },
+};
 </script>

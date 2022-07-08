@@ -1,3 +1,8 @@
+### v0.3.0 (2022-06-27)
+* * *
+* Added support for Vue 3
+* Removed support for Vue 2
+
 ### v0.2.2 (2021-03-23)
 * * *
 * Support for Server Side Rendering using Wrapper Component compatible with NuxtJS Framework

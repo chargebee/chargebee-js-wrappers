@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-vue-wrapper",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Vue wrapper for Chargebee.js Components",
   "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-vue#readme",
   "bugs": {
@@ -11,30 +11,24 @@
     "type": "git",
     "url": "git+https://github.com/chargebee/chargebee-js-wrappers.git"
   },
-  "main": "dist/chargebee-js-vue-wrapper.common.js",
-  "module": "dist/chargebee-js-vue-wrapper.esm.js",
+  "main": "dist/chargebee-js-vue-wrapper.cjs.js",
+  "module": "dist/chargebee-js-vue-wrapper.es.js",
   "files": [
     "dist/*",
     "src/*"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "dev": "vite build --watch",
+    "build": "vite build"
   },
   "peerDependencies": {
-    "vue": "^2.6.10"
+    "vue": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "rollup": "^1.10.0",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-node-resolve": "^4.2.3",
-    "rollup-plugin-vue": "^5.0.0",
-    "rollup-watch": "^4.3.1",
-    "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10"
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/compiler-sfc": "^3.2.37",
+    "vite": "^2.9.9",
+    "vue": "^3.2.37"
   },
   "license": "MIT",
   "author": "Vivek <vivek@chargebee.com>",
