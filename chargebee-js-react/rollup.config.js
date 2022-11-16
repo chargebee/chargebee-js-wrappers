@@ -1,7 +1,9 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
+
 export default {
-  input: 'src/index.js',
+  input: 'src/index.ts',
   output: [
     {
       file: 'dist/chargebee-js-react-wrapper.esm.js',
@@ -16,7 +18,8 @@ export default {
     babel({
       exclude: 'node_modules/**' // only transpile our source code
     }),
-    commonjs()
+    commonjs(),
+    typescript()
   ],
   external: [ 'react', 'react-dom' ]
 };
