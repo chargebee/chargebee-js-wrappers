@@ -1,9 +1,30 @@
-import React from 'react';
+import * as React from 'react';
 import { isEqual, genUUID } from '../utils/';
 
-export default class Element extends React.Component {
-    constructor(props) {
-        super();
+interface Listeners {
+    onBlur: any;
+    onFocus: any;
+    onReady: any;
+    onChange: any;
+}
+export interface ElementProps {
+    type: string;
+    cbComponent: any | null;
+    listeners: Listeners;
+    icon?: any;
+    styles?: any;
+    placeholder?: any;
+    ariaLabel?: any;
+    className?: any;
+};
+
+export default class Element extends React.Component<ElementProps> {
+    private id: any;
+    private field: any;  // Type taken up from return value of cbComponent.createField
+    private ElementRef: any;
+
+    constructor(props: ElementProps) {
+        super(props);
         this.field = null;
         this.id = `card-${props.type}-${genUUID()}`;
         this.ElementRef = React.createRef();
@@ -23,7 +44,7 @@ export default class Element extends React.Component {
         }
     }
 
-    getPropOptions(props) {
+    getPropOptions(props: React.PropsWithRef<ElementProps>) {
         const { icon, styles: style, placeholder, ariaLabel } = props;
         return {
             icon,
@@ -33,9 +54,9 @@ export default class Element extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
-        const prevOptions = this.getPropOptions(prevProps)
-        const currentOptions = this.getPropOptions(this.props)
+    componentDidUpdate(prevProps: ElementProps) {
+        const prevOptions = this.getPropOptions(prevProps);
+        const currentOptions = this.getPropOptions(this.props);
 
         if(!isEqual(prevOptions, currentOptions) && this.field) {
             this.field.update(currentOptions)
@@ -59,7 +80,7 @@ export default class Element extends React.Component {
     }
 
     render() {
-        const {className} = this.props;
+        const { className } = this.props;
         return (
             <div id={this.id} ref={this.ElementRef} className={className}>
                 {this.props.children}

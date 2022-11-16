@@ -1,5 +1,12 @@
+interface KeyObject extends Object {
+    [key: number]: any;
+}
+interface KeySetObject extends Object {
+    [key: number]: any;
+}
+
 // Equality comparison for objects
-export function isEqual (left, right) {
+export function isEqual (left: KeyObject, right: KeyObject): Array<any> | boolean {
     const OBJECT_STRING = '[object Object]';
 
     if (typeof left !== 'object' || typeof right !== 'object') {
@@ -22,12 +29,12 @@ export function isEqual (left, right) {
 
     if (!leftPlainObject && !leftArray) return false;
 
-    const leftKeys = Object.keys(left);
-    const rightKeys = Object.keys(right);
+    const leftKeys: Array<any> = Object.keys(left);
+    const rightKeys: Array<any> = Object.keys(right);
 
     if (leftKeys.length !== rightKeys.length) return false;
 
-    const keySet = {};
+    const keySet: KeySetObject = {};
     for (let i = 0; i < leftKeys.length; i += 1) {
         keySet[leftKeys[i]] = true;
     }
@@ -41,7 +48,7 @@ export function isEqual (left, right) {
 
     const l = left;
     const r = right;
-    const pred = (key) => {
+    const pred = (key: any) => {
         return isEqual(l[key], r[key]);
     };
 
@@ -55,7 +62,7 @@ export function genUUID() {
   });
 }
 
-export function validateCbInstance(cbInstance) {
+export function validateCbInstance(cbInstance: any) {
     if (cbInstance != null) {
         const site = cbInstance.site;
         const key = cbInstance.publishableKey;

@@ -1,8 +1,16 @@
-import React from 'react'
-import Element from './Element.jsx';
-import { ComponentContext } from "./ComponentGroup.jsx";
+import * as React from 'react'
+import Element from './Element';
+import { ComponentContext } from "./ComponentGroup";
 
-export default React.forwardRef((props, ref) => {
+// @to-update
+export interface CardExpiryProps {
+    onBlur: any;
+    onChange: any;
+    onFocus: any;
+    onReady: any;
+};
+
+export default React.forwardRef((props: CardExpiryProps, ref: React.LegacyRef<Element>) => {
     const {onBlur, onChange, onFocus, onReady, ...rest} = props;
     const listeners = {onBlur, onChange, onFocus, onReady};
 

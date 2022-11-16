@@ -1,23 +1,48 @@
-import React from 'react'
+import * as React from 'react';
 import { isEqual, genUUID } from '../utils/';
 
-const ComponentDefaultContext = {
+const ComponentDefaultContext: any = {
     cbComponent: null
 }
 
 export const ComponentContext = React.createContext(ComponentDefaultContext);
 
-export default class ChargebeeComponents extends React.Component {
-    constructor(props) {
-        super();
+export interface ChargebeeComponentProps {
+    type: string;
+    fonts: any;
+    classes: any;
+    icon: any;
+    styles: any;
+    locale: any;
+    placeholder: any;
+    currency: any;
+    ariaLabel: any;
+    className: any;
+    onBlur: any;
+    onFocus: any;
+    onReady: any;
+    onChange: any;
+}
+interface ChargebeeComponentState {
+    moduleLoaded: any;
+    cbComponent: any;
+    cbInstance: any;
+}
+
+export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
+    private id: any;
+
+    
+    constructor(props: ChargebeeComponentProps) {
+        super(props);
         this.state = {
             moduleLoaded: false,
             cbComponent: null,
-            cbInstance: null,
+            cbInstance: null,   
         }
     }
 
-    getPropOptions(props) {
+    getPropOptions(props: ChargebeeComponentProps) {
         const { fonts, classes, icon, styles: style, locale, placeholder, currency, ariaLabel } = props;
         return {
             fonts,
@@ -31,7 +56,7 @@ export default class ChargebeeComponents extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: ChargebeeComponentProps) {
         const cbComponent = this.state.cbComponent;
 
         if(cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
@@ -50,6 +75,7 @@ export default class ChargebeeComponents extends React.Component {
         this.id = `${this.props.type}-field-${genUUID()}`;
         const {type, onBlur, onChange, onFocus, onReady} = this.props;
         const options = this.getPropOptions(this.props);
+        // @ts-ignore
         const cbInstance = Chargebee.getInstance();
         cbInstance.load("components").then(() => {
             let cbComponent = cbInstance.createComponent(type, options)
@@ -67,12 +93,12 @@ export default class ChargebeeComponents extends React.Component {
         });
     }
 
-    tokenize(additionalData) {
+    tokenize(additionalData: any) {
         const { cbComponent } = this.state;
         return cbComponent.tokenize(additionalData)
     }
 
-    authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+    authorizeWith3ds(paymentIntent: any, additionalData: any, callbacks: any) {
       const { cbComponent } = this.state;
       return cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks)
     }
