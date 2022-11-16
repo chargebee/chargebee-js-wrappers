@@ -4,10 +4,10 @@ import { ComponentContext } from "./ComponentGroup";
 
 // @to-update
 export interface CardNumberProps {
-    onBlur: any;
-    onChange: any;
-    onFocus: any;
-    onReady: any;
+    onBlur: React.MouseEventHandler;
+    onChange: React.ChangeEventHandler;
+    onFocus: React.FocusEventHandler;
+    onReady: React.EventHandler<React.SyntheticEvent>;
 };
 
 export default React.forwardRef((props: CardNumberProps, ref: React.LegacyRef<Element>) => {

@@ -4,10 +4,10 @@ import { ComponentContext } from "./ComponentGroup";
 
 // @to-update
 export interface CardCVVProps {
-    onBlur: any;
-    onChange: any;
-    onFocus: any;
-    onReady: any;
+    onBlur: React.MouseEventHandler;
+    onChange: React.ChangeEventHandler;
+    onFocus: React.FocusEventHandler;
+    onReady: React.EventHandler<React.SyntheticEvent>;
 };
 
 export default React.forwardRef((props: CardCVVProps, ref: React.LegacyRef<Element>) => {

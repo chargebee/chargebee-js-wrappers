@@ -1,37 +1,40 @@
 import * as React from 'react';
+import { AdditionalData, Callbacks, Component, PaymentIntent } from 'types';
 import { isEqual, genUUID } from '../utils/';
 
-const ComponentDefaultContext: any = {
+interface ComponentContext {
+    cbComponent: Component
+}
+
+const ComponentDefaultContext: ComponentContext = {
     cbComponent: null
 }
 
-export const ComponentContext = React.createContext(ComponentDefaultContext);
-
+export const ComponentContext = React.createContext(ComponentDefaultContext);  
 export interface ChargebeeComponentProps {
     type: string;
-    fonts: any;
-    classes: any;
-    icon: any;
-    styles: any;
-    locale: any;
-    placeholder: any;
-    currency: any;
-    ariaLabel: any;
-    className: any;
-    onBlur: any;
-    onFocus: any;
-    onReady: any;
-    onChange: any;
+    fonts: Array<Object | String>;
+    classes: object;
+    icon: boolean;
+    styles: object;
+    locale: string;
+    placeholder: object;
+    currency: string;
+    ariaLabel: object;
+    className: string;
+    onBlur: React.MouseEventHandler;
+    onChange: React.ChangeEventHandler;
+    onFocus: React.FocusEventHandler;
+    onReady: React.EventHandler<React.SyntheticEvent>;
 }
 interface ChargebeeComponentState {
-    moduleLoaded: any;
-    cbComponent: any;
-    cbInstance: any;
+    moduleLoaded: Boolean;
+    cbComponent: Component;
+    cbInstance: any; // @todo: fix this!
 }
 
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
-    private id: any;
-
+    private id: string;
     
     constructor(props: ChargebeeComponentProps) {
         super(props);
@@ -93,12 +96,12 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         });
     }
 
-    tokenize(additionalData: any) {
+    tokenize(additionalData: AdditionalData) {
         const { cbComponent } = this.state;
         return cbComponent.tokenize(additionalData)
     }
 
-    authorizeWith3ds(paymentIntent: any, additionalData: any, callbacks: any) {
+    authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks) {
       const { cbComponent } = this.state;
       return cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks)
     }

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { validateCbInstance } from '../utils/';
 
 interface ProviderProps {
-    cbInstance: any;
-    children: any
+    cbInstance: any; // @todo: fix this!
+    children: React.ReactChild;
 }
 
 export default React.forwardRef((props: ProviderProps, ref) => {
