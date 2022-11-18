@@ -2,12 +2,12 @@
 const path = require('path')
 const { defineConfig } = require('vite')
 const vue = require('@vitejs/plugin-vue');
-const typescript2 = require('rollup-plugin-typescript2');
+const typescript = require('@rollup/plugin-typescript');
 
 module.exports = defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.jts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'chargebee-js-vue-wrapper',
       fileName: (format) => `chargebee-js-vue-wrapper.${format}.js`,
       formats: ['cjs', 'es' ]
@@ -15,16 +15,14 @@ module.exports = defineConfig({
     rollupOptions: {
       external: ['vue'],
       plugins: [
-        {
-          ...typescript2(),
-          apply: 'build',
-        }
+        typescript()
       ],
       output: {
         exports: "named",
         globals: {
           vue: 'Vue'
-        }
+        },
+        sourcemap: true
       }
     }
   },
