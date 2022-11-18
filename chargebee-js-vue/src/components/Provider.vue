@@ -1,5 +1,5 @@
-<script>
-import { validateCbInstance } from '../utils/'
+<script lang="ts">
+import { validateCbInstance } from '../utils'
 
 export default {
     name: 'Provider',

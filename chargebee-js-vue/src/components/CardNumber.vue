@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
 import Element from './Element.vue'
 
@@ -16,7 +16,7 @@ export default {
   props: {
     cbComponent: {
       type: Object,
-      default: () => null
+      default: (): any => null
     },
     styles: {
       type: Object,

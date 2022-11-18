@@ -5,7 +5,7 @@ export function genUUID() {
   });
 }
 
-export function validateCbInstance(cbInstance) {
+export function validateCbInstance(cbInstance: any) {
   if (cbInstance) {
       const site = cbInstance.site;
       const key = cbInstance.publishableKey;

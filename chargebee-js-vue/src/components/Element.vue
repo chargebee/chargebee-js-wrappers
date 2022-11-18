@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { genUUID } from '../utils';
 export default {
 
@@ -37,13 +37,13 @@ export default {
       return this.field
     },
 
-    attachListener (listener) {
-      this.field.on(listener, (data) => {
+    attachListener (listener: any) {
+      this.field.on(listener, (data: any) => {
         this.$emit(listener, data)
       })
     },
 
-    initializeField (cbComponent) {
+    initializeField (cbComponent: any) {
       if (cbComponent) {
         const options = this.fieldOptions;
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`)
