@@ -1,12 +1,12 @@
-<script>
-import { genUUID } from "../utils/";
+<script lang="ts">
+import { genUUID } from "../utils";
 import { h } from "vue";
 
 export default {
   props: {
     fonts: {
       type: Array,
-      default: () => [],
+      default: (): any[] => [],
     },
     classes: {
       type: Object,
@@ -58,11 +58,11 @@ export default {
   },
 
   methods: {
-    tokenize(additionalData) {
+    tokenize(additionalData: object) {
       return this.cbComponent.tokenize(additionalData);
     },
 
-    authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+    authorizeWith3ds(paymentIntent: object, additionalData: object, callbacks: object) {
       return this.cbComponent.authorizeWith3ds(
         paymentIntent,
         additionalData,
@@ -83,7 +83,7 @@ export default {
     },
 
     // Set cbComponent instance to child(slot)
-    setComponentInstance(vnode) {
+    setComponentInstance(vnode: any) {
       if (vnode && vnode.props) {
         vnode.props = {
           ...vnode.props,
@@ -92,7 +92,7 @@ export default {
       }
 
       if(vnode.children && vnode.children.default) {
-        vnode.children.default().map((c) => {
+        vnode.children.default().map((c: any) => {
           this.setComponentInstance(c);
         });
       }
@@ -101,6 +101,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.elementId = `card-component-${genUUID()}`;
+      // @ts-ignore
       let cbInstance = Chargebee.getInstance();
       let options = this.componentOptions;
       cbInstance.load("components").then(() => {
@@ -110,7 +111,7 @@ export default {
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
         ["ready", "focus", "blur", "change"].map((listener) => {
-          this.cbComponent.on(listener, (data) => {
+          this.cbComponent.on(listener, (data: any) => {
             this.$emit(listener, data);
           });
         });
@@ -138,7 +139,7 @@ export default {
     let children;
     if (this.moduleLoaded) {
       if (this.$slots.default) {
-        children = this.$slots.default().map((vnode) => {
+        children = this.$slots.default().map((vnode: any) => {
           this.setComponentInstance(vnode);
           return vnode;
         });

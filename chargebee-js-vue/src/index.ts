@@ -13,7 +13,7 @@ const components = {
 }
 
 export default {
-  install (Vue) {
+  install (Vue: any) {
     Vue.component('card-component', CardComponent);
     Vue.component('card-number', CardNumber);
     Vue.component('card-expiry', CardExpiry);
