@@ -83,7 +83,7 @@ export default {
     },
 
     // Set cbComponent instance to child(slot)
-    setComponentInstance(vnode: { props: any; children: { default: () => any[]; }; }) {
+    setComponentInstance(vnode: any) {
       if (vnode && vnode.props) {
         vnode.props = {
           ...vnode.props,
@@ -92,7 +92,7 @@ export default {
       }
 
       if(vnode.children && vnode.children.default) {
-        vnode.children.default().map((c) => {
+        vnode.children.default().map((c: any) => {
           this.setComponentInstance(c);
         });
       }
