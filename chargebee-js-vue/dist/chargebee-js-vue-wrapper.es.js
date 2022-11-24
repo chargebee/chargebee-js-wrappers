@@ -107,9 +107,11 @@ const _sfc_main$5 = {
       let options = this.componentOptions;
       cbInstance.load("components").then(() => {
         this.cbInstance = cbInstance;
+        console.log(options);
         const cbComponent = this.cbInstance.createComponent("card", options);
         this.cbComponent = cbComponent;
         this.moduleLoaded = true;
+        console.log(this.cbComponent, this.moduleLoaded);
         ["ready", "focus", "blur", "change"].map((listener) => {
           this.cbComponent.on(listener, (data) => {
             this.$emit(listener, data);
@@ -186,7 +188,6 @@ const _sfc_main$4 = {
       });
     },
     initializeField(cbComponent) {
-      console.log(cbComponent);
       if (cbComponent) {
         const options = this.fieldOptions;
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`);
