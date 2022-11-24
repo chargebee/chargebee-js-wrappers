@@ -186,6 +186,7 @@ const _sfc_main$4 = {
       });
     },
     initializeField(cbComponent) {
+      console.log(cbComponent);
       if (cbComponent) {
         const options = this.fieldOptions;
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`);
