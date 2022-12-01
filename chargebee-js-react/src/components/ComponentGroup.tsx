@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AdditionalData, Callbacks, Component, PaymentIntent } from 'types';
+import { AdditionalData, Callbacks, Component, PaymentIntent } from "chargebee-types";
 import { isEqual, genUUID } from '../utils/';
 
 interface ComponentContext {
