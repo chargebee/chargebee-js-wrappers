@@ -1,6 +1,7 @@
 <template>
   <div v-bind:id="elementId" v-bind:class="classname">
     <slot></slot>
+    <span>{{this.message}}</span>
   </div>
 </template>
 
@@ -12,10 +13,6 @@ export default {
   name: 'CardExpiry',
 
   props: {
-    cbComponent: {
-      type: Object,
-      default: (): any => null
-    },
     styles: {
       type: Object,
       default: () => ({})

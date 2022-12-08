@@ -44,7 +44,7 @@ export default {
     },
 
     initializeField (cbComponent: any) {
-      if (cbComponent) {
+      if (cbComponent && cbComponent.value) {
         const options = this.fieldOptions;
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`)
         if (this.$parent.onMount) this.$parent.onMount()
@@ -72,12 +72,6 @@ export default {
   },
 
   watch: {
-    cbComponent: function (cbComponent, _) {
-      if (!this.field) {
-        this.initializeField(cbComponent)
-      }
-    },
-
     fieldOptions: function () {
       if(this.field) {
         const options = this.fieldOptions;
@@ -85,6 +79,8 @@ export default {
       }
     },
   },
+
+  inject: ['cbComponent', 'message'],
 
   mounted () {
     this.initializeField(this.cbComponent)

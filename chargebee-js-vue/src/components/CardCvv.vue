@@ -12,10 +12,6 @@ export default {
   name: 'CardCvv',
 
   props: {
-    cbComponent: {
-      type: Object,
-      default: (): any => null
-    },
     styles: {
       type: Object,
       default: () => ({})

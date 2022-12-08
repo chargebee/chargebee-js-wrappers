@@ -1,6 +1,6 @@
 <script lang="ts">
 import { genUUID } from "../utils";
-import { h } from "vue";
+import { h, computed } from "vue";
 
 export default {
   props: {
@@ -37,9 +37,10 @@ export default {
   data() {
     return {
       cbInstance: null,
-      cbComponent: null,
+      cbComponent: undefined,
       moduleLoaded: false,
       elementId: "",
+      message: ""
     };
   },
 
@@ -55,6 +56,13 @@ export default {
         currency: this.currency,
       };
     },
+  },
+
+  provide() {
+    return {
+      message: computed(() => this.message),
+      cbComponent: computed(() => this.cbComponent)
+    }
   },
 
   methods: {
@@ -82,22 +90,11 @@ export default {
       this.cbComponent.clear();
     },
 
-    // Set cbComponent instance to child(slot)
-    setComponentInstance(vnode: any) {
-      if (vnode && vnode.props) {
-        vnode.props = {
-          ...vnode.props,
-          cbComponent: this.cbComponent,
-        };
-      }
-
-      if(vnode.children && vnode.children.default) {
-        vnode.children.default().map((c: any) => {
-          this.setComponentInstance(c);
-        });
-      }
-    },
+    setCbComponent(cbComponent) {
+      this.cbComponent = cbComponent;
+    }
   },
+
   mounted() {
     this.$nextTick(() => {
       this.elementId = `card-component-${genUUID()}`;
@@ -107,7 +104,8 @@ export default {
       cbInstance.load("components").then(() => {
         this.cbInstance = cbInstance;
         const cbComponent = this.cbInstance.createComponent("card", options);
-        this.cbComponent = cbComponent;
+        this.setCbComponent(cbComponent);
+        this.message = "Hello"; // This updates provided data
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
         ["ready", "focus", "blur", "change"].map((listener) => {
@@ -136,20 +134,8 @@ export default {
   },
 
   render() {
-    let children;
-    if (this.moduleLoaded) {
-      if (this.$slots.default) {
-        children = this.$slots.default().map((vnode: any) => {
-          this.setComponentInstance(vnode);
-          return vnode;
-        });
-      } else {
-        children = [];
-      }
-    } else {
-      children = [];
-    }
+    let children = this.$slots.default();
     return h("div", { id: this.elementId, class: this.class }, children);
-  },
-};
+  }
+}
 </script>
