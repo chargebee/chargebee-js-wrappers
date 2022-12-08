@@ -40,12 +40,11 @@ export default {
       cbComponent: undefined,
       moduleLoaded: false,
       elementId: "",
-      message: ""
     };
   },
 
   computed: {
-    componentOptions: function () {
+    componentOptions() {
       return {
         fonts: this.fonts,
         classes: this.classes,
@@ -60,8 +59,7 @@ export default {
 
   provide() {
     return {
-      message: computed(() => this.message),
-      cbComponent: computed(() => this.cbComponent)
+      cbComponent: computed(() => this.cbComponent),
     }
   },
 
@@ -90,7 +88,7 @@ export default {
       this.cbComponent.clear();
     },
 
-    setCbComponent(cbComponent) {
+    setCbComponent(cbComponent: any) {
       this.cbComponent = cbComponent;
     }
   },
@@ -105,7 +103,6 @@ export default {
         this.cbInstance = cbInstance;
         const cbComponent = this.cbInstance.createComponent("card", options);
         this.setCbComponent(cbComponent);
-        this.message = "Hello"; // This updates provided data
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
         ["ready", "focus", "blur", "change"].map((listener) => {

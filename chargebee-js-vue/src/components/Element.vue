@@ -2,9 +2,12 @@
 import { genUUID } from '../utils';
 export default {
 
+  inject: ['cbComponent'],
+
   data () {
     return {
-      field: null
+      field: null,
+      initialized: false,
     }
   },
 
@@ -44,16 +47,20 @@ export default {
     },
 
     initializeField (cbComponent: any) {
-      if (cbComponent && cbComponent.value) {
+      if (cbComponent) {
         const options = this.fieldOptions;
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`)
         if (this.$parent.onMount) this.$parent.onMount()
+        this.$nextTick(() => {
+          this.field.mount();
+        })
 
         // Attach listeners if any
         this.attachListener('ready')
         this.attachListener('focus')
         this.attachListener('blur')
         this.attachListener('change')
+        this.initialized = true;
       }
     },
 
@@ -72,18 +79,23 @@ export default {
   },
 
   watch: {
-    fieldOptions: function () {
+    fieldOptions() {
       if(this.field) {
         const options = this.fieldOptions;
         this.field.update(options)
       }
     },
+    cbComponent(newValue, oldValue) {
+      if(!oldValue && newValue) {
+        if(!this.initialized) {
+          this.initializeField(newValue)
+        }
+      }
+    }
   },
 
-  inject: ['cbComponent', 'message'],
-
   mounted () {
-    this.initializeField(this.cbComponent)
+    this.initializeField()
   }
 }
 </script>

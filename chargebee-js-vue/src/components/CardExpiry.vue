@@ -1,7 +1,6 @@
 <template>
   <div v-bind:id="elementId" v-bind:class="classname">
     <slot></slot>
-    <span>{{this.message}}</span>
   </div>
 </template>
 
