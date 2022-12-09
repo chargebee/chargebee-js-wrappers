@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from 'chargebee-types';
+import { Component } from '@chargebee/chargebee-js-types';
 import { isEqual, genUUID } from '../utils/';
 
 interface Listeners {
