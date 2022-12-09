@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AdditionalData, AriaLabel, Callbacks, ChargebeeInstance, Classes, Component, PaymentIntent, Placeholder, Styles } from "@chargebee/chargebee-js-types";
+import { AdditionalData, AriaLabel, Callbacks, ChargebeeInstance, Classes, Component, Fonts, PaymentIntent, Placeholder, Styles } from "@chargebee/chargebee-js-types";
 import { isEqual, genUUID } from '../utils/';
 
 interface ComponentContext {
@@ -13,7 +13,7 @@ const ComponentDefaultContext: ComponentContext = {
 export const ComponentContext = React.createContext(ComponentDefaultContext);  
 export interface ChargebeeComponentProps {
     type: string;
-    fonts: Array<Object | String>;
+    fonts: Fonts;
     classes: Classes;
     icon: boolean;
     styles: Styles;

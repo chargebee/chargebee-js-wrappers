@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from '@chargebee/chargebee-js-types';
+import { AriaLabel, Component, Placeholder, Styles } from '@chargebee/chargebee-js-types';
 import { isEqual, genUUID } from '../utils/';
 
 interface Listeners {
@@ -13,9 +13,9 @@ export interface ElementProps {
     cbComponent: Component;
     listeners: Listeners;
     icon?: boolean;
-    styles?: object;
-    placeholder?: object;
-    ariaLabel?: object;
+    styles?: Styles;
+    placeholder?: Placeholder;
+    ariaLabel?: AriaLabel;
     className?: string;
 };
 
