@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { ChargebeeInstance } from '@chargebee/chargebee-js-types';
 import { validateCbInstance } from '../utils/';
 
 interface ProviderProps {
-    cbInstance: any; // @todo: fix this!
+    cbInstance: ChargebeeInstance;
     children: React.ReactChild;
 }
 

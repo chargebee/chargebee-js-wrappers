@@ -1,9 +1,9 @@
 import * as React from 'react'
-import Element from './Element';
+import Element, { ElementProps } from './Element';
 import { ComponentContext } from "./ComponentGroup";
 
 // @to-update
-export interface CardNumberProps {
+export interface CardNumberProps extends ElementProps {
     onBlur: React.MouseEventHandler;
     onChange: React.ChangeEventHandler;
     onFocus: React.FocusEventHandler;

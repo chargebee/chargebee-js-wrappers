@@ -21,7 +21,7 @@ export interface ElementProps {
 
 export default class Element extends React.Component<ElementProps> {
     private id: string;
-    private field: any;  // @todo: fix this!
+    private field: any;
     private ElementRef: React.LegacyRef<HTMLDivElement>;
 
     constructor(props: ElementProps) {

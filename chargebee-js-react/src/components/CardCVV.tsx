@@ -3,7 +3,7 @@ import Element, { ElementProps } from './Element';
 import { ComponentContext } from "./ComponentGroup";
 
 // @to-update
-export interface CardCVVProps {
+export interface CardCVVProps extends ElementProps {
     onBlur: React.MouseEventHandler;
     onChange: React.ChangeEventHandler;
     onFocus: React.FocusEventHandler;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AdditionalData, Callbacks, Component, PaymentIntent } from "@chargebee/chargebee-js-types";
+import { AdditionalData, AriaLabel, Callbacks, ChargebeeInstance, Classes, Component, PaymentIntent, Placeholder, Styles } from "@chargebee/chargebee-js-types";
 import { isEqual, genUUID } from '../utils/';
 
 interface ComponentContext {
@@ -14,13 +14,13 @@ export const ComponentContext = React.createContext(ComponentDefaultContext);
 export interface ChargebeeComponentProps {
     type: string;
     fonts: Array<Object | String>;
-    classes: object;
+    classes: Classes;
     icon: boolean;
-    styles: object;
+    styles: Styles;
     locale: string;
-    placeholder: object;
+    placeholder: Placeholder;
     currency: string;
-    ariaLabel: object;
+    ariaLabel: AriaLabel;
     className: string;
     onBlur: React.MouseEventHandler;
     onChange: React.ChangeEventHandler;
@@ -30,7 +30,7 @@ export interface ChargebeeComponentProps {
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;
     cbComponent: Component;
-    cbInstance: any; // @todo: fix this!
+    cbInstance: ChargebeeInstance;
 }
 
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
