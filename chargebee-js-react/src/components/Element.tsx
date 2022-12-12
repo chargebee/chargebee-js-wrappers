@@ -1,9 +1,31 @@
-import React from 'react';
+import * as React from 'react';
+import { AriaLabel, Component, Placeholder, Styles } from '@chargebee/chargebee-js-types';
 import { isEqual, genUUID } from '../utils/';
 
-export default class Element extends React.Component {
-    constructor(props) {
-        super();
+interface Listeners {
+    onBlur: React.MouseEventHandler;
+    onChange: React.ChangeEventHandler;
+    onFocus: React.FocusEventHandler;
+    onReady: React.EventHandler<React.SyntheticEvent>;
+}
+export interface ElementProps {
+    type: string;
+    cbComponent: Component;
+    listeners: Listeners;
+    icon?: boolean;
+    styles?: Styles;
+    placeholder?: Placeholder;
+    ariaLabel?: AriaLabel;
+    className?: string;
+};
+
+export default class Element extends React.Component<ElementProps> {
+    private id: string;
+    private field: any;
+    private ElementRef: React.LegacyRef<HTMLDivElement>;
+
+    constructor(props: ElementProps) {
+        super(props);
         this.field = null;
         this.id = `card-${props.type}-${genUUID()}`;
         this.ElementRef = React.createRef();
@@ -23,7 +45,7 @@ export default class Element extends React.Component {
         }
     }
 
-    getPropOptions(props) {
+    getPropOptions(props: React.PropsWithRef<ElementProps>) {
         const { icon, styles: style, placeholder, ariaLabel } = props;
         return {
             icon,
@@ -33,9 +55,9 @@ export default class Element extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
-        const prevOptions = this.getPropOptions(prevProps)
-        const currentOptions = this.getPropOptions(this.props)
+    componentDidUpdate(prevProps: ElementProps) {
+        const prevOptions = this.getPropOptions(prevProps);
+        const currentOptions = this.getPropOptions(this.props);
 
         if(!isEqual(prevOptions, currentOptions) && this.field) {
             this.field.update(currentOptions)
@@ -59,7 +81,7 @@ export default class Element extends React.Component {
     }
 
     render() {
-        const {className} = this.props;
+        const { className } = this.props;
         return (
             <div id={this.id} ref={this.ElementRef} className={className}>
                 {this.props.children}

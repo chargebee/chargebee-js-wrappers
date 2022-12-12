@@ -1,23 +1,51 @@
-import React from 'react'
+import * as React from 'react';
+import { AdditionalData, AriaLabel, Callbacks, ChargebeeInstance, Classes, Component, Fonts, PaymentIntent, Placeholder, Styles } from "@chargebee/chargebee-js-types";
 import { isEqual, genUUID } from '../utils/';
 
-const ComponentDefaultContext = {
+interface ComponentContext {
+    cbComponent: Component
+}
+
+const ComponentDefaultContext: ComponentContext = {
     cbComponent: null
 }
 
-export const ComponentContext = React.createContext(ComponentDefaultContext);
+export const ComponentContext = React.createContext(ComponentDefaultContext);  
+export interface ChargebeeComponentProps {
+    type: string;
+    fonts: Fonts;
+    classes: Classes;
+    icon: boolean;
+    styles: Styles;
+    locale: string;
+    placeholder: Placeholder;
+    currency: string;
+    ariaLabel: AriaLabel;
+    className: string;
+    onBlur: React.MouseEventHandler;
+    onChange: React.ChangeEventHandler;
+    onFocus: React.FocusEventHandler;
+    onReady: React.EventHandler<React.SyntheticEvent>;
+}
+interface ChargebeeComponentState {
+    moduleLoaded: Boolean;
+    cbComponent: Component;
+    cbInstance: ChargebeeInstance;
+}
 
-export default class ChargebeeComponents extends React.Component {
-    constructor(props) {
-        super();
+export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
+    private id: string;
+    
+    constructor(props: ChargebeeComponentProps) {
+        super(props);
         this.state = {
             moduleLoaded: false,
             cbComponent: null,
-            cbInstance: null,
+            cbInstance: null,   
         }
     }
 
-    getPropOptions(props) {
+    getPropOptions(props: ChargebeeComponentProps) {
         const { fonts, classes, icon, styles: style, locale, placeholder, currency, ariaLabel } = props;
         return {
             fonts,
@@ -31,7 +59,7 @@ export default class ChargebeeComponents extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: ChargebeeComponentProps) {
         const cbComponent = this.state.cbComponent;
 
         if(cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
@@ -50,6 +78,7 @@ export default class ChargebeeComponents extends React.Component {
         this.id = `${this.props.type}-field-${genUUID()}`;
         const {type, onBlur, onChange, onFocus, onReady} = this.props;
         const options = this.getPropOptions(this.props);
+        // @ts-ignore
         const cbInstance = Chargebee.getInstance();
         cbInstance.load("components").then(() => {
             let cbComponent = cbInstance.createComponent(type, options)
@@ -67,12 +96,12 @@ export default class ChargebeeComponents extends React.Component {
         });
     }
 
-    tokenize(additionalData) {
+    tokenize(additionalData: AdditionalData) {
         const { cbComponent } = this.state;
         return cbComponent.tokenize(additionalData)
     }
 
-    authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+    authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks) {
       const { cbComponent } = this.state;
       return cbComponent.authorizeWith3ds(paymentIntent, additionalData, callbacks)
     }
