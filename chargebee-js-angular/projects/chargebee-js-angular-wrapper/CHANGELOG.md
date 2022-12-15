@@ -1,3 +1,7 @@
+### v1.0.0 (2022-12-15)
+***
+* Support for Angular 14.
+
 ### v0.3.1 (2021-03-26)
 ***
 * Support for Server Side Rendering using wrapper component compatible with Angular Universal Framework (with prerendering)
