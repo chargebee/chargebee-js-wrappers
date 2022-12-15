@@ -1,4 +1,4 @@
-import { h, openBlock, createElementBlock, normalizeClass, renderSlot } from "vue";
+import { computed, h, openBlock, createElementBlock, normalizeClass, renderSlot } from "vue";
 function genUUID() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
     var r = Math.random() * 16 | 0, v = c == "x" ? r : r & 3 | 8;
@@ -70,6 +70,11 @@ const _sfc_main$5 = {
       };
     }
   },
+  provide() {
+    return {
+      cbComponent: computed(() => this.cbComponent)
+    };
+  },
   methods: {
     tokenize(additionalData) {
       return this.cbComponent.tokenize(additionalData);
@@ -86,18 +91,8 @@ const _sfc_main$5 = {
     clear() {
       this.cbComponent.clear();
     },
-    setComponentInstance(vnode) {
-      if (vnode && vnode.props) {
-        vnode.props = {
-          ...vnode.props,
-          cbComponent: this.cbComponent
-        };
-      }
-      if (vnode.children && vnode.children.default) {
-        vnode.children.default().map((c) => {
-          this.setComponentInstance(c);
-        });
-      }
+    setCbComponent(cbComponent) {
+      this.cbComponent = cbComponent;
     }
   },
   mounted() {
@@ -109,6 +104,7 @@ const _sfc_main$5 = {
         this.cbInstance = cbInstance;
         const cbComponent = this.cbInstance.createComponent("card", options);
         this.cbComponent = cbComponent;
+        this.setCbComponent(cbComponent);
         this.moduleLoaded = true;
         ["ready", "focus", "blur", "change"].map((listener) => {
           this.cbComponent.on(listener, (data) => {
@@ -126,26 +122,14 @@ const _sfc_main$5 = {
     }
   },
   watch: {
-    componentOptions: function() {
+    componentOptions() {
       if (this.cbComponent) {
         this.cbComponent.update(this.componentOptions);
       }
     }
   },
   render() {
-    let children;
-    if (this.moduleLoaded) {
-      if (this.$slots.default) {
-        children = this.$slots.default().map((vnode) => {
-          this.setComponentInstance(vnode);
-          return vnode;
-        });
-      } else {
-        children = [];
-      }
-    } else {
-      children = [];
-    }
+    let children = this.$slots.default ? this.$slots.default() : [];
     return h("div", { id: this.elementId, class: this.class }, children);
   }
 };
@@ -191,10 +175,14 @@ const _sfc_main$4 = {
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`);
         if (this.$parent.onMount)
           this.$parent.onMount();
+        this.$nextTick(() => {
+          this.field.mount();
+        });
         this.attachListener("ready");
         this.attachListener("focus");
         this.attachListener("blur");
         this.attachListener("change");
+        this.initialized = true;
       }
     },
     focus() {
@@ -208,20 +196,23 @@ const _sfc_main$4 = {
     }
   },
   watch: {
-    cbComponent: function(cbComponent, _) {
-      if (!this.field) {
-        this.initializeField(cbComponent);
-      }
-    },
-    fieldOptions: function() {
+    fieldOptions() {
       if (this.field) {
         const options = this.fieldOptions;
         this.field.update(options);
       }
+    },
+    cbComponent(newValue, oldValue) {
+      if (!oldValue && newValue) {
+        if (!this.initialized) {
+          this.initializeField(newValue);
+        }
+      }
     }
   },
+  inject: ["cbComponent"],
   mounted() {
-    this.initializeField(this.cbComponent);
+    this.initializeField();
   }
 };
 var _export_sfc = (sfc, props) => {
@@ -235,10 +226,6 @@ const _sfc_main$3 = {
   name: "CardNumber",
   mixins: [_sfc_main$4],
   props: {
-    cbComponent: {
-      type: Object,
-      default: () => null
-    },
     styles: {
       type: Object,
       default: () => ({})
@@ -269,10 +256,6 @@ var CardNumber = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_rende
 const _sfc_main$2 = {
   name: "CardExpiry",
   props: {
-    cbComponent: {
-      type: Object,
-      default: () => null
-    },
     styles: {
       type: Object,
       default: () => ({})
@@ -304,10 +287,6 @@ var CardExpiry = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_rende
 const _sfc_main$1 = {
   name: "CardCvv",
   props: {
-    cbComponent: {
-      type: Object,
-      default: () => null
-    },
     styles: {
       type: Object,
       default: () => ({})

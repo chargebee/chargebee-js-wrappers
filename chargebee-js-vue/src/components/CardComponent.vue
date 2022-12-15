@@ -1,6 +1,6 @@
 <script>
 import { genUUID } from "../utils/";
-import { h } from "vue";
+import { h, computed } from "vue";
 
 export default {
   props: {
@@ -57,6 +57,12 @@ export default {
     },
   },
 
+  provide() {
+    return {
+      cbComponent: computed(() => this.cbComponent),
+    };
+  },
+
   methods: {
     tokenize(additionalData) {
       return this.cbComponent.tokenize(additionalData);
@@ -82,22 +88,11 @@ export default {
       this.cbComponent.clear();
     },
 
-    // Set cbComponent instance to child(slot)
-    setComponentInstance(vnode) {
-      if (vnode && vnode.props) {
-        vnode.props = {
-          ...vnode.props,
-          cbComponent: this.cbComponent,
-        };
-      }
-
-      if(vnode.children && vnode.children.default) {
-        vnode.children.default().map((c) => {
-          this.setComponentInstance(c);
-        });
-      }
+    setCbComponent(cbComponent) {
+      this.cbComponent = cbComponent;
     },
   },
+
   mounted() {
     this.$nextTick(() => {
       this.elementId = `card-component-${genUUID()}`;
@@ -107,6 +102,7 @@ export default {
         this.cbInstance = cbInstance;
         const cbComponent = this.cbInstance.createComponent("card", options);
         this.cbComponent = cbComponent;
+        this.setCbComponent(cbComponent);
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
         ["ready", "focus", "blur", "change"].map((listener) => {
@@ -127,7 +123,7 @@ export default {
   },
 
   watch: {
-    componentOptions: function () {
+    componentOptions() {
       if (this.cbComponent) {
         this.cbComponent.update(this.componentOptions);
       }
@@ -135,19 +131,7 @@ export default {
   },
 
   render() {
-    let children;
-    if (this.moduleLoaded) {
-      if (this.$slots.default) {
-        children = this.$slots.default().map((vnode) => {
-          this.setComponentInstance(vnode);
-          return vnode;
-        });
-      } else {
-        children = [];
-      }
-    } else {
-      children = [];
-    }
+    let children = this.$slots.default ? this.$slots.default() : [];
     return h("div", { id: this.elementId, class: this.class }, children);
   },
 };

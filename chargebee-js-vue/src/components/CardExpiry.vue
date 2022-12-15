@@ -12,10 +12,6 @@ export default {
   name: 'CardExpiry',
 
   props: {
-    cbComponent: {
-      type: Object,
-      default: () => null
-    },
     styles: {
       type: Object,
       default: () => ({})
