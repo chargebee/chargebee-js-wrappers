@@ -39,6 +39,7 @@ export default {
       cbInstance: null,
       cbComponent: null,
       moduleLoaded: false,
+      mounted: false,
       elementId: "",
     };
   },
@@ -91,6 +92,13 @@ export default {
     setCbComponent(cbComponent) {
       this.cbComponent = cbComponent;
     },
+
+    mountComponent(cbComponent) {
+      if(!this.mounted) {
+        cbComponent.mount(`#${this.elementId}`);
+      }
+      this.mounted = true;
+    }
   },
 
   mounted() {
@@ -101,7 +109,6 @@ export default {
       cbInstance.load("components").then(() => {
         this.cbInstance = cbInstance;
         const cbComponent = this.cbInstance.createComponent("card", options);
-        this.cbComponent = cbComponent;
         this.setCbComponent(cbComponent);
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
@@ -128,6 +135,14 @@ export default {
         this.cbComponent.update(this.componentOptions);
       }
     },
+    cbComponent(newValue, oldValue) {
+      console.log();
+      if(!oldValue && newValue) {
+        if(newValue && this.moduleLoaded && newValue.fields.length == 0 && !this.mounted) {
+          this.mountComponent(newValue);
+        }
+      }
+    }
   },
 
   render() {

@@ -54,6 +54,7 @@ const _sfc_main$5 = {
       cbInstance: null,
       cbComponent: null,
       moduleLoaded: false,
+      mounted: false,
       elementId: ""
     };
   },
@@ -93,6 +94,12 @@ const _sfc_main$5 = {
     },
     setCbComponent(cbComponent) {
       this.cbComponent = cbComponent;
+    },
+    mountComponent(cbComponent) {
+      if (!this.mounted) {
+        cbComponent.mount(`#${this.elementId}`);
+      }
+      this.mounted = true;
     }
   },
   mounted() {
@@ -103,7 +110,6 @@ const _sfc_main$5 = {
       cbInstance.load("components").then(() => {
         this.cbInstance = cbInstance;
         const cbComponent = this.cbInstance.createComponent("card", options);
-        this.cbComponent = cbComponent;
         this.setCbComponent(cbComponent);
         this.moduleLoaded = true;
         ["ready", "focus", "blur", "change"].map((listener) => {
@@ -125,6 +131,14 @@ const _sfc_main$5 = {
     componentOptions() {
       if (this.cbComponent) {
         this.cbComponent.update(this.componentOptions);
+      }
+    },
+    cbComponent(newValue, oldValue) {
+      console.log();
+      if (!oldValue && newValue) {
+        if (newValue && this.moduleLoaded && newValue.fields.length == 0 && !this.mounted) {
+          this.mountComponent(newValue);
+        }
       }
     }
   },
