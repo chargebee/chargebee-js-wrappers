@@ -117,30 +117,18 @@ export default {
             this.$emit(listener, data);
           });
         });
+
+        this.$nextTick(() => {
+          this.cbComponent.mount(`#${this.elementId}`);
+        })
       });
     });
-  },
-
-  updated() {
-    if (this.cbComponent && this.moduleLoaded && this.cbComponent.status == 0) {
-      this.$nextTick(() => {
-        this.cbComponent.mount(`#${this.elementId}`);
-      });
-    }
   },
 
   watch: {
     componentOptions() {
       if (this.cbComponent) {
         this.cbComponent.update(this.componentOptions);
-      }
-    },
-    cbComponent(newValue, oldValue) {
-      console.log();
-      if(!oldValue && newValue) {
-        if(newValue && this.moduleLoaded && newValue.fields.length == 0 && !this.mounted) {
-          this.mountComponent(newValue);
-        }
       }
     }
   },

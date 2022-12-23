@@ -117,28 +117,16 @@ const _sfc_main$5 = {
             this.$emit(listener, data);
           });
         });
+        this.$nextTick(() => {
+          this.cbComponent.mount(`#${this.elementId}`);
+        });
       });
     });
-  },
-  updated() {
-    if (this.cbComponent && this.moduleLoaded && this.cbComponent.status == 0) {
-      this.$nextTick(() => {
-        this.cbComponent.mount(`#${this.elementId}`);
-      });
-    }
   },
   watch: {
     componentOptions() {
       if (this.cbComponent) {
         this.cbComponent.update(this.componentOptions);
-      }
-    },
-    cbComponent(newValue, oldValue) {
-      console.log();
-      if (!oldValue && newValue) {
-        if (newValue && this.moduleLoaded && newValue.fields.length == 0 && !this.mounted) {
-          this.mountComponent(newValue);
-        }
       }
     }
   },
@@ -189,9 +177,6 @@ const _sfc_main$4 = {
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`);
         if (this.$parent.onMount)
           this.$parent.onMount();
-        this.$nextTick(() => {
-          this.field.mount();
-        });
         this.attachListener("ready");
         this.attachListener("focus");
         this.attachListener("blur");

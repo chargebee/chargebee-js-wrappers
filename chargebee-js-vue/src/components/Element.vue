@@ -48,9 +48,6 @@ export default {
         const options = this.fieldOptions;
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`)
         if (this.$parent.onMount) this.$parent.onMount();
-        this.$nextTick(() => {
-          this.field.mount();
-        })
 
         // Attach listeners if any
         this.attachListener('ready')
