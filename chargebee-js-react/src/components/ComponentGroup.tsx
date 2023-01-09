@@ -26,6 +26,7 @@ export interface ChargebeeComponentProps {
     onChange: React.ChangeEventHandler;
     onFocus: React.FocusEventHandler;
     onReady: React.EventHandler<React.SyntheticEvent>;
+    onEscape: Function;
 }
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;
@@ -76,7 +77,7 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
 
     componentDidMount() {
         this.id = `${this.props.type}-field-${genUUID()}`;
-        const {type, onBlur, onChange, onFocus, onReady} = this.props;
+        const {type, onBlur, onChange, onFocus, onReady, onEscape} = this.props;
         const options = this.getPropOptions(this.props);
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
@@ -87,6 +88,7 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
             cbComponent.on('blur', onBlur);
             cbComponent.on('focus', onFocus);
             cbComponent.on('change', onChange);
+            cbComponent.on('escape', onEscape);
 
             this.setState({
                 cbComponent,
