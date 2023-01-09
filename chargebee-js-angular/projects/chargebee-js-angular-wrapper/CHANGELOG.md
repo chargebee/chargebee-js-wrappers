@@ -1,3 +1,7 @@
+### v1.0.1 (2023-01-09)
+***
+* Fixes build dependency issue on installing 1.0.0
+
 ### v1.0.0 (2022-12-15)
 ***
 * Support for Angular 14.
