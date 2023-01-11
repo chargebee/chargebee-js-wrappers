@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
 import { genUUID } from "../utils/";
-import { h, computed } from "vue";
+import { h, computed, Component } from "vue";
+import {AdditionalData, Callbacks, PaymentIntent} from "@chargebee/chargebee-js-types";
 
 export default {
   props: {
     fonts: {
       type: Array,
-      default: () => [],
+      default: (): any[] => [],
     },
     classes: {
       type: Object,
@@ -64,11 +65,11 @@ export default {
   },
 
   methods: {
-    tokenize(additionalData) {
+    tokenize(additionalData: AdditionalData) {
       return this.cbComponent.tokenize(additionalData);
     },
 
-    authorizeWith3ds(paymentIntent, additionalData, callbacks) {
+    authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks) {
       return this.cbComponent.authorizeWith3ds(
         paymentIntent,
         additionalData,
@@ -88,7 +89,7 @@ export default {
       this.cbComponent.clear();
     },
 
-    setCbComponent(cbComponent) {
+    setCbComponent(cbComponent: Component) {
       this.cbComponent = cbComponent;
     },
   },
@@ -96,6 +97,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.elementId = `card-component-${genUUID()}`;
+      // @ts-ignore
       let cbInstance = Chargebee.getInstance();
       let options = this.componentOptions;
       cbInstance.load("components").then(() => {
@@ -105,7 +107,7 @@ export default {
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
         ["ready", "focus", "blur", "change"].map((listener) => {
-          this.cbComponent.on(listener, (data) => {
+          this.cbComponent.on(listener, (data: any) => {
             this.$emit(listener, data);
           });
         });

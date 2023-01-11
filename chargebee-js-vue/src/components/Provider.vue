@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { validateCbInstance } from '../utils/'
 
 export default {
