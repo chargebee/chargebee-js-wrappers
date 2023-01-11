@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/chargebee-js-angular-wrapper/tsconfig.lib.json",
             "project": "projects/chargebee-js-angular-wrapper/ng-package.json"
@@ -28,21 +28,8 @@
             "tsConfig": "projects/chargebee-js-angular-wrapper/tsconfig.spec.json",
             "karmaConfig": "projects/chargebee-js-angular-wrapper/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/chargebee-js-angular-wrapper/tsconfig.lib.json",
-              "projects/chargebee-js-angular-wrapper/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }
-  },
-  "defaultProject": "chargebee-js-angular-wrapper"
+  }
 }
