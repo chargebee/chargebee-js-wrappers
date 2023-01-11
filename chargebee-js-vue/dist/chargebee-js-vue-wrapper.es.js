@@ -54,7 +54,6 @@ const _sfc_main$5 = {
       cbInstance: null,
       cbComponent: null,
       moduleLoaded: false,
-      mounted: false,
       elementId: ""
     };
   },
@@ -94,12 +93,6 @@ const _sfc_main$5 = {
     },
     setCbComponent(cbComponent) {
       this.cbComponent = cbComponent;
-    },
-    mountComponent(cbComponent) {
-      if (!this.mounted) {
-        cbComponent.mount(`#${this.elementId}`);
-      }
-      this.mounted = true;
     }
   },
   mounted() {

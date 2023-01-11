@@ -39,7 +39,6 @@ export default {
       cbInstance: null,
       cbComponent: null,
       moduleLoaded: false,
-      mounted: false,
       elementId: "",
     };
   },
@@ -92,13 +91,6 @@ export default {
     setCbComponent(cbComponent) {
       this.cbComponent = cbComponent;
     },
-
-    mountComponent(cbComponent) {
-      if(!this.mounted) {
-        cbComponent.mount(`#${this.elementId}`);
-      }
-      this.mounted = true;
-    }
   },
 
   mounted() {
