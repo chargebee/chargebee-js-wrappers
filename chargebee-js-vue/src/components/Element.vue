@@ -4,7 +4,8 @@ export default {
 
   data () {
     return {
-      field: null
+      field: null,
+      initialized: false
     }
   },
 

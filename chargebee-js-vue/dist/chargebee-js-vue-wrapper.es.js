@@ -131,7 +131,8 @@ const _sfc_main$5 = {
 const _sfc_main$4 = {
   data() {
     return {
-      field: null
+      field: null,
+      initialized: false
     };
   },
   props: {
