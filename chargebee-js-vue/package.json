@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-vue-wrapper",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Vue wrapper for Chargebee.js Components",
   "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-vue#readme",
   "bugs": {

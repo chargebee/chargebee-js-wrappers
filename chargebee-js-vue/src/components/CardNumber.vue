@@ -14,10 +14,6 @@ export default {
   mixins: [Element],
 
   props: {
-    cbComponent: {
-      type: Object,
-      default: () => null
-    },
     styles: {
       type: Object,
       default: () => ({})

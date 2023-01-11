@@ -1,3 +1,7 @@
+### v0.3.1 (2023-01-11)
+* * *
+* Bugfixes - Fields & combined mode to work in Vue3.
+
 ### v0.3.0 (2022-06-27)
 * * *
 * Added support for Vue 3
