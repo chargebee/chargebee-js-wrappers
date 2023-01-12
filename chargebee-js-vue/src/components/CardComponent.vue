@@ -1,5 +1,5 @@
 <script lang="ts">
-import { genUUID } from "../utils";
+import { genUUID } from "../utils/";
 import { h, computed, Component } from "vue";
 import {AdditionalData, Callbacks, PaymentIntent} from "@chargebee/chargebee-js-types";
 
@@ -107,7 +107,7 @@ export default {
         this.moduleLoaded = true;
         // Attach listeners (only applicable for combined field)
         ["ready", "focus", "blur", "change"].map((listener) => {
-          this.cbComponent.on(listener, (data: any) => {
+          this.cbComponent.on(listener, (data: object) => {
             this.$emit(listener, data);
           });
         });
