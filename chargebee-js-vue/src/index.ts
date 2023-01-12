@@ -3,6 +3,7 @@ import CardNumber from './components/CardNumber.vue'
 import CardExpiry from './components/CardExpiry.vue'
 import CardCvv from './components/CardCvv.vue'
 import Provider from './components/Provider.vue'
+import { Component } from 'vue'
 
 const components = {
   CardComponent,
@@ -13,7 +14,7 @@ const components = {
 }
 
 export default {
-  install (Vue: { component: (arg0: string, arg1: any) => void }) {
+  install (Vue: { component: (arg0: string, arg1: Component) => void }) {
     Vue.component('card-component', CardComponent);
     Vue.component('card-number', CardNumber);
     Vue.component('card-expiry', CardExpiry);

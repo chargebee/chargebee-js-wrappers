@@ -1,5 +1,5 @@
 <script lang="ts">
-import { genUUID } from "../utils/";
+import { genUUID } from "../utils";
 import { h, computed, Component } from "vue";
 import {AdditionalData, Callbacks, PaymentIntent} from "@chargebee/chargebee-js-types";
 
@@ -7,7 +7,7 @@ export default {
   props: {
     fonts: {
       type: Array,
-      default: (): any[] => [],
+      default: [],
     },
     classes: {
       type: Object,

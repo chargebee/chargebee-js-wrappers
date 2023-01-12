@@ -40,7 +40,7 @@ export default {
     },
 
     attachListener (listener: string) {
-      this.field.on(listener, (data: any) => {
+      this.field.on(listener, (data: object) => {
         this.$emit(listener, data)
       })
     },
