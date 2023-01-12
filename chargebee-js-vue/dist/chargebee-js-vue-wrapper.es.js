@@ -22,7 +22,7 @@ const _sfc_main$5 = {
   props: {
     fonts: {
       type: Array,
-      default: () => []
+      default: []
     },
     classes: {
       type: Object,
