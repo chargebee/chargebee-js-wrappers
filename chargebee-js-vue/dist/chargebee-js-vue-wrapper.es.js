@@ -324,12 +324,12 @@ const _sfc_main = {
   }
 };
 var index = {
-  install(Vue) {
-    Vue.component("card-component", _sfc_main$5);
-    Vue.component("card-number", CardNumber);
-    Vue.component("card-expiry", CardExpiry);
-    Vue.component("card-cvv", CardCvv);
-    Vue.component("provider", _sfc_main);
+  install(app) {
+    app.component("card-component", _sfc_main$5);
+    app.component("card-number", CardNumber);
+    app.component("card-expiry", CardExpiry);
+    app.component("card-cvv", CardCvv);
+    app.component("provider", _sfc_main);
   }
 };
 export { _sfc_main$5 as CardComponent, CardCvv, CardExpiry, CardNumber, _sfc_main as Provider, index as default };

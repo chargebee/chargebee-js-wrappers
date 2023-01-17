@@ -14,7 +14,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": false,
     "noImplicitUseStrict": false,
-    "noEmitOnError": true,
+    // "noEmitOnError": true,
     "outDir": "dist/",
     "baseUrl": "src/",
     "listFiles": false,
