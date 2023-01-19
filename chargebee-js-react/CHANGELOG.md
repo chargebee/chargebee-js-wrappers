@@ -1,3 +1,7 @@
+### v0.6.1 (2023-01-19)
+* * *
+* Added declaration file for react wrappers.
+
 ### v0.6.0 (2022-12-12)
 * * *
 * Typescript support for react wrappers
