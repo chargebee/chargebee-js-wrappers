@@ -9,9 +9,9 @@ interface Listeners {
     onReady: React.EventHandler<React.SyntheticEvent>;
 }
 export interface ElementProps {
-    type: string;
-    cbComponent: Component;
-    listeners: Listeners;
+    type?: string;
+    cbComponent?: Component;
+    listeners?: Listeners;
     icon?: boolean;
     styles?: Styles;
     placeholder?: Placeholder;

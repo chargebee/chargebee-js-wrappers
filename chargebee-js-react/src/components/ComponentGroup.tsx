@@ -12,20 +12,20 @@ const ComponentDefaultContext: ComponentContext = {
 
 export const ComponentContext = React.createContext(ComponentDefaultContext);  
 export interface ChargebeeComponentProps {
-    type: string;
-    fonts: Fonts;
-    classes: Classes;
-    icon: boolean;
-    styles: Styles;
-    locale: string;
-    placeholder: Placeholder;
-    currency: string;
-    ariaLabel: AriaLabel;
-    className: string;
-    onBlur: React.MouseEventHandler;
-    onChange: React.ChangeEventHandler;
-    onFocus: React.FocusEventHandler;
-    onReady: React.EventHandler<React.SyntheticEvent>;
+    type?: string;
+    fonts?: Fonts;
+    classes?: Classes;
+    icon?: boolean;
+    styles?: Styles;
+    locale?: string;
+    placeholder?: Placeholder;
+    currency?: string;
+    ariaLabel?: AriaLabel;
+    className?: string;
+    onBlur?: React.MouseEventHandler;
+    onChange?: React.ChangeEventHandler;
+    onFocus?: React.FocusEventHandler;
+    onReady?: React.EventHandler<React.SyntheticEvent>;
 }
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;
