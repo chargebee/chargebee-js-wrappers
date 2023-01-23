@@ -108,6 +108,8 @@ class Element extends Component {
                 this.field.on('ready', listeners.onReady);
             if (listeners.onChange)
                 this.field.on('change', listeners.onChange);
+            if (listeners.onEscape)
+                this.field.on('escape', listeners.onEscape);
         }
     }
     getPropOptions(props) {
@@ -183,17 +185,23 @@ class ChargebeeComponents extends Component {
     }
     componentDidMount() {
         this.id = `${this.props.type}-field-${genUUID()}`;
-        const { type, onBlur, onChange, onFocus, onReady } = this.props;
+        const { type, onBlur, onChange, onFocus, onReady, onEscape } = this.props;
         const options = this.getPropOptions(this.props);
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
         cbInstance.load("components").then(() => {
             let cbComponent = cbInstance.createComponent(type, options);
             // Attach listeners if specified (only applicable for combined field)
-            cbComponent.on('ready', onReady);
-            cbComponent.on('blur', onBlur);
-            cbComponent.on('focus', onFocus);
-            cbComponent.on('change', onChange);
+            if (onReady)
+                cbComponent.on('ready', onReady);
+            if (onBlur)
+                cbComponent.on('blur', onBlur);
+            if (onFocus)
+                cbComponent.on('focus', onFocus);
+            if (onChange)
+                cbComponent.on('change', onChange);
+            if (onEscape)
+                cbComponent.on('escape', onEscape);
             this.setState({
                 cbComponent,
                 cbInstance,
@@ -228,20 +236,20 @@ class ChargebeeComponents extends Component {
 }
 
 var CardNumber = forwardRef((props, ref) => {
-    const { onBlur, onChange, onFocus, onReady } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady"]);
-    const listeners = { onBlur, onChange, onFocus, onReady };
+    const { onBlur, onChange, onFocus, onReady, onEscape } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady", "onEscape"]);
+    const listeners = { onBlur, onChange, onFocus, onReady, onEscape };
     return (createElement(ComponentContext.Consumer, null, ctx => createElement(Element, Object.assign({ type: 'number', cbComponent: ctx.cbComponent, ref: ref, listeners: listeners }, rest))));
 });
 
 var CardExpiry = forwardRef((props, ref) => {
-    const { onBlur, onChange, onFocus, onReady } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady"]);
-    const listeners = { onBlur, onChange, onFocus, onReady };
+    const { onBlur, onChange, onFocus, onReady, onEscape } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady", "onEscape"]);
+    const listeners = { onBlur, onChange, onFocus, onReady, onEscape };
     return (createElement(ComponentContext.Consumer, null, ctx => createElement(Element, Object.assign({ type: 'expiry', cbComponent: ctx.cbComponent, ref: ref, listeners: listeners }, rest))));
 });
 
 var CardCVV = forwardRef((props, ref) => {
-    const { onBlur, onChange, onFocus, onReady } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady"]);
-    const listeners = { onBlur, onChange, onFocus, onReady };
+    const { onBlur, onChange, onFocus, onReady, onEscape } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady", "onEscape"]);
+    const listeners = { onBlur, onChange, onFocus, onReady, onEscape };
     return (createElement(ComponentContext.Consumer, null, ctx => createElement(Element, Object.assign({ type: 'cvv', cbComponent: ctx.cbComponent, ref: ref, listeners: listeners }, rest))));
 });
 

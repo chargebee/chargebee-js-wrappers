@@ -7,11 +7,12 @@ export interface CardCVVProps extends ElementProps {
     onChange?: React.ChangeEventHandler;
     onFocus?: React.FocusEventHandler;
     onReady?: React.EventHandler<React.SyntheticEvent>;
+    onEscape?: Function;
 };
 
 export default React.forwardRef((props: CardCVVProps, ref: React.LegacyRef<Element>) => {
-    const {onBlur, onChange, onFocus, onReady, ...rest} = props;
-    const listeners = {onBlur, onChange, onFocus, onReady};
+    const {onBlur, onChange, onFocus, onReady, onEscape, ...rest} = props;
+    const listeners = {onBlur, onChange, onFocus, onReady, onEscape};
 
     return (
         <ComponentContext.Consumer>

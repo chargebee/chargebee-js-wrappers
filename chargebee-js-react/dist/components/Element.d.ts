@@ -5,6 +5,7 @@ interface Listeners {
     onChange: React.ChangeEventHandler;
     onFocus: React.FocusEventHandler;
     onReady: React.EventHandler<React.SyntheticEvent>;
+    onEscape?: Function;
 }
 export interface ElementProps {
     type?: string;

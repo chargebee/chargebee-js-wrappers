@@ -5,6 +5,7 @@ export interface CardNumberProps extends ElementProps {
     onChange?: React.ChangeEventHandler;
     onFocus?: React.FocusEventHandler;
     onReady?: React.EventHandler<React.SyntheticEvent>;
+    onEscape?: Function;
 }
 declare const _default: React.ForwardRefExoticComponent<CardNumberProps & React.RefAttributes<Element>>;
 export default _default;

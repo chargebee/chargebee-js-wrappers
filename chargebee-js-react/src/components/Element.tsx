@@ -7,6 +7,7 @@ interface Listeners {
     onChange: React.ChangeEventHandler;
     onFocus: React.FocusEventHandler;
     onReady: React.EventHandler<React.SyntheticEvent>;
+    onEscape?: Function;
 }
 export interface ElementProps {
     type?: string;
@@ -42,6 +43,7 @@ export default class Element extends React.Component<ElementProps> {
             if(listeners.onFocus) this.field.on('focus', listeners.onFocus);
             if(listeners.onReady) this.field.on('ready', listeners.onReady);
             if(listeners.onChange) this.field.on('change', listeners.onChange);
+            if(listeners.onEscape) this.field.on('escape', listeners.onEscape);
         }
     }
 
