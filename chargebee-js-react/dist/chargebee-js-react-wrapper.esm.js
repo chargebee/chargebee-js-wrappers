@@ -108,8 +108,6 @@ class Element extends Component {
                 this.field.on('ready', listeners.onReady);
             if (listeners.onChange)
                 this.field.on('change', listeners.onChange);
-            if (listeners.onEscape)
-                this.field.on('escape', listeners.onEscape);
         }
     }
     getPropOptions(props) {
@@ -236,20 +234,20 @@ class ChargebeeComponents extends Component {
 }
 
 var CardNumber = forwardRef((props, ref) => {
-    const { onBlur, onChange, onFocus, onReady, onEscape } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady", "onEscape"]);
-    const listeners = { onBlur, onChange, onFocus, onReady, onEscape };
+    const { onBlur, onChange, onFocus, onReady } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady"]);
+    const listeners = { onBlur, onChange, onFocus, onReady };
     return (createElement(ComponentContext.Consumer, null, ctx => createElement(Element, Object.assign({ type: 'number', cbComponent: ctx.cbComponent, ref: ref, listeners: listeners }, rest))));
 });
 
 var CardExpiry = forwardRef((props, ref) => {
-    const { onBlur, onChange, onFocus, onReady, onEscape } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady", "onEscape"]);
-    const listeners = { onBlur, onChange, onFocus, onReady, onEscape };
+    const { onBlur, onChange, onFocus, onReady } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady"]);
+    const listeners = { onBlur, onChange, onFocus, onReady };
     return (createElement(ComponentContext.Consumer, null, ctx => createElement(Element, Object.assign({ type: 'expiry', cbComponent: ctx.cbComponent, ref: ref, listeners: listeners }, rest))));
 });
 
 var CardCVV = forwardRef((props, ref) => {
-    const { onBlur, onChange, onFocus, onReady, onEscape } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady", "onEscape"]);
-    const listeners = { onBlur, onChange, onFocus, onReady, onEscape };
+    const { onBlur, onChange, onFocus, onReady } = props, rest = __rest(props, ["onBlur", "onChange", "onFocus", "onReady"]);
+    const listeners = { onBlur, onChange, onFocus, onReady };
     return (createElement(ComponentContext.Consumer, null, ctx => createElement(Element, Object.assign({ type: 'cvv', cbComponent: ctx.cbComponent, ref: ref, listeners: listeners }, rest))));
 });
 

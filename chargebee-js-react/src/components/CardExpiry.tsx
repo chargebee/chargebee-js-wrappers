@@ -7,12 +7,11 @@ export interface CardExpiryProps extends ElementProps {
     onChange?: React.ChangeEventHandler;
     onFocus?: React.FocusEventHandler;
     onReady?: React.EventHandler<React.SyntheticEvent>;
-    onEscape?: Function;
 };
 
 export default React.forwardRef((props: CardExpiryProps, ref: React.LegacyRef<Element>) => {
-    const {onBlur, onChange, onFocus, onReady, onEscape, ...rest} = props;
-    const listeners = {onBlur, onChange, onFocus, onReady, onEscape};
+    const {onBlur, onChange, onFocus, onReady, ...rest} = props;
+    const listeners = {onBlur, onChange, onFocus, onReady};
 
     return (
         <ComponentContext.Consumer>
