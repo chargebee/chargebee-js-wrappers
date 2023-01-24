@@ -1,3 +1,7 @@
+### v0.6.2 (2023-01-24)
+* * *
+* Add type for react children.
+
 ### v0.6.1 (2023-01-19)
 * * *
 * Added declaration file for react wrappers.

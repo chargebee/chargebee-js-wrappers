@@ -5,6 +5,7 @@ interface ComponentContext {
 }
 export declare const ComponentContext: React.Context<ComponentContext>;
 export interface ChargebeeComponentProps {
+    children?: React.ReactNode;
     type?: string;
     fonts?: Fonts;
     classes?: Classes;
