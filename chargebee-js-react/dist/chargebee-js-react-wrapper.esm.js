@@ -183,7 +183,7 @@ class ChargebeeComponents extends Component {
     }
     componentDidMount() {
         this.id = `${this.props.type}-field-${genUUID()}`;
-        const { type, onBlur, onChange, onFocus, onReady, onEscape } = this.props;
+        const { type, onBlur, onChange, onFocus, onReady, onEscKeyPress } = this.props;
         const options = this.getPropOptions(this.props);
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
@@ -198,8 +198,8 @@ class ChargebeeComponents extends Component {
                 cbComponent.on('focus', onFocus);
             if (onChange)
                 cbComponent.on('change', onChange);
-            if (onEscape)
-                cbComponent.on('escape', onEscape);
+            if (onEscKeyPress)
+                cbComponent.on('escKeyPress', onEscKeyPress);
             this.setState({
                 cbComponent,
                 cbInstance,
