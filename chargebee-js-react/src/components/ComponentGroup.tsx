@@ -12,6 +12,7 @@ const ComponentDefaultContext: ComponentContext = {
 
 export const ComponentContext = React.createContext(ComponentDefaultContext);  
 export interface ChargebeeComponentProps {
+    children?: React.ReactNode;
     type?: string;
     fonts?: Fonts;
     classes?: Classes;
