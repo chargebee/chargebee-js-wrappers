@@ -20,6 +20,7 @@ export interface ChargebeeComponentProps {
     onChange?: React.ChangeEventHandler;
     onFocus?: React.FocusEventHandler;
     onReady?: React.EventHandler<React.SyntheticEvent>;
+    onKeyPress?: Function;
 }
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;

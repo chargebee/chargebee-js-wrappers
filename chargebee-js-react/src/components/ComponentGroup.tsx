@@ -27,6 +27,7 @@ export interface ChargebeeComponentProps {
     onChange?: React.ChangeEventHandler;
     onFocus?: React.FocusEventHandler;
     onReady?: React.EventHandler<React.SyntheticEvent>;
+    onKeyPress?: Function;
 }
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;
@@ -77,17 +78,18 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
 
     componentDidMount() {
         this.id = `${this.props.type}-field-${genUUID()}`;
-        const {type, onBlur, onChange, onFocus, onReady} = this.props;
+        const {type, onBlur, onChange, onFocus, onReady, onKeyPress} = this.props;
         const options = this.getPropOptions(this.props);
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
         cbInstance.load("components").then(() => {
             let cbComponent = cbInstance.createComponent(type, options)
             // Attach listeners if specified (only applicable for combined field)
-            cbComponent.on('ready', onReady);
-            cbComponent.on('blur', onBlur);
-            cbComponent.on('focus', onFocus);
-            cbComponent.on('change', onChange);
+            if(onReady) cbComponent.on('ready', onReady);
+            if(onBlur) cbComponent.on('blur', onBlur);
+            if(onFocus) cbComponent.on('focus', onFocus);
+            if(onChange) cbComponent.on('change', onChange);
+            if(onKeyPress) cbComponent.on('keyPress', onKeyPress);
 
             this.setState({
                 cbComponent,
