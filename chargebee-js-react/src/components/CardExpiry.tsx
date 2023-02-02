@@ -3,10 +3,10 @@ import Element, { ElementProps } from './Element';
 import { ComponentContext } from "./ComponentGroup";
 
 export interface CardExpiryProps extends ElementProps {
-    onBlur: React.MouseEventHandler;
-    onChange: React.ChangeEventHandler;
-    onFocus: React.FocusEventHandler;
-    onReady: React.EventHandler<React.SyntheticEvent>;
+    onBlur?: React.MouseEventHandler;
+    onChange?: React.ChangeEventHandler;
+    onFocus?: React.FocusEventHandler;
+    onReady?: React.EventHandler<React.SyntheticEvent>;
 };
 
 export default React.forwardRef((props: CardExpiryProps, ref: React.LegacyRef<Element>) => {

@@ -3,7 +3,7 @@
     "target": "es6",
     "moduleResolution": "node",
     "module": "ESNext",
-    "declaration": false,
+    "declaration": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

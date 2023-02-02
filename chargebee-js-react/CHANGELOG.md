@@ -1,3 +1,15 @@
+### v0.6.3 (2023-02-01)
+* * *
+* Added `onKeyPress` option for `CardComponent`.
+
+### v0.6.2 (2023-01-24)
+* * *
+* Add type for react children.
+
+### v0.6.1 (2023-01-19)
+* * *
+* Added declaration file for react wrappers.
+
 ### v0.6.0 (2022-12-12)
 * * *
 * Typescript support for react wrappers

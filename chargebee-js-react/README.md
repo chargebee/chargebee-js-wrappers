@@ -362,6 +362,7 @@ Props | Description | Arguments
 `onChange` | Triggers for every state change | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
 `onFocus` | Triggers when component is focused | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
 `onBlur` | Triggers when component is blurred | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
+`onKeyPress` | Triggers when a key is pressed inside component <br/>Supports `ESC` key | [Field State](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-6)
 
 #### Field Components ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#card-field-object))
   * CardNumber
