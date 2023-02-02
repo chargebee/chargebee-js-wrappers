@@ -5,6 +5,10 @@ import { AdditionalData, Callbacks, PaymentIntent, Fonts, Classes, Styles, Place
 
 export default {
   props: {
+    class: {
+      type: String,
+      default: ''
+    },
     fonts: {
       type: Array as PropType<Fonts>,
       default: [],

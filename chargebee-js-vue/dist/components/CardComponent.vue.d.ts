@@ -1,6 +1,10 @@
 import { Component, PropType } from "vue";
 import { AdditionalData, Callbacks, PaymentIntent, Fonts, Classes, Styles, Placeholder } from "@chargebee/chargebee-js-types";
 declare const _default: import("vue").DefineComponent<{
+    class: {
+        type: StringConstructor;
+        default: string;
+    };
     fonts: {
         type: PropType<Fonts>;
         default: any[];
@@ -52,6 +56,10 @@ declare const _default: import("vue").DefineComponent<{
     clear(): void;
     setCbComponent(cbComponent: Component): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    class: {
+        type: StringConstructor;
+        default: string;
+    };
     fonts: {
         type: PropType<Fonts>;
         default: any[];
@@ -82,6 +90,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }>>, {
     icon: boolean;
+    class: string;
     placeholder: {};
     fonts: Fonts;
     classes: {};

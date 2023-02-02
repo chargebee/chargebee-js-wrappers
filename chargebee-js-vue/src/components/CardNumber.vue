@@ -14,17 +14,6 @@ export default {
 
   mixins: [Element],
 
-  props: {
-    styles: {
-      type: Object as PropType<Styles>,
-      default: () => ({})
-    },
-    placeholder: {
-      type: String,
-      default: () => ''
-    }
-  },
-
   data () {
     return {
       id: 'number',

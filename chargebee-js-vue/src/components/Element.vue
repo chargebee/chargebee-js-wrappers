@@ -12,6 +12,10 @@ export default {
   },
 
   props: {
+    class: {
+      type: String,
+      default: ''
+    },
     styles: {
       type: Object as PropType<Styles>,
       default: () => ({})

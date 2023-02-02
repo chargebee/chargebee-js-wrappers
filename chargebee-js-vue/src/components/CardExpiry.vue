@@ -12,17 +12,6 @@ import Element from './Element.vue';
 export default {
   name: 'CardExpiry',
 
-  props: {
-    styles: {
-      type: Object as PropType<Styles>,
-      default: () => ({})
-    },
-    placeholder: {
-      type: String,
-      default: () => ''
-    }
-  },
-
   data () {
     return {
       id: 'expiry',

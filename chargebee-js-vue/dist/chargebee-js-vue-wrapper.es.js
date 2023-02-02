@@ -20,6 +20,10 @@ function validateCbInstance(cbInstance) {
 }
 const _sfc_main$5 = {
   props: {
+    class: {
+      type: String,
+      default: ""
+    },
     fonts: {
       type: Array,
       default: []
@@ -136,6 +140,10 @@ const _sfc_main$4 = {
     };
   },
   props: {
+    class: {
+      type: String,
+      default: ""
+    },
     styles: {
       type: Object,
       default: () => ({})
@@ -218,16 +226,6 @@ var _export_sfc = (sfc, props) => {
 const _sfc_main$3 = {
   name: "CardNumber",
   mixins: [_sfc_main$4],
-  props: {
-    styles: {
-      type: Object,
-      default: () => ({})
-    },
-    placeholder: {
-      type: String,
-      default: () => ""
-    }
-  },
   data() {
     return {
       id: "number",
@@ -248,16 +246,6 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
 var CardNumber = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2]]);
 const _sfc_main$2 = {
   name: "CardExpiry",
-  props: {
-    styles: {
-      type: Object,
-      default: () => ({})
-    },
-    placeholder: {
-      type: String,
-      default: () => ""
-    }
-  },
   data() {
     return {
       id: "expiry",
@@ -279,16 +267,6 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
 var CardExpiry = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1]]);
 const _sfc_main$1 = {
   name: "CardCvv",
-  props: {
-    styles: {
-      type: Object,
-      default: () => ({})
-    },
-    placeholder: {
-      type: String,
-      default: () => ""
-    }
-  },
   data() {
     return {
       id: "cvv",
