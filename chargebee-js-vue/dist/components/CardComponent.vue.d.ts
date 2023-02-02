@@ -1,20 +1,20 @@
-import { Component } from "vue";
-import { AdditionalData, Callbacks, PaymentIntent } from "@chargebee/chargebee-js-types";
+import { Component, PropType } from "vue";
+import { AdditionalData, Callbacks, PaymentIntent, Fonts, Classes, Styles, Placeholder } from "@chargebee/chargebee-js-types";
 declare const _default: import("vue").DefineComponent<{
     fonts: {
-        type: ArrayConstructor;
+        type: PropType<Fonts>;
         default: any[];
     };
     classes: {
-        type: ObjectConstructor;
+        type: PropType<Classes>;
         default: () => {};
     };
     styles: {
-        type: ObjectConstructor;
+        type: PropType<Styles>;
         default: () => {};
     };
     placeholder: {
-        type: ObjectConstructor;
+        type: PropType<Placeholder>;
         default: () => {};
     };
     icon: {
@@ -53,19 +53,19 @@ declare const _default: import("vue").DefineComponent<{
     setCbComponent(cbComponent: Component): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     fonts: {
-        type: ArrayConstructor;
+        type: PropType<Fonts>;
         default: any[];
     };
     classes: {
-        type: ObjectConstructor;
+        type: PropType<Classes>;
         default: () => {};
     };
     styles: {
-        type: ObjectConstructor;
+        type: PropType<Styles>;
         default: () => {};
     };
     placeholder: {
-        type: ObjectConstructor;
+        type: PropType<Placeholder>;
         default: () => {};
     };
     icon: {
@@ -82,10 +82,10 @@ declare const _default: import("vue").DefineComponent<{
     };
 }>>, {
     icon: boolean;
-    placeholder: Record<string, any>;
-    fonts: unknown[];
-    classes: Record<string, any>;
-    styles: Record<string, any>;
+    placeholder: {};
+    fonts: Fonts;
+    classes: {};
+    styles: Styles;
     locale: string;
     currency: string;
 }>;

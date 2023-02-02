@@ -1,7 +1,8 @@
-import { Component } from '@chargebee/chargebee-js-types';
+import { PropType } from 'vue';
+import { Component, Styles } from '@chargebee/chargebee-js-types';
 declare const _default: import("vue").DefineComponent<{
     styles: {
-        type: ObjectConstructor;
+        type: PropType<Styles>;
         default: () => {};
     };
     placeholder: {
@@ -26,7 +27,7 @@ declare const _default: import("vue").DefineComponent<{
     clear(): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     styles: {
-        type: ObjectConstructor;
+        type: PropType<Styles>;
         default: () => {};
     };
     placeholder: {
@@ -35,6 +36,6 @@ declare const _default: import("vue").DefineComponent<{
     };
 }>>, {
     placeholder: string;
-    styles: Record<string, any>;
+    styles: Styles;
 }>;
 export default _default;

@@ -1,24 +1,24 @@
 <script lang="ts">
 import { genUUID } from "../utils/";
-import { h, computed, Component } from "vue";
-import {AdditionalData, Callbacks, PaymentIntent} from "@chargebee/chargebee-js-types";
+import { h, computed, Component, PropType } from "vue";
+import { AdditionalData, Callbacks, PaymentIntent, Fonts, Classes, Styles, Placeholder } from "@chargebee/chargebee-js-types";
 
 export default {
   props: {
     fonts: {
-      type: Array,
+      type: Array as PropType<Fonts>,
       default: [],
     },
     classes: {
-      type: Object,
+      type: Object as PropType<Classes>,
       default: () => ({}),
     },
     styles: {
-      type: Object,
+      type: Object as PropType<Styles>,
       default: () => ({}),
     },
     placeholder: {
-      type: Object,
+      type: Object as PropType<Placeholder>,
       default: () => ({}),
     },
     icon: {

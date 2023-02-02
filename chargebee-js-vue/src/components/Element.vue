@@ -1,8 +1,9 @@
 <script lang="ts">
-import { Component } from '@chargebee/chargebee-js-types';
+import { PropType } from 'vue';
+import { Component, Styles } from '@chargebee/chargebee-js-types';
 import { genUUID } from '../utils';
-export default {
 
+export default {
   data () {
     return {
       field: null,
@@ -12,7 +13,7 @@ export default {
 
   props: {
     styles: {
-      type: Object,
+      type: Object as PropType<Styles>,
       default: () => ({})
     },
     placeholder: {
