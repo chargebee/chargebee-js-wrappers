@@ -25,8 +25,8 @@
     "chargebee.js angular"
   ],
   "peerDependencies": {
-    "@angular/common": "^14.2.8",
-    "@angular/core": "^14.2.8"
+    "@angular/common": ">=14.0.0",
+    "@angular/core": ">=14.0.0"
   },
   "module": "fesm2015/chargebee-chargebee-js-angular-wrapper.mjs",
   "es2020": "fesm2020/chargebee-chargebee-js-angular-wrapper.mjs",
