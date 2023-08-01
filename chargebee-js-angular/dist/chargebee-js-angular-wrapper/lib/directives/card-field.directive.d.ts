@@ -36,6 +36,6 @@ export declare class CardFieldDirective implements OnInit, OnChanges {
     authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks): any;
     ngOnChanges(changes: SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CardFieldDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<CardFieldDirective, "[cbCardField]", never, { "icon": "icon"; "classes": "classes"; "fonts": "fonts"; "styles": "styles"; "locale": "locale"; "currency": "currency"; "placeholder": "placeholder"; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, ["numberComponent", "expiryComponent", "cvvComponent"], never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<CardFieldDirective, "[cbCardField]", never, { "icon": "icon"; "classes": "classes"; "fonts": "fonts"; "styles": "styles"; "locale": "locale"; "currency": "currency"; "placeholder": "placeholder"; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, ["numberComponent", "expiryComponent", "cvvComponent"], never, false, never>;
 }
 //# sourceMappingURL=card-field.directive.d.ts.map

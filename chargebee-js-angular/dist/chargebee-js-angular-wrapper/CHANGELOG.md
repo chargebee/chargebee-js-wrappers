@@ -1,3 +1,7 @@
+### v2.0.0 (2023-08-01)
+***
+* Adds support for Angular 15
+
 ### v1.0.1 (2023-01-09)
 ***
 * Fixes build dependency issue on installing 1.0.0
