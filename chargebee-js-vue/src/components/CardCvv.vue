@@ -4,23 +4,13 @@
   </div>
 </template>
 
-<script>
-
-import Element from './Element.vue'
+<script lang="ts">
+import { PropType } from 'vue';
+import { Styles } from '@chargebee/chargebee-js-types';
+import Element from './Element.vue';
 
 export default {
   name: 'CardCvv',
-
-  props: {
-    styles: {
-      type: Object,
-      default: () => ({})
-    },
-    placeholder: {
-      type: String,
-      default: () => ''
-    }
-  },
 
   data () {
     return {

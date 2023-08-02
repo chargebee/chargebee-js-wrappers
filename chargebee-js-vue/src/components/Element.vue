@@ -1,7 +1,9 @@
-<script>
+<script lang="ts">
+import { PropType } from 'vue';
+import { Component, Styles } from '@chargebee/chargebee-js-types';
 import { genUUID } from '../utils';
-export default {
 
+export default {
   data () {
     return {
       field: null,
@@ -10,8 +12,12 @@ export default {
   },
 
   props: {
+    class: {
+      type: String,
+      default: ''
+    },
     styles: {
-      type: Object,
+      type: Object as PropType<Styles>,
       default: () => ({})
     },
     placeholder: {
@@ -38,13 +44,13 @@ export default {
       return this.field
     },
 
-    attachListener (listener) {
-      this.field.on(listener, (data) => {
+    attachListener (listener: string) {
+      this.field.on(listener, (data: object) => {
         this.$emit(listener, data)
       })
     },
 
-    initializeField (cbComponent) {
+    initializeField (cbComponent: Component) {
       if (cbComponent) {
         const options = this.fieldOptions;
         this.field = cbComponent.createField(this.id, options).at(`#${this.elementId}`)

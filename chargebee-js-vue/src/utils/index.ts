@@ -1,3 +1,5 @@
+import { ChargebeeInstance } from '@chargebee/chargebee-js-types';
+
 export function genUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -5,7 +7,7 @@ export function genUUID() {
   });
 }
 
-export function validateCbInstance(cbInstance) {
+export function validateCbInstance(cbInstance: ChargebeeInstance) {
   if (cbInstance) {
       const site = cbInstance.site;
       const key = cbInstance.publishableKey;

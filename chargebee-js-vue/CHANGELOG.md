@@ -1,3 +1,7 @@
+### v0.4.0 (2023-01-11)
+* * *
+* Added typescript support.
+
 ### v0.3.1 (2023-01-11)
 * * *
 * Bugfixes - Fields & combined mode to work in Vue3.
