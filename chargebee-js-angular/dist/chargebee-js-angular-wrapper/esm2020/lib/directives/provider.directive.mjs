@@ -14,14 +14,14 @@ export class Provider {
         }
     }
 }
-/** @nocollapse */ Provider.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: Provider, deps: [], target: i0.ɵɵFactoryTarget.Component });
-/** @nocollapse */ Provider.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.8", type: Provider, selector: "[cbProvider]", inputs: { cbInstance: "cbInstance" }, usesOnChanges: true, ngImport: i0, template: `
+/** @nocollapse */ Provider.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: Provider, deps: [], target: i0.ɵɵFactoryTarget.Component });
+/** @nocollapse */ Provider.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.9", type: Provider, selector: "[cbProvider]", inputs: { cbInstance: "cbInstance" }, usesOnChanges: true, ngImport: i0, template: `
         <ng-container *ngIf="validated">
             <ng-content>
             </ng-content>
         </ng-container>
     `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: Provider, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: Provider, decorators: [{
             type: Component,
             args: [{
                     selector: '[cbProvider]',

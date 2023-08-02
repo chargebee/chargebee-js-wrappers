@@ -24,12 +24,6 @@ In your `index.html`:
     <head>
       ...
       <script src="https://js.chargebee.com/v2/chargebee.js"></script>
-      <script>
-        Chargebee.init({
-          site: 'your-site'
-          publishableKey: 'your-publishable-key'
-        })
-      </script>
     </head>
     <body>
       <div id="app"></div>
@@ -38,6 +32,21 @@ In your `index.html`:
 ```
 
 ### Basic usage
+In your angular module
+
+app.module.ts
+```ts
+import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
+NgModule({
+  ...
+  imports: [
+    ...
+    ChargebeeJsAngularWrapperModule,
+  ]
+)}
+export class AppModule { }
+```
+
 In your angular component
 
 component.html
@@ -53,6 +62,7 @@ component.ts
 ```js
 import { Component } from '@angular/core';
 
+declare var Chargebee;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -60,6 +70,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   cardComponent = null;
+
+  constructor(...) {
+    ...
+    Chargebee.init({
+      site: 'your-site'
+      publishableKey: 'your-publishable-key'
+    })
+  }
 
   onReady = (cardComponent) => {
     this.cardComponent = cardComponent;
