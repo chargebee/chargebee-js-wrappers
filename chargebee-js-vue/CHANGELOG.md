@@ -1,3 +1,9 @@
+### v0.3.2 (2023-08-08)
+* * *
+* Bumps vue 3.2 to 3.3
+* Security vulnerability fixes in dependencies
+* Adds note in readme for using Fields mode in Vue 3.2
+
 ### v0.3.1 (2023-01-11)
 * * *
 * Bugfixes - Fields & combined mode to work in Vue3.

@@ -76,6 +76,12 @@ export default {
 ```
 
 ### A more complex example:
+
+>Note: If vue version is 3.2 or less, please add the following line to your Vue application bootstrap
+> `app.config.unwrapInjectedRef = true`
+> [Reference documentation](https://vuejs.org/guide/components/provide-inject.html#working-with-reactivity)
+
+
 ```js
 <template>
   <div>
