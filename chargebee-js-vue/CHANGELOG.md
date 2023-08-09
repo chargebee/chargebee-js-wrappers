@@ -1,4 +1,4 @@
-### v0.3.3 (2023-08-08)
+### v0.3.2 (2023-08-08)
 * * *
 * Bumps vue 3.2 to 3.3
 * Security vulnerability fixes in dependencies
