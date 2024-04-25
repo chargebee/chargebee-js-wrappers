@@ -18,6 +18,7 @@ export interface ChargebeeComponentProps {
     classes?: Classes;
     icon?: boolean;
     styles?: Styles;
+    showTestCards?: boolean;
     locale?: string;
     placeholder?: Placeholder;
     currency?: string;
@@ -48,12 +49,13 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
     }
 
     getPropOptions(props: ChargebeeComponentProps) {
-        const { fonts, classes, icon, styles: style, locale, placeholder, currency, ariaLabel } = props;
+        const { fonts, classes, icon, styles: style, showTestCards, locale, placeholder, currency, ariaLabel } = props;
         return {
             fonts,
             classes,
             locale,
             style,
+            showTestCards,
             placeholder,
             ariaLabel,
             icon,
