@@ -158,12 +158,13 @@ class ChargebeeComponents extends Component {
         };
     }
     getPropOptions(props) {
-        const { fonts, classes, icon, styles: style, locale, placeholder, currency, ariaLabel } = props;
+        const { fonts, classes, icon, styles: style, showTestCards, locale, placeholder, currency, ariaLabel } = props;
         return {
             fonts,
             classes,
             locale,
             style,
+            showTestCards,
             placeholder,
             ariaLabel,
             icon,

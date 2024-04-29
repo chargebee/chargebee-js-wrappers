@@ -1,3 +1,7 @@
+### v0.6.4 (2024-04-29)
+* * *
+* Added `showTestCards` option for `CardComponent`.
+
 ### v0.6.3 (2023-02-01)
 * * *
 * Added `onKeyPress` option for `CardComponent`.
