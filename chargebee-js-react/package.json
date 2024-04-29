@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-react-wrapper",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "main": "dist/chargebee-js-react-wrapper.common.js",
   "module": "dist/chargebee-js-react-wrapper.esm.js",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.10.1",
     "@chargebee/chargebee-js-types": "^1.0.0",
     "@rollup/plugin-typescript": "^9.0.2",

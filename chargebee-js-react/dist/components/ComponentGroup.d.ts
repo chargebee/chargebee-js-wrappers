@@ -11,6 +11,7 @@ export interface ChargebeeComponentProps {
     classes?: Classes;
     icon?: boolean;
     styles?: Styles;
+    showTestCards?: boolean;
     locale?: string;
     placeholder?: Placeholder;
     currency?: string;
@@ -35,6 +36,7 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         classes: Classes;
         locale: string;
         style: Styles;
+        showTestCards: boolean;
         placeholder: Placeholder;
         ariaLabel: AriaLabel;
         icon: boolean;
