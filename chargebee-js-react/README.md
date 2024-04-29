@@ -164,6 +164,7 @@ class App extends Component {
                     locale={locale} 
                     styles={styles} 
                     ref={this.CardRef} 
+                    showTestCards={true}           
                     onReady={this.onReady}
                 >
                     <CardNumber placeholder='4111 1111 1111 1111' className="field empty" onChange={this.onChange} onReady={this.onReady} />
@@ -255,6 +256,7 @@ render() {
     locale={locale}
     placeholder={placeholder}
     fonts={fonts}
+    showTestCards={true}
   >
     <div className="ex1-field">
       {/* Card number component */}
@@ -354,6 +356,7 @@ Props | Description | Datatype
 `styles` | Set of style customizations | [Styles](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `placeholder` | Set of placeholders for the card fields | [Placeholder](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#parameters-3)
 `ref` | React Ref element for tokenizing data | [ReactRef](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs)
+`showTestCards` | Add ability to show test cards on test sites | Boolean
 
 ##### Event Props ([docs](https://chargebee.com/checkout-portal-docs/components-fields-reference.html#on))
 Props | Description | Arguments
