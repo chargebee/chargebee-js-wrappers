@@ -6,6 +6,6 @@ export declare class Provider implements OnChanges {
     constructor();
     ngOnChanges(changes: SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<Provider, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<Provider, "[cbProvider]", never, { "cbInstance": "cbInstance"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<Provider, "[cbProvider]", never, { "cbInstance": { "alias": "cbInstance"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
 //# sourceMappingURL=provider.directive.d.ts.map

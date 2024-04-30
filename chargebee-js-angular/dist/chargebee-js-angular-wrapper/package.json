@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-angular-wrapper",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Angular wrapper for Chargebee.js Components",
   "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-angular#readme",
   "bugs": {
@@ -25,14 +25,10 @@
     "chargebee.js angular"
   ],
   "peerDependencies": {
-    "@angular/common": "^15.2.9",
-    "@angular/core": "^15.2.9"
+    "@angular/common": "^16.2.12",
+    "@angular/core": "^16.2.12"
   },
-  "module": "fesm2015/chargebee-chargebee-js-angular-wrapper.mjs",
-  "es2020": "fesm2020/chargebee-chargebee-js-angular-wrapper.mjs",
-  "esm2020": "esm2020/chargebee-chargebee-js-angular-wrapper.mjs",
-  "fesm2020": "fesm2020/chargebee-chargebee-js-angular-wrapper.mjs",
-  "fesm2015": "fesm2015/chargebee-chargebee-js-angular-wrapper.mjs",
+  "module": "fesm2022/chargebee-chargebee-js-angular-wrapper.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -40,11 +36,9 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/chargebee-chargebee-js-angular-wrapper.mjs",
-      "es2020": "./fesm2020/chargebee-chargebee-js-angular-wrapper.mjs",
-      "es2015": "./fesm2015/chargebee-chargebee-js-angular-wrapper.mjs",
-      "node": "./fesm2015/chargebee-chargebee-js-angular-wrapper.mjs",
-      "default": "./fesm2020/chargebee-chargebee-js-angular-wrapper.mjs"
+      "esm2022": "./esm2022/chargebee-chargebee-js-angular-wrapper.mjs",
+      "esm": "./esm2022/chargebee-chargebee-js-angular-wrapper.mjs",
+      "default": "./fesm2022/chargebee-chargebee-js-angular-wrapper.mjs"
     }
   },
   "sideEffects": false,

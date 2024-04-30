@@ -17,6 +17,6 @@ export declare class NumberFieldDirective implements OnChanges {
     onChange: (status: any) => void;
     ngOnChanges(changes: SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumberFieldDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<NumberFieldDirective, "[cbNumberField]", never, { "styles": "styles"; "placeholder": "placeholder"; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<NumberFieldDirective, "[cbNumberField]", never, { "styles": { "alias": "styles"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, never, never, false, never>;
 }
 //# sourceMappingURL=number-field.directive.d.ts.map
