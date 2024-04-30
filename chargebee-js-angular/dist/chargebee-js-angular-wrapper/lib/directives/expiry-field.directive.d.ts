@@ -18,6 +18,6 @@ export declare class ExpiryFieldDirective implements OnChanges {
     onChange: (status: any) => void;
     ngOnChanges(changes: SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ExpiryFieldDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ExpiryFieldDirective, "[cbExpiryField]", never, { "cbComponent": "cbComponent"; "styles": "styles"; "placeholder": "placeholder"; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ExpiryFieldDirective, "[cbExpiryField]", never, { "cbComponent": { "alias": "cbComponent"; "required": false; }; "styles": { "alias": "styles"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, never, never, false, never>;
 }
 //# sourceMappingURL=expiry-field.directive.d.ts.map

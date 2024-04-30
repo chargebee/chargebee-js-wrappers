@@ -18,6 +18,6 @@ export declare class CvvFieldDirective implements OnChanges {
     onChange: (status: any) => void;
     ngOnChanges(changes: SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CvvFieldDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<CvvFieldDirective, "[cbCvvField]", never, { "styles": "styles"; "placeholder": "placeholder"; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<CvvFieldDirective, "[cbCvvField]", never, { "styles": { "alias": "styles"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, never, never, false, never>;
 }
 //# sourceMappingURL=cvv-field.directive.d.ts.map
