@@ -237,7 +237,7 @@ import {CardComponent, CardNumber, CardExpiry, CardCVV, Provider} from "@chargeb
 componentDidMount() {
   window.Chargebee.init({
     site: "honeycomics-v3-test",
-    publishableKey: "test_qoH22RugUvm5IcxoqUD5Svdcu9mX5figf"
+    publishableKey: "your_site_pub_api_key"
   })
 
   this.setState({
