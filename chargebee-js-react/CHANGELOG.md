@@ -1,3 +1,7 @@
+### v0.6.5 (2024-05-20)
+* * *
+* Removed Publishable Key from ReadME.
+
 ### v0.6.4 (2024-04-29)
 * * *
 * Added `showTestCards` option for `CardComponent`.
