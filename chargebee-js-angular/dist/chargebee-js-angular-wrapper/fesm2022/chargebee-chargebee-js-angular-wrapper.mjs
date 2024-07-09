@@ -116,15 +116,15 @@ class NumberFieldDirective {
             }
         }
     }
-    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: NumberFieldDirective, selector: "[cbNumberField]", inputs: { styles: "styles", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, usesOnChanges: true, ngImport: i0 });
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: NumberFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.3.11", type: NumberFieldDirective, selector: "[cbNumberField]", inputs: { styles: "styles", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFieldDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: NumberFieldDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[cbNumberField]'
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { styles: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { styles: [{
                 type: Input
             }], placeholder: [{
                 type: Input
@@ -175,15 +175,15 @@ class ExpiryFieldDirective {
             }
         }
     }
-    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpiryFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ExpiryFieldDirective, selector: "[cbExpiryField]", inputs: { cbComponent: "cbComponent", styles: "styles", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, usesOnChanges: true, ngImport: i0 });
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ExpiryFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.3.11", type: ExpiryFieldDirective, selector: "[cbExpiryField]", inputs: { cbComponent: "cbComponent", styles: "styles", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpiryFieldDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ExpiryFieldDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[cbExpiryField]'
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { cbComponent: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { cbComponent: [{
                 type: Input
             }], styles: [{
                 type: Input
@@ -236,15 +236,15 @@ class CvvFieldDirective {
             }
         }
     }
-    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CvvFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CvvFieldDirective, selector: "[cbCvvField]", inputs: { styles: "styles", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, usesOnChanges: true, ngImport: i0 });
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: CvvFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.3.11", type: CvvFieldDirective, selector: "[cbCvvField]", inputs: { styles: "styles", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CvvFieldDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: CvvFieldDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[cbCvvField]'
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { styles: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { styles: [{
                 type: Input
             }], placeholder: [{
                 type: Input
@@ -259,7 +259,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
             }] } });
 
 class CardFieldDirective {
-    id = '';
+    id = "";
     cbInstance = null;
     cbComponent = null;
     icon;
@@ -267,6 +267,7 @@ class CardFieldDirective {
     fonts;
     styles;
     locale;
+    showTestCards;
     currency;
     placeholder;
     numberComponent;
@@ -306,25 +307,26 @@ class CardFieldDirective {
         this.change.emit(status);
     };
     ngOnInit() {
-        if (typeof window !== 'undefined' && typeof window['Chargebee'] !== 'undefined') {
+        if (typeof window !== "undefined" &&
+            typeof window["Chargebee"] !== "undefined") {
             const options = {
-                icon: typeof this.icon === 'boolean' ? this.icon : true,
+                icon: typeof this.icon === "boolean" ? this.icon : true,
                 fonts: this.fonts || [],
                 style: this.styles || {},
-                locale: this.locale || 'en',
+                locale: this.locale || "en",
+                showTestCards: this.showTestCards ?? false,
                 classes: this.classes || {},
-                currency: this.currency || 'USD',
+                currency: this.currency || "USD",
                 placeholder: this.placeholder || {},
             };
-            this.cbInstance = window['Chargebee'].getInstance();
-            this.cbInstance.load('components')
-                .then(() => {
-                this.cbComponent = this.cbInstance.createComponent('card', options);
+            this.cbInstance = window["Chargebee"].getInstance();
+            this.cbInstance.load("components").then(() => {
+                this.cbComponent = this.cbInstance.createComponent("card", options);
                 // Attaching listeners if any (only applicable for combined field)
-                this.cbComponent.on('ready', this.onReady);
-                this.cbComponent.on('focus', this.onFocus);
-                this.cbComponent.on('blur', this.onBlur);
-                this.cbComponent.on('change', this.onChange);
+                this.cbComponent.on("ready", this.onReady);
+                this.cbComponent.on("focus", this.onFocus);
+                this.cbComponent.on("blur", this.onBlur);
+                this.cbComponent.on("change", this.onChange);
                 // Initialize inidividual fields (if present)
                 this.initializeField(this.cbComponent, this.numberComponent);
                 this.initializeField(this.cbComponent, this.expiryComponent);
@@ -335,16 +337,18 @@ class CardFieldDirective {
     }
     initializeField(cbComponent, fieldElement) {
         if (cbComponent && fieldElement) {
-            const fieldInstance = cbComponent.createField(fieldElement.type, {
+            const fieldInstance = cbComponent
+                .createField(fieldElement.type, {
                 style: fieldElement.styles || {},
-                placeholder: fieldElement.placeholder || '',
-            }).at(`#${fieldElement.id}`);
+                placeholder: fieldElement.placeholder || "",
+            })
+                .at(`#${fieldElement.id}`);
             fieldElement.field = fieldInstance;
             // attach listeners
-            fieldInstance.on('ready', fieldElement.onReady);
-            fieldInstance.on('focus', fieldElement.onFocus);
-            fieldInstance.on('blur', fieldElement.onBlur);
-            fieldInstance.on('change', fieldElement.onChange);
+            fieldInstance.on("ready", fieldElement.onReady);
+            fieldInstance.on("focus", fieldElement.onFocus);
+            fieldInstance.on("blur", fieldElement.onBlur);
+            fieldInstance.on("change", fieldElement.onChange);
             return fieldInstance;
         }
         return null;
@@ -357,22 +361,30 @@ class CardFieldDirective {
     }
     ngOnChanges(changes) {
         if (this.cbComponent) {
-            const props = ['icon', 'classes', 'fonts', 'locale', 'styles', 'placeholder'];
+            const props = [
+                "icon",
+                "classes",
+                "fonts",
+                "locale",
+                "showTestCards",
+                "styles",
+                "placeholder",
+            ];
             const { currentOptions, hasChanged } = getPropChanges(changes, props);
             if (hasChanged) {
                 this.cbComponent.update(currentOptions);
             }
         }
     }
-    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CardFieldDirective, selector: "[cbCardField]", inputs: { icon: "icon", classes: "classes", fonts: "fonts", styles: "styles", locale: "locale", currency: "currency", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, queries: [{ propertyName: "numberComponent", first: true, predicate: NumberFieldDirective, descendants: true, static: true }, { propertyName: "expiryComponent", first: true, predicate: ExpiryFieldDirective, descendants: true, static: true }, { propertyName: "cvvComponent", first: true, predicate: CvvFieldDirective, descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: CardFieldDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    /** @nocollapse */ static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.3.11", type: CardFieldDirective, selector: "[cbCardField]", inputs: { icon: "icon", classes: "classes", fonts: "fonts", styles: "styles", locale: "locale", showTestCards: "showTestCards", currency: "currency", placeholder: "placeholder" }, outputs: { ready: "ready", focus: "focus", blur: "blur", change: "change" }, queries: [{ propertyName: "numberComponent", first: true, predicate: NumberFieldDirective, descendants: true, static: true }, { propertyName: "expiryComponent", first: true, predicate: ExpiryFieldDirective, descendants: true, static: true }, { propertyName: "cvvComponent", first: true, predicate: CvvFieldDirective, descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardFieldDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: CardFieldDirective, decorators: [{
             type: Directive,
             args: [{
-                    selector: '[cbCardField]'
+                    selector: "[cbCardField]",
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { icon: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { icon: [{
                 type: Input
             }], classes: [{
                 type: Input
@@ -381,6 +393,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
             }], styles: [{
                 type: Input
             }], locale: [{
+                type: Input
+            }], showTestCards: [{
                 type: Input
             }], currency: [{
                 type: Input
@@ -416,15 +430,15 @@ class Provider {
             this.validated = false;
         }
     }
-    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: Provider, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    /** @nocollapse */ static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: Provider, selector: "[cbProvider]", inputs: { cbInstance: "cbInstance" }, usesOnChanges: true, ngImport: i0, template: `
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: Provider, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    /** @nocollapse */ static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.11", type: Provider, selector: "[cbProvider]", inputs: { cbInstance: "cbInstance" }, usesOnChanges: true, ngImport: i0, template: `
         <ng-container *ngIf="validated">
             <ng-content>
             </ng-content>
         </ng-container>
     `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: Provider, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: Provider, decorators: [{
             type: Component,
             args: [{
                     selector: '[cbProvider]',
@@ -435,16 +449,16 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         </ng-container>
     `
                 }]
-        }], ctorParameters: function () { return []; }, propDecorators: { cbInstance: [{
+        }], ctorParameters: () => [], propDecorators: { cbInstance: [{
                 type: Input
             }] } });
 
 class ChargebeeJsAngularWrapperModule {
-    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ChargebeeJsAngularWrapperModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    /** @nocollapse */ static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ChargebeeJsAngularWrapperModule, declarations: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider], imports: [CommonModule], exports: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider] });
-    /** @nocollapse */ static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ChargebeeJsAngularWrapperModule, imports: [CommonModule] });
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    /** @nocollapse */ static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, declarations: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider], imports: [CommonModule], exports: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider] });
+    /** @nocollapse */ static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ChargebeeJsAngularWrapperModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider],
