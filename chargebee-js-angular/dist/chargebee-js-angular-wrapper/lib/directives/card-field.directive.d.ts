@@ -1,5 +1,5 @@
-import { EventEmitter, ElementRef, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { PaymentIntent, AdditionalData, Callbacks } from '../types';
+import { EventEmitter, ElementRef, OnInit, OnChanges, SimpleChanges } from "@angular/core";
+import { PaymentIntent, AdditionalData, Callbacks } from "../types";
 import * as i0 from "@angular/core";
 export declare class CardFieldDirective implements OnInit, OnChanges {
     id: string;
@@ -10,6 +10,7 @@ export declare class CardFieldDirective implements OnInit, OnChanges {
     fonts?: object;
     styles?: object;
     locale?: string;
+    showTestCards?: boolean;
     currency?: string;
     placeholder?: {
         number?: string;
@@ -36,6 +37,6 @@ export declare class CardFieldDirective implements OnInit, OnChanges {
     authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks): any;
     ngOnChanges(changes: SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CardFieldDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<CardFieldDirective, "[cbCardField]", never, { "icon": { "alias": "icon"; "required": false; }; "classes": { "alias": "classes"; "required": false; }; "fonts": { "alias": "fonts"; "required": false; }; "styles": { "alias": "styles"; "required": false; }; "locale": { "alias": "locale"; "required": false; }; "currency": { "alias": "currency"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, ["numberComponent", "expiryComponent", "cvvComponent"], never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<CardFieldDirective, "[cbCardField]", never, { "icon": { "alias": "icon"; "required": false; }; "classes": { "alias": "classes"; "required": false; }; "fonts": { "alias": "fonts"; "required": false; }; "styles": { "alias": "styles"; "required": false; }; "locale": { "alias": "locale"; "required": false; }; "showTestCards": { "alias": "showTestCards"; "required": false; }; "currency": { "alias": "currency"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; }, { "ready": "ready"; "focus": "focus"; "blur": "blur"; "change": "change"; }, ["numberComponent", "expiryComponent", "cvvComponent"], never, false, never>;
 }
 //# sourceMappingURL=card-field.directive.d.ts.map
