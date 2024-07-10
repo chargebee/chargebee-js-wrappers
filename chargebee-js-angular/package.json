@@ -1,6 +1,6 @@
 {
   "name": "chargebee-js-angular-wrapper",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "scripts": {
     "ng": "ng",

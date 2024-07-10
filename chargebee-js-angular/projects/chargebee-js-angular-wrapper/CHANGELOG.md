@@ -1,4 +1,8 @@
-### v2.0.0 (2024-04-30)
+### v4.0.0 (2024-07-10)
+***
+* Adds support for Angular 17
+
+### v3.0.0 (2024-04-30)
 ***
 * Adds support for Angular 16
 
