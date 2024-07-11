@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-angular-wrapper",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Angular wrapper for Chargebee.js Components",
   "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-angular#readme",
   "bugs": {
@@ -25,7 +25,7 @@
     "chargebee.js angular"
   ],
   "peerDependencies": {
-    "@angular/common": "^16.2.12",
-    "@angular/core": "^16.2.12"
+    "@angular/common": "^17.3.11",
+    "@angular/core": "^17.3.11"
   }
 }
