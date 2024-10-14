@@ -86,6 +86,7 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         const cbInstance = Chargebee.getInstance();
         cbInstance.load("components").then(() => {
             let cbComponent = cbInstance.createComponent(type, options)
+            //cbComponent.mount(`#${this.id}`);
             // Attach listeners if specified (only applicable for combined field)
             if(onReady) cbComponent.on('ready', onReady);
             if(onBlur) cbComponent.on('blur', onBlur);
@@ -100,6 +101,11 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
             })
         });
     }
+    componentWillUnmount() {
+        const { cbComponent } = this.state;
+        cbComponent?.destroy();
+    }
+
 
     tokenize(additionalData: AdditionalData) {
         const { cbComponent } = this.state;
