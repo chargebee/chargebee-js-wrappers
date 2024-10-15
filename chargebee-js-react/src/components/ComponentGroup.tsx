@@ -100,6 +100,11 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
             })
         });
     }
+    componentWillUnmount() {
+        const { cbComponent } = this.state;
+        cbComponent?.destroy();
+    }
+
 
     tokenize(additionalData: AdditionalData) {
         const { cbComponent } = this.state;
