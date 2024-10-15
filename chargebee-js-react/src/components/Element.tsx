@@ -64,10 +64,6 @@ export default class Element extends React.Component<ElementProps> {
         }
     }
 
-    componentWillUnmount() {
-        this.field.destroy();
-    }
-
     focus() {
         this.field.focus();
     }
