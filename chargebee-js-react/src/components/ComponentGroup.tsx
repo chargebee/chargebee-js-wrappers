@@ -32,15 +32,20 @@ export interface ChargebeeComponentProps {
 }
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;
-    cbComponent: Component;
+    cbComponent: any;
     cbInstance: ChargebeeInstance;
+    loader?: any;
 }
 
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
     private id: string;
+    private loading: boolean;
+    private loader: any;
+    private mounting: boolean;
     
     constructor(props: ChargebeeComponentProps) {
         super(props);
+        debugger;
         this.state = {
             moduleLoaded: false,
             cbComponent: null,
@@ -63,9 +68,32 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         }
     }
 
-    componentDidUpdate(prevProps: ChargebeeComponentProps) {
+    componentWillUnmount() {
+        console.log("parent unmount")
+        debugger;
+        this.loading;
+        this.loader.cancel();
+        this.state;
+        // this.state.loader.cancel();
+        debugger;
+        // this.state.cbComponent.destroy();
+    }
+
+    componentWillUpdate(prevProps: ChargebeeComponentProps, prevState: ChargebeeComponentState) {
+        console.log(prevState, this.state)
+    }
+    componentDidUpdate(prevProps: ChargebeeComponentProps, prevState: any) {
+        console.log(prevState);
+        console.log(this.state);
+        debugger;
+        if (prevState !== this.state) {
+            console.trace("State has changed!");
+        }
+
         const cbComponent = this.state.cbComponent;
 
+        const element = document.querySelector(`#${this.id} iframe`);
+        debugger;
         if(cbComponent && this.state.moduleLoaded && cbComponent.status == 0) {
             cbComponent.mount(`#${this.id}`);
         }
@@ -78,25 +106,63 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         }
     }
 
+    makeCancelable(promise: Promise<any>) {
+        let hasCanceled = false;
+
+        const wrappedPromise = new Promise((resolve, reject) => {
+            promise
+                .then((value) => {
+                    hasCanceled ? resolve({ isCanceled: true }) : resolve(value)
+                })
+                .catch((error) => {
+                    hasCanceled ? reject({ isCanceled: true }) : reject(error)
+                });
+        });
+
+        return {
+            promise: wrappedPromise,
+            cancel() {
+                hasCanceled = true;
+            },
+        };
+    }
+
     componentDidMount() {
+        console.log("parent mount")
         this.id = `${this.props.type}-field-${genUUID()}`;
         const {type, onBlur, onChange, onFocus, onReady, onKeyPress} = this.props;
         const options = this.getPropOptions(this.props);
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
-        cbInstance.load("components").then(() => {
+        console.log(this.state)
+        let loader = this.makeCancelable(cbInstance.load("components"));
+        this.loading = true;
+        this.loader = loader;
+        loader.promise.then(({isCanceled}) => {
+            if (isCanceled) {
+                return;
+            }
+
             let cbComponent = cbInstance.createComponent(type, options)
+            console.log("cbComponent", cbComponent);
             // Attach listeners if specified (only applicable for combined field)
             if(onReady) cbComponent.on('ready', onReady);
             if(onBlur) cbComponent.on('blur', onBlur);
             if(onFocus) cbComponent.on('focus', onFocus);
             if(onChange) cbComponent.on('change', onChange);
             if(onKeyPress) cbComponent.on('keyPress', onKeyPress);
+            console.log(this.state)
 
-            this.setState({
-                cbComponent,
-                cbInstance,
-                moduleLoaded: true
+            // if(cbComponent && cbComponent.status == 0) {
+            //     cbComponent.mount(`#${this.id}`);
+            // }
+
+            this.setState((prevState) => {
+                const state = {...prevState}
+                state.cbComponent = cbComponent;
+                state.cbInstance = cbInstance;
+                state.moduleLoaded = true;
+                return state;
             })
         });
     }
