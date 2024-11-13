@@ -1,7 +1,32 @@
 import * as React from 'react';
 import { AdditionalData, AriaLabel, Callbacks, ChargebeeInstance, Classes, Fonts, PaymentIntent, Placeholder, Styles } from "@chargebee/chargebee-js-types";
-import { isEqual } from '../utils/';
-import {ComponentContext, getPropOptions} from "./ComponentGroup";
+import {genUUID, isEqual} from '../utils/';
+
+
+interface ComponentContext {
+    cbComponent: any;
+}
+
+const ComponentDefaultContext: ComponentContext = {
+    cbComponent: null
+}
+
+export const ComponentContext = React.createContext(ComponentDefaultContext);
+
+export function getPropOptions(props: ChargebeeComponentProps) {
+    const { fonts, classes, icon, styles: style, showTestCards, locale, placeholder, currency, ariaLabel } = props;
+    return {
+        fonts,
+        classes,
+        locale,
+        style,
+        showTestCards,
+        placeholder,
+        ariaLabel,
+        icon,
+        currency,
+    }
+}
 
 export interface ChargebeeComponentProps {
     children?: React.ReactNode;
@@ -21,47 +46,71 @@ export interface ChargebeeComponentProps {
     onFocus?: React.FocusEventHandler;
     onReady?: React.EventHandler<React.SyntheticEvent>;
     onKeyPress?: Function;
-    pState?: any;
-    id?: string;
+    cbInstance?: any;
 }
 interface ChargebeeComponentState {
-    moduleLoaded: Boolean;
     cbComponent: any;
     cbInstance: ChargebeeInstance;
+    id: string;
+    ready: boolean;
 }
 
 export default class ChargebeeComponentsInner extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
     private id: string;
+    private containerRef = React.createRef<HTMLDivElement>();
     
     constructor(props: ChargebeeComponentProps) {
         super(props);
-        this.id =props.id;
+        this.id = `${this.props.type}-field-${genUUID()}`;
         this.state = {
-            moduleLoaded: this.props.pState.moduleLoaded,
-            cbComponent: this.props.pState.cbComponent,
-            cbInstance: this.props.pState.cbInstance,
+            cbComponent: null,
+            cbInstance: this.props.cbInstance,
+            id: this.id,
+            ready: false
         }
     }
 
+    getCbInstance() {
+        const {type, onBlur, onChange, onFocus, onReady, onKeyPress} = this.props;
+        const options = getPropOptions(this.props);
+
+        let cbComponent = this.props.cbInstance.createComponent(type, options)
+        // Attach listeners if specified (only applicable for combined field)
+        if(onReady) cbComponent.on('ready', onReady);
+        if(onBlur) cbComponent.on('blur', onBlur);
+        if(onFocus) cbComponent.on('focus', onFocus);
+        if(onChange) cbComponent.on('change', onChange);
+        if(onKeyPress) cbComponent.on('keyPress', onKeyPress);
+
+        return cbComponent;
+    }
+
     componentWillUnmount() {
-        this.state.cbComponent.destroy();
+        if (this.state.cbComponent) {
+            this.state.cbComponent.destroy();
+        }
     }
 
     componentDidUpdate(prevProps: ChargebeeComponentProps) {
         const cbComponent = this.state.cbComponent;
 
-        const prevOptions = getPropOptions(prevProps)
-        const currentOptions = getPropOptions(this.props)
+        const prevOptions = getPropOptions(prevProps);
+        const currentOptions = getPropOptions(this.props);
 
-        if(!isEqual(prevOptions, currentOptions) && cbComponent) {
-            cbComponent.update(currentOptions)
+        if (!isEqual(prevOptions, currentOptions) && cbComponent) {
+            cbComponent.update(currentOptions);
         }
     }
 
     componentDidMount() {
-        if(this.state.cbComponent && this.state.moduleLoaded && this.state.cbComponent.status == 0) {
-            this.state.cbComponent.mount(`#${this.id}`);
-        }
+        const cbComponent = this.getCbInstance();
+        this.setState({ cbComponent, ready: true }, () => {
+            if (this.state.cbComponent && this.state.cbComponent.status === 0) {
+                if (this.containerRef.current) {
+                    this.state.cbComponent.mount(this.containerRef.current);
+                }
+            }
+        });
     }
 
     tokenize(additionalData: AdditionalData) {
@@ -90,12 +139,14 @@ export default class ChargebeeComponentsInner extends React.Component<ChargebeeC
     }
 
     render() {
+        const { ready } = this.state; // Destructure ready state
+
         return (
             <ComponentContext.Provider value={this.state}>
-                <div id={this.id} className={this.props.className || ''}>
-                    {this.state.moduleLoaded && this.props.children || []}
+                <div ref={this.containerRef} id={this.id} className={this.props.className || ''}>
+                    {ready && this.props.children || []}
                 </div>
             </ComponentContext.Provider>
-        )
+        );
     }
 }

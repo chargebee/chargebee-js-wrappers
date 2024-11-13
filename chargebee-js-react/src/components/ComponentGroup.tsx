@@ -1,21 +1,8 @@
 import * as React from 'react';
 import { AriaLabel, ChargebeeInstance, Classes, Fonts, Placeholder, Styles } from "@chargebee/chargebee-js-types";
-import { genUUID } from '../utils/';
 import ChargebeeComponentsInner from "./ComponentGroupInner";
 
-interface ComponentContext {
-    moduleLoaded: Boolean;
-    cbComponent: any;
-    cbInstance: ChargebeeInstance;
-}
 
-const ComponentDefaultContext: ComponentContext = {
-    moduleLoaded: false,
-    cbComponent: null,
-    cbInstance: null,
-}
-
-export const ComponentContext = React.createContext(ComponentDefaultContext);
 
 export interface ChargebeeComponentProps {
     children?: React.ReactNode;
@@ -38,7 +25,6 @@ export interface ChargebeeComponentProps {
 }
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;
-    cbComponent: any;
     cbInstance: ChargebeeInstance;
 }
 
@@ -63,21 +49,6 @@ function makeCancelablePromise(promise: Promise<any>) {
     };
 }
 
-export function getPropOptions(props: ChargebeeComponentProps) {
-    const { fonts, classes, icon, styles: style, showTestCards, locale, placeholder, currency, ariaLabel } = props;
-    return {
-        fonts,
-        classes,
-        locale,
-        style,
-        showTestCards,
-        placeholder,
-        ariaLabel,
-        icon,
-        currency,
-    }
-}
-
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
     private id: string;
     private loader: any;
@@ -86,7 +57,6 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         super(props);
         this.state = {
             moduleLoaded: false,
-            cbComponent: null,
             cbInstance: null,   
         }
     }
@@ -96,9 +66,6 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
     }
 
     componentDidMount() {
-        this.id = `${this.props.type}-field-${genUUID()}`;
-        const {type, onBlur, onChange, onFocus, onReady, onKeyPress} = this.props;
-        const options = getPropOptions(this.props);
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
         let loader = makeCancelablePromise(cbInstance.load("components"));
@@ -108,16 +75,7 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
                 return;
             }
 
-            let cbComponent = cbInstance.createComponent(type, options)
-            // Attach listeners if specified (only applicable for combined field)
-            if(onReady) cbComponent.on('ready', onReady);
-            if(onBlur) cbComponent.on('blur', onBlur);
-            if(onFocus) cbComponent.on('focus', onFocus);
-            if(onChange) cbComponent.on('change', onChange);
-            if(onKeyPress) cbComponent.on('keyPress', onKeyPress);
-
             this.setState({
-                cbComponent: cbComponent,
                 cbInstance: cbInstance,
                 moduleLoaded: true
             });
@@ -127,7 +85,7 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
     render() {
         return (
             <>
-                {this.state.moduleLoaded ? <ChargebeeComponentsInner {...{...this.props, pState: this.state, id: this.id}} /> : ''}
+                {this.state.moduleLoaded ? <ChargebeeComponentsInner {...{...this.props, cbInstance: this.state.cbInstance}} /> : ''}
             </>
         )
     }
