@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { AriaLabel, ChargebeeInstance, Classes, Fonts, Placeholder, Styles } from "@chargebee/chargebee-js-types";
-import ChargebeeComponentsInner from "./ComponentGroupInner";
-
-
+import FieldContainer from "./FieldContainer";
 
 export interface ChargebeeComponentProps {
     children?: React.ReactNode;
@@ -30,8 +28,10 @@ interface ChargebeeComponentState {
 
 function makeCancelablePromise(promise: Promise<any>) {
     let hasCanceled = false;
+    let _resolve: (value: any) => void;
 
     const wrappedPromise = new Promise((resolve, reject) => {
+        _resolve = resolve;
         promise
             .then((value) => {
                 hasCanceled ? resolve({ isCanceled: true }) : resolve(value)
@@ -45,6 +45,7 @@ function makeCancelablePromise(promise: Promise<any>) {
         promise: wrappedPromise,
         cancel() {
             hasCanceled = true;
+            _resolve({ isCanceled: true })
         },
     };
 }
@@ -85,7 +86,7 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
     render() {
         return (
             <>
-                {this.state.moduleLoaded ? <ChargebeeComponentsInner {...{...this.props, cbInstance: this.state.cbInstance}} /> : ''}
+                {this.state.moduleLoaded ? <FieldContainer {...{...this.props, cbInstance: this.state.cbInstance}} /> : ''}
             </>
         )
     }

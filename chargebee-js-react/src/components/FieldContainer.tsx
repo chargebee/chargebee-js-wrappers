@@ -13,7 +13,7 @@ const ComponentDefaultContext: ComponentContext = {
 
 export const ComponentContext = React.createContext(ComponentDefaultContext);
 
-export function getPropOptions(props: ChargebeeComponentProps) {
+export function getPropOptions(props: FieldContainerProps) {
     const { fonts, classes, icon, styles: style, showTestCards, locale, placeholder, currency, ariaLabel } = props;
     return {
         fonts,
@@ -28,7 +28,7 @@ export function getPropOptions(props: ChargebeeComponentProps) {
     }
 }
 
-export interface ChargebeeComponentProps {
+export interface FieldContainerProps {
     children?: React.ReactNode;
     type?: string;
     fonts?: Fonts;
@@ -48,18 +48,18 @@ export interface ChargebeeComponentProps {
     onKeyPress?: Function;
     cbInstance?: any;
 }
-interface ChargebeeComponentState {
+interface FieldContainerState {
     cbComponent: any;
     cbInstance: ChargebeeInstance;
     id: string;
     ready: boolean;
 }
 
-export default class ChargebeeComponentsInner extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
+export default class FieldContainer extends React.Component<FieldContainerProps, FieldContainerState> {
     private id: string;
     private containerRef = React.createRef<HTMLDivElement>();
     
-    constructor(props: ChargebeeComponentProps) {
+    constructor(props: FieldContainerProps) {
         super(props);
         this.id = `${this.props.type}-field-${genUUID()}`;
         this.state = {
@@ -70,7 +70,7 @@ export default class ChargebeeComponentsInner extends React.Component<ChargebeeC
         }
     }
 
-    getCbInstance() {
+    getCbComponent() {
         const {type, onBlur, onChange, onFocus, onReady, onKeyPress} = this.props;
         const options = getPropOptions(this.props);
 
@@ -91,7 +91,7 @@ export default class ChargebeeComponentsInner extends React.Component<ChargebeeC
         }
     }
 
-    componentDidUpdate(prevProps: ChargebeeComponentProps) {
+    componentDidUpdate(prevProps: FieldContainerProps) {
         const cbComponent = this.state.cbComponent;
 
         const prevOptions = getPropOptions(prevProps);
@@ -103,7 +103,7 @@ export default class ChargebeeComponentsInner extends React.Component<ChargebeeC
     }
 
     componentDidMount() {
-        const cbComponent = this.getCbInstance();
+        const cbComponent = this.getCbComponent();
         this.setState({ cbComponent, ready: true }, () => {
             if (this.state.cbComponent && this.state.cbComponent.status === 0) {
                 if (this.containerRef.current) {
