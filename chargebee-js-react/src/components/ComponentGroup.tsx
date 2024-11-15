@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { AriaLabel, ChargebeeInstance, Classes, Fonts, Placeholder, Styles } from "@chargebee/chargebee-js-types";
+import {
+    AdditionalData,
+    AriaLabel, Callbacks,
+    ChargebeeInstance,
+    Classes,
+    Fonts, PaymentIntent,
+    Placeholder,
+    Styles
+} from "@chargebee/chargebee-js-types";
 import FieldContainer from "./FieldContainer";
 
 export interface ChargebeeComponentProps {
@@ -51,8 +59,8 @@ function makeCancelablePromise(promise: Promise<any>) {
 }
 
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
-    private id: string;
     private loader: any;
+    private fieldContainerRef = React.createRef<FieldContainer>();
     
     constructor(props: ChargebeeComponentProps) {
         super(props);
@@ -83,10 +91,30 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         });
     }
 
+    tokenize(additionalData: AdditionalData) {
+        return this.fieldContainerRef.current.tokenize(additionalData)
+    }
+
+    authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks) {
+        return this.fieldContainerRef.current.authorizeWith3ds(paymentIntent, additionalData, callbacks)
+    }
+
+    focus() {
+        this.fieldContainerRef.current.focus();
+    }
+
+    blur() {
+        this.fieldContainerRef.current.blur();
+    }
+
+    clear() {
+        this.fieldContainerRef.current.clear();
+    }
+
     render() {
         return (
             <>
-                {this.state.moduleLoaded ? <FieldContainer {...{...this.props, cbInstance: this.state.cbInstance}} /> : ''}
+                {this.state.moduleLoaded ? <FieldContainer ref={this.fieldContainerRef} {...{...this.props, cbInstance: this.state.cbInstance}} /> : ''}
             </>
         )
     }
