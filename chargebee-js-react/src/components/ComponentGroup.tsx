@@ -28,6 +28,7 @@ export interface ChargebeeComponentProps {
     onFocus?: React.FocusEventHandler;
     onReady?: React.EventHandler<React.SyntheticEvent>;
     onKeyPress?: Function;
+    forwardedRef?: React.LegacyRef<FieldContainer>;
 }
 interface ChargebeeComponentState {
     moduleLoaded: Boolean;
@@ -60,7 +61,6 @@ function makeCancelablePromise(promise: Promise<any>) {
 
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
     private loader: any;
-    private fieldContainerRef = React.createRef<FieldContainer>();
     
     constructor(props: ChargebeeComponentProps) {
         super(props);
@@ -91,30 +91,11 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
         });
     }
 
-    tokenize(additionalData: AdditionalData) {
-        return this.fieldContainerRef.current.tokenize(additionalData)
-    }
-
-    authorizeWith3ds(paymentIntent: PaymentIntent, additionalData: AdditionalData, callbacks: Callbacks) {
-        return this.fieldContainerRef.current.authorizeWith3ds(paymentIntent, additionalData, callbacks)
-    }
-
-    focus() {
-        this.fieldContainerRef.current.focus();
-    }
-
-    blur() {
-        this.fieldContainerRef.current.blur();
-    }
-
-    clear() {
-        this.fieldContainerRef.current.clear();
-    }
-
     render() {
+        const {forwardedRef, ...rest} = this.props;
         return (
             <>
-                {this.state.moduleLoaded ? <FieldContainer ref={this.fieldContainerRef} {...{...this.props, cbInstance: this.state.cbInstance}} /> : ''}
+                {this.state.moduleLoaded ? <FieldContainer ref={forwardedRef} {...{...rest, cbInstance: this.state.cbInstance}} /> : ''}
             </>
         )
     }
