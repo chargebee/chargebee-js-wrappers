@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Element, { ElementProps } from './Element';
-import { ComponentContext } from "./ComponentGroup";
+import { ComponentContext } from "./FieldContainer";
 
 export interface CardExpiryProps extends ElementProps {
     onBlur?: React.MouseEventHandler;

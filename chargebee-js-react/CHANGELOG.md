@@ -1,3 +1,7 @@
+### v0.6.6 (2024-11-18)
+* * *
+* Fix for double render in strict mode.
+
 ### v0.6.5 (2024-05-20)
 * * *
 * Removed Publishable Key from ReadME.

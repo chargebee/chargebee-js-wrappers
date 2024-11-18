@@ -77,3 +77,35 @@ export function validateCbInstance(cbInstance: any) {
     } else
         return false;
 }
+
+
+type CancellablePromiseResponse<T> = {
+  isCancelled: boolean;
+  value?: T
+  error?: any
+}
+
+export  type CancellablePromise<T> = {
+  promise: Promise<CancellablePromiseResponse<T>>,
+  cancel: () => void
+}
+
+export function makeCancelablePromise<T>(promise: Promise<T>): CancellablePromise<T> {
+    let isCancelled = false;
+    let _resolve: (payload: CancellablePromiseResponse<T>) => void;
+
+    const wrappedPromise: Promise<CancellablePromiseResponse<T>> = new Promise((resolve, reject) => {
+        _resolve = resolve;
+        promise
+            .then((value) => resolve({ isCancelled, value}))
+            .catch((error) => reject({ isCancelled, error}));
+    });
+
+    return {
+        promise: wrappedPromise,
+        cancel() {
+            isCancelled = true;
+            _resolve({ isCancelled })
+        },
+    };
+}

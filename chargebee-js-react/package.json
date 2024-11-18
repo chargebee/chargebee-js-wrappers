@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-react-wrapper",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "main": "dist/chargebee-js-react-wrapper.common.js",
   "module": "dist/chargebee-js-react-wrapper.esm.js",
   "types": "dist/index.d.ts",
@@ -40,7 +40,7 @@
     "eslint-plugin-react": "^7.20.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^1.32.1",
+    "rollup": "^2.14.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-watch": "^4.3.1",
