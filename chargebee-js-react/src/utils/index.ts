@@ -84,7 +84,8 @@ type CancellablePromiseResponse<T> = {
   value?: T
   error?: any
 }
-type CancellablePromise<T> = {
+
+export  type CancellablePromise<T> = {
   promise: Promise<CancellablePromiseResponse<T>>,
   cancel: () => void
 }

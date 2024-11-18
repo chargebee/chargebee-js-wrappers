@@ -8,7 +8,7 @@ import {
     Styles
 } from "@chargebee/chargebee-js-types";
 import FieldContainer from "./FieldContainer";
-import { makeCancelablePromise } from 'utils';
+import { CancellablePromise, makeCancelablePromise } from 'utils';
 
 export interface ChargebeeComponentProps {
     children?: React.ReactNode;
@@ -37,7 +37,7 @@ interface ChargebeeComponentState {
 
 
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
-    private loader: any;
+    private loader: CancellablePromise<any>;
     
     constructor(props: ChargebeeComponentProps) {
         super(props);
@@ -54,9 +54,8 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
     componentDidMount() {
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
-        let loader = makeCancelablePromise<any>(cbInstance.load("components"));
-        this.loader = loader;
-        loader.promise.then(({isCancelled}) => {
+        this.loader = makeCancelablePromise(cbInstance.load("components"));
+        this.loader.promise.then(({isCancelled}) => {
             if (isCancelled) {
                 return;
             }
