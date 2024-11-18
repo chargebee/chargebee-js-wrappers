@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {
-    AdditionalData,
-    AriaLabel, Callbacks,
+    AriaLabel,
     ChargebeeInstance,
     Classes,
-    Fonts, PaymentIntent,
+    Fonts,
     Placeholder,
     Styles
 } from "@chargebee/chargebee-js-types";
 import FieldContainer from "./FieldContainer";
+import { makeCancelablePromise } from 'utils';
 
 export interface ChargebeeComponentProps {
     children?: React.ReactNode;
@@ -35,29 +35,6 @@ interface ChargebeeComponentState {
     cbInstance: ChargebeeInstance;
 }
 
-function makeCancelablePromise(promise: Promise<any>) {
-    let hasCanceled = false;
-    let _resolve: (value: any) => void;
-
-    const wrappedPromise = new Promise((resolve, reject) => {
-        _resolve = resolve;
-        promise
-            .then((value) => {
-                hasCanceled ? resolve({ isCanceled: true }) : resolve(value)
-            })
-            .catch((error) => {
-                hasCanceled ? reject({ isCanceled: true }) : reject(error)
-            });
-    });
-
-    return {
-        promise: wrappedPromise,
-        cancel() {
-            hasCanceled = true;
-            _resolve({ isCanceled: true })
-        },
-    };
-}
 
 export default class ChargebeeComponents extends React.Component<ChargebeeComponentProps, ChargebeeComponentState> {
     private loader: any;
@@ -77,13 +54,12 @@ export default class ChargebeeComponents extends React.Component<ChargebeeCompon
     componentDidMount() {
         // @ts-ignore
         const cbInstance = Chargebee.getInstance();
-        let loader = makeCancelablePromise(cbInstance.load("components"));
+        let loader = makeCancelablePromise<any>(cbInstance.load("components"));
         this.loader = loader;
-        loader.promise.then(({isCanceled}) => {
-            if (isCanceled) {
+        loader.promise.then(({isCancelled}) => {
+            if (isCancelled) {
                 return;
             }
-
             this.setState({
                 cbInstance: cbInstance,
                 moduleLoaded: true

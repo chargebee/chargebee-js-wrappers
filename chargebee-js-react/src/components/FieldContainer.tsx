@@ -70,7 +70,7 @@ export default class FieldContainer extends React.Component<FieldContainerProps,
         }
     }
 
-    getCbComponent() {
+    createCardComponent() {
         const {type, onBlur, onChange, onFocus, onReady, onKeyPress} = this.props;
         const options = getPropOptions(this.props);
 
@@ -103,7 +103,7 @@ export default class FieldContainer extends React.Component<FieldContainerProps,
     }
 
     componentDidMount() {
-        const cbComponent = this.getCbComponent();
+        const cbComponent = this.createCardComponent();
         this.setState({ cbComponent, ready: true }, () => {
             if (this.state.cbComponent && this.state.cbComponent.status === 0) {
                 if (this.containerRef.current) {
