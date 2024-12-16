@@ -7,11 +7,11 @@ import { Provider } from './directives/provider.directive';
 import { CommonModule } from '@angular/common';
 import * as i0 from "@angular/core";
 export class ChargebeeJsAngularWrapperModule {
-    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    /** @nocollapse */ static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, declarations: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider], imports: [CommonModule], exports: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider] });
-    /** @nocollapse */ static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, imports: [CommonModule] });
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.13", ngImport: i0, type: ChargebeeJsAngularWrapperModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    /** @nocollapse */ static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.2.13", ngImport: i0, type: ChargebeeJsAngularWrapperModule, declarations: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider], imports: [CommonModule], exports: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider] });
+    /** @nocollapse */ static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.2.13", ngImport: i0, type: ChargebeeJsAngularWrapperModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.11", ngImport: i0, type: ChargebeeJsAngularWrapperModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.13", ngImport: i0, type: ChargebeeJsAngularWrapperModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [CardFieldDirective, CvvFieldDirective, NumberFieldDirective, ExpiryFieldDirective, Provider],
