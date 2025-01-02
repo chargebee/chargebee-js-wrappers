@@ -2,7 +2,8 @@ import { Input, Directive, ElementRef, Output, EventEmitter, OnChanges, SimpleCh
 import { getPropChanges } from '../../utils';
 
 @Directive({
-  selector: '[cbCvvField]'
+  selector: '[cbCvvField]',
+   standalone: true,
 })
 export class CvvFieldDirective implements OnChanges {
   cbComponent = null;

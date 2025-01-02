@@ -19,6 +19,7 @@ declare var Chargebee: any;
 
 @Directive({
   selector: "[cbCardField]",
+  standalone: true,
 })
 export class CardFieldDirective implements OnInit, OnChanges {
   id = "";

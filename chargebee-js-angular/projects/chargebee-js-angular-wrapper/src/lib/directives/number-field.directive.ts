@@ -2,7 +2,8 @@ import {Input, Output, EventEmitter, Directive, ElementRef, OnChanges, SimpleCha
 import { getPropChanges } from '../../utils';
 
 @Directive({
-  selector: '[cbNumberField]'
+  selector: '[cbNumberField]',
+  standalone: true,
 })
 export class NumberFieldDirective implements OnChanges {
   @Input() styles?: object;
