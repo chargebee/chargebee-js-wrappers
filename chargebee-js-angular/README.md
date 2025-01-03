@@ -40,30 +40,6 @@ In your `index.html`:
 
 ### Basic usage
 
-In your angular module (If using NgModule)
-
-app.module.ts
-
-```ts
-import {
-  CardFieldDirective,
-  CvvFieldDirective,
-  NumberFieldDirective,
-  ExpiryFieldDirective,
-} from '@chargebee/chargebee-js-angular-wrapper';
-NgModule({
-  ...
-  imports: [
-    ...
-    CardFieldDirective,
-    CvvFieldDirective,
-    NumberFieldDirective,
-    ExpiryFieldDirective,
-  ]
-)}
-export class AppModule { }
-```
-
 In your angular component
 
 component.html
@@ -78,43 +54,6 @@ component.html
 ```
 
 component.ts
-
-```js
-import { Component } from '@angular/core';
-
-declare var Chargebee;
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-})
-export class AppComponent {
-  cardComponent = null;
-
-  constructor(...) {
-    ...
-    Chargebee.init({
-      site: 'your-site'
-      publishableKey: 'your-publishable-key'
-    })
-  }
-
-  onReady = (cardComponent) => {
-    this.cardComponent = cardComponent;
-  }
-
-  onTokenize = (event) => {
-    event.preventDefault();
-
-    this.cardComponent.tokenize().then(data => {
-      console.log('chargebee token', data.token)
-    });
-  }
-}
-
-```
-
-component.ts (if the component is standalone)
 
 ```js
 import { Component } from '@angular/core';
@@ -178,95 +117,6 @@ component.html
 ```
 
 component.ts
-
-```js
-import { Component, ChangeDetectorRef, HostListener } from "@angular/core";
-declare var Chargebee;
-
-@Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
-})
-export class AppComponent {
-  errorMessage = "";
-  changeDetectorRef: ChangeDetectorRef;
-  cardComponent = null;
-
-  constructor(changeDetectorRef: ChangeDetectorRef) {
-    this.changeDetectorRef = changeDetectorRef;
-  }
-
-  errors = {};
-  classes = {
-    focus: "focus",
-    complete: "complete-custom-class",
-    invalid: "invalid",
-    empty: "empty",
-  };
-  fonts = ["https://fonts.googleapis.com/css?family=Open+Sans"];
-  styles = {
-    base: {
-      color: "#fff",
-      fontWeight: 600,
-      fontFamily: "Quicksand, Open Sans, Segoe UI, sans-serif",
-      fontSize: "16px",
-      fontSmoothing: "antialiased",
-
-      ":focus": {
-        color: "#424770",
-      },
-
-      "::placeholder": {
-        color: "#9BACC8",
-      },
-
-      ":focus::placeholder": {
-        color: "#CFD7DF",
-      },
-    },
-    invalid: {
-      color: "#fff",
-      ":focus": {
-        color: "#FA755A",
-      },
-      "::placeholder": {
-        color: "#FFCCA5",
-      },
-    },
-  };
-
-  onReady = (cardComponent) => {
-    this.cardComponent = cardComponent;
-  };
-
-  setFocus(field) {
-    field.focus();
-  }
-
-  onChange = (status) => {
-    let errors = {
-      ...this.errors,
-      [status.field]: status.error,
-    };
-    this.errors = errors;
-    let { message } =
-      Object.values(errors)
-        .filter((message) => !!message)
-        .pop() || {};
-    this.errorMessage = message;
-    this.changeDetectorRef.detectChanges();
-  };
-
-  onSubmit = (event) => {
-    event.preventDefault();
-    this.cardComponent.tokenize().then((data) => {
-      console.log("chargebee token", data.token);
-    });
-  };
-}
-```
-component.ts(if the component is standalone)
 
 ```js
 import { Component, ChangeDetectorRef, HostListener } from "@angular/core";
@@ -381,43 +231,6 @@ component.html
 ```
 
 component.ts
-
-```js
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-})
-export class AppComponent {
-  cardComponent = null;
-  intent = null;
-  additionalData = {
-    // Additional data to improve the chances of frictionless flow
-  }
-
-  onReady = (cardComponent) => {
-    this.cardComponent = cardComponent;
-  }
-
-  createPaymentIntent() {
-    // make ajax call to your server to create a paymentIntent
-    ...
-    this.intent = paymentIntent
-  }
-
-  authorize = (event) => {
-    event.preventDefault();
-
-    this.cardComponent.authorizeWith3ds(this.intent, this.additionalData).then(authorizedIntent => {
-      console.log('3DS Authorization success', authorizedIntent.id)
-    });
-  }
-}
-
-```
-component.ts(if the component is standalone)
 
 ```js
 import { Component } from '@angular/core';
