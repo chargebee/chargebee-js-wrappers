@@ -1,6 +1,6 @@
 {
   "name": "@chargebee/chargebee-js-angular-wrapper",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Angular wrapper for Chargebee.js Components",
   "homepage": "https://github.com/chargebee/chargebee-js-wrappers/tree/master/chargebee-js-angular#readme",
   "bugs": {
