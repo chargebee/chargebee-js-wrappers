@@ -31,12 +31,6 @@ In your `index.html`:
   <head>
     ...
     <script src="https://js.chargebee.com/v2/chargebee.js"></script>
-    <script>
-      Chargebee.init({
-        site: "your-site",
-        publishableKey: "your-publishable-key",
-      });
-    </script>
   </head>
   <body>
     <div id="app"></div>
@@ -62,28 +56,46 @@ component.html
 component.ts
 
 ```js
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
+declare var Chargebee;
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  standalone: true,
+   imports: [
+    RouterOutlet,
+    CardFieldDirective,
+    CvvFieldDirective,
+    NumberFieldDirective,
+    ExpiryFieldDirective,
+  ],
 })
 export class AppComponent {
   cardComponent = null;
 
+  constructor(...) {
+    ...
+    Chargebee.init({
+      site: 'your-site'
+      publishableKey: 'your-publishable-key'
+    })
+  }
+
   onReady = (cardComponent) => {
     this.cardComponent = cardComponent;
-  };
+  }
 
   onTokenize = (event) => {
     event.preventDefault();
 
-    this.cardComponent.tokenize().then((data) => {
-      console.log("chargebee token", data.token);
+    this.cardComponent.tokenize().then(data => {
+      console.log('chargebee token', data.token)
     });
-  };
+  }
 }
+
 ```
 
 ### A more complex example:
@@ -114,6 +126,14 @@ declare var Chargebee;
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  standalone: true,
+   imports: [
+    RouterOutlet,
+    CardFieldDirective,
+    CvvFieldDirective,
+    NumberFieldDirective,
+    ExpiryFieldDirective,
+  ],
 })
 export class AppComponent {
   errorMessage = "";
@@ -194,6 +214,7 @@ export class AppComponent {
 }
 ```
 
+
 ### 3DS Authorization
 
 In your angular component
@@ -218,6 +239,14 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+   standalone: true,
+   imports: [
+    RouterOutlet,
+    CardFieldDirective,
+    CvvFieldDirective,
+    NumberFieldDirective,
+    ExpiryFieldDirective,
+  ],
 })
 export class AppComponent {
   cardComponent = null;

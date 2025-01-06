@@ -40,22 +40,6 @@ In your `index.html`:
 
 ### Basic usage
 
-In your angular module
-
-app.module.ts
-
-```ts
-import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
-NgModule({
-  ...
-  imports: [
-    ...
-    ChargebeeJsAngularWrapperModule,
-  ]
-)}
-export class AppModule { }
-```
-
 In your angular component
 
 component.html
@@ -79,6 +63,14 @@ declare var Chargebee;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  standalone: true,
+   imports: [
+    RouterOutlet,
+    CardFieldDirective,
+    CvvFieldDirective,
+    NumberFieldDirective,
+    ExpiryFieldDirective,
+  ],
 })
 export class AppComponent {
   cardComponent = null;
@@ -134,6 +126,14 @@ declare var Chargebee;
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  standalone: true,
+   imports: [
+    RouterOutlet,
+    CardFieldDirective,
+    CvvFieldDirective,
+    NumberFieldDirective,
+    ExpiryFieldDirective,
+  ],
 })
 export class AppComponent {
   errorMessage = "";
@@ -214,6 +214,7 @@ export class AppComponent {
 }
 ```
 
+
 ### 3DS Authorization
 
 In your angular component
@@ -238,6 +239,14 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+   standalone: true,
+   imports: [
+    RouterOutlet,
+    CardFieldDirective,
+    CvvFieldDirective,
+    NumberFieldDirective,
+    ExpiryFieldDirective,
+  ],
 })
 export class AppComponent {
   cardComponent = null;

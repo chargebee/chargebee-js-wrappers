@@ -1,3 +1,7 @@
+### v5.0.0 (2025-01-03)
+***
+* Adds support for Angular 18 and standalone directives
+
 ### v4.0.0 (2024-07-10)
 ***
 * Adds support for Angular 17

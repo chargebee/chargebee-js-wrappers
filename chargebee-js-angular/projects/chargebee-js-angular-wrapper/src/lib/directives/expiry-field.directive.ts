@@ -2,7 +2,8 @@ import { Input, Output, EventEmitter, Directive, ElementRef, OnChanges, SimpleCh
 import { getPropChanges } from '../../utils';
 
 @Directive({
-  selector: '[cbExpiryField]'
+  selector: '[cbExpiryField]',
+   standalone: true,
 })
 export class ExpiryFieldDirective implements OnChanges {
   @Input() cbComponent;
