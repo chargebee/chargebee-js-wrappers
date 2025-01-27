@@ -13,7 +13,8 @@
 Have any queries regarding the implementation? Reach out to [support@chargebee.com](mailto:support@chargebee.com)
 
 ### Setup Pre-commit Hooks
-Install pre-commit framework in developer machine
+Install & setup pre-commit framework in developer machine
 ```
 brew install pre-commit
+pre-commit install
 ```
