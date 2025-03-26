@@ -1,0 +1,10 @@
+name: CB Secret PR Scan
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  SecretScanning:
+    uses: chargebee/cb-secrets-scanner/.github/workflows/cb-secret-scan.yml@main
+    secrets: inherit
