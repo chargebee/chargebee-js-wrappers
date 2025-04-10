@@ -24,8 +24,8 @@
     "lint": "eslint ."
   },
   "peerDependencies": {
-    "react": "^18.0.0 || ^17.0.0",
-    "react-dom": "^18.0.0 || ^17.0.0"
+    "react": "^19.0.0 || ^18.0.0 || ^17.0.0",
+    "react-dom": "^19.0.0 || ^18.0.0 || ^17.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -38,8 +38,8 @@
     "@types/react-dom": "^16.9.8",
     "eslint": "^7.11.0",
     "eslint-plugin-react": "^7.20.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "rollup": "^2.14.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^9.3.4",
@@ -60,6 +60,5 @@
     "chargebee react",
     "chargebee react wrapper",
     "chargebee.js react"
-  ],
-  "dependencies": {}
+  ]
 }
