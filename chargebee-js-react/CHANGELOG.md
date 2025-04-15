@@ -1,3 +1,7 @@
+### v0.6.7 (2025-04-15)
+* * *
+* Added support for react 19.
+
 ### v0.6.6 (2024-11-18)
 * * *
 * Fix for double render in strict mode.
