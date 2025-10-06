@@ -18,6 +18,9 @@ function validateCbInstance(cbInstance) {
     return false;
   }
 }
+if (typeof window !== "undefined") {
+  window.CbJsSource = "vue";
+}
 const _sfc_main$5 = {
   props: {
     fonts: {
@@ -316,6 +319,12 @@ const _sfc_main = {
       default: null
     }
   },
+  created() {
+    if (typeof window !== "undefined") {
+      window.CbJsSource = "vue";
+      console.log("Vue wrapper Provider: Set CbJsSource to vue");
+    }
+  },
   render() {
     if (validateCbInstance(this.cbInstance))
       return this.$slots.default();
@@ -323,6 +332,10 @@ const _sfc_main = {
       return null;
   }
 };
+if (typeof window !== "undefined") {
+  window.CbJsSource = "vue";
+  console.log("Vue wrapper module: Set CbJsSource to vue");
+}
 var index = {
   install(Vue) {
     Vue.component("card-component", _sfc_main$5);
