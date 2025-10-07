@@ -322,7 +322,6 @@ const _sfc_main = {
   created() {
     if (typeof window !== "undefined") {
       window.CbJsSource = "vue";
-      console.log("Vue wrapper Provider: Set CbJsSource to vue");
     }
   },
   render() {
@@ -334,7 +333,6 @@ const _sfc_main = {
 };
 if (typeof window !== "undefined") {
   window.CbJsSource = "vue";
-  console.log("Vue wrapper module: Set CbJsSource to vue");
 }
 var index = {
   install(Vue) {
