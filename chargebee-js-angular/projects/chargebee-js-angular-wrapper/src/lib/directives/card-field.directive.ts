@@ -17,6 +17,11 @@ import { PaymentIntent, AdditionalData, Callbacks } from "../types";
 
 declare var Chargebee: any;
 
+// Set source for Chargebee.js KVL logging immediately when module loads
+if (typeof window !== 'undefined') {
+    (window as any).CbJsSource = 'angular';
+}
+
 @Directive({
   selector: "[cbCardField]",
   standalone: true,

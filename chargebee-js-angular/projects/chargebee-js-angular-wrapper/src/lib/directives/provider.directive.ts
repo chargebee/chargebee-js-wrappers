@@ -14,7 +14,10 @@ export class Provider implements OnChanges {
     @Input() cbInstance?: object;
     validated: boolean = false;
 
-    constructor() {} 
+    constructor() {
+        // Set Angular wrapper source for KVL tracking
+        (window as any).CbJsSource = 'angular';
+    } 
 
     ngOnChanges(changes: SimpleChanges) {
         if (validateCbInstance(this.cbInstance))

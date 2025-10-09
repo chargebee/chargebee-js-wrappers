@@ -6,9 +6,16 @@ import {
     Fonts,
     Placeholder,
     Styles
-} from "@chargebee/chargebee-js-types";
+} from "../types";
 import FieldContainer from "./FieldContainer";
 import { CancellablePromise, makeCancelablePromise } from 'utils';
+
+
+// Set source for Chargebee.js KVL logging immediately when module loads
+if (typeof window !== 'undefined') {
+    (window as any).CbJsSource = 'react';
+}
+
 
 export interface ChargebeeComponentProps {
     children?: React.ReactNode;

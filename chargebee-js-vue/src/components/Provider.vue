@@ -9,6 +9,12 @@ export default {
             default: null
         },
     },
+    created() {
+        // Set Vue wrapper source for KVL tracking
+        if (typeof window !== 'undefined') {
+            window.CbJsSource = 'vue';
+        }
+    },
     render() {
         if (validateCbInstance(this.cbInstance))
             return this.$slots.default();

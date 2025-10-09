@@ -2,6 +2,11 @@
 import { genUUID } from "../utils/";
 import { h, computed } from "vue";
 
+// Set source for Chargebee.js KVL logging immediately when module loads
+if (typeof window !== 'undefined') {
+    window.CbJsSource = 'vue';
+}
+
 export default {
   props: {
     fonts: {

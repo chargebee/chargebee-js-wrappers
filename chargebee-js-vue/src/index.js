@@ -1,3 +1,8 @@
+// Set source for Chargebee.js KVL logging immediately when module loads
+if (typeof window !== 'undefined') {
+    window.CbJsSource = 'vue';
+}
+
 import CardComponent from './components/CardComponent.vue'
 import CardNumber from './components/CardNumber.vue'
 import CardExpiry from './components/CardExpiry.vue'
