@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { AriaLabel, Component, Placeholder, Styles } from '@chargebee/chargebee-js-types';
+import { AriaLabel, Placeholder, Styles } from '@chargebee/chargebee-js-types/cb-types/hosted_fields/common/types';
+import { Component } from '@chargebee/chargebee-js-types/cb-types/hosted_fields/common/base-types';
 import { isEqual, genUUID } from '../utils/';
 
 interface Listeners {
