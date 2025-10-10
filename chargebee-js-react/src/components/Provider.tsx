@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChargebeeInstance } from '@chargebee/chargebee-js-types';
+import ChargebeeInstance from '@chargebee/chargebee-js-types/cb-types/models/cb-instance';
 import { validateCbInstance } from '../utils/';
 
 interface ProviderProps {
