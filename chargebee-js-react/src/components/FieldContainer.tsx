@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {AriaLabel, Classes, Fonts, Placeholder, Styles } from '@chargebee/chargebee-js-types/cb-types/hosted_fields/common/types';
-import ChargebeeInstance from '@chargebee/chargebee-js-types/cb-types/models/cb-instance';
-import {Callbacks, PaymentIntent, AdditionalData} from '@chargebee/chargebee-js-types/cb-types/internal/payment-intent/types';
+import { AdditionalData, AriaLabel, Callbacks, ChargebeeInstance, Classes, Fonts, PaymentIntent, Placeholder, Styles } from "@chargebee/chargebee-js-types";
 import {genUUID, isEqual} from '../utils/';
 
 

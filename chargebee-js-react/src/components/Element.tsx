@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { AriaLabel, Placeholder, Styles, FieldOptions } from '@chargebee/chargebee-js-types/cb-types/hosted_fields/common/types';
-import { Component } from '@chargebee/chargebee-js-types/cb-types/hosted_fields/common/base-types';
-import { ComponentFieldType } from '@chargebee/chargebee-js-types/cb-types/hosted_fields/common/enums';
+import { AriaLabel, Component, Placeholder, Styles } from '@chargebee/chargebee-js-types';
 import { isEqual, genUUID } from '../utils/';
 
 interface Listeners {
@@ -36,7 +34,7 @@ export default class Element extends React.Component<ElementProps> {
     componentDidMount() {
         const { cbComponent, type, listeners } = this.props;
         const options = this.getPropOptions(this.props);
-        this.field = cbComponent.createField(type as ComponentFieldType, options as FieldOptions).at(`#${this.id}`);
+        this.field = cbComponent.createField(type, options).at(`#${this.id}`);
         
         // Attaching listeners if any
         if(listeners) {
@@ -47,14 +45,14 @@ export default class Element extends React.Component<ElementProps> {
         }
     }
 
-    getPropOptions(props: React.PropsWithRef<ElementProps>) : FieldOptions {
+    getPropOptions(props: React.PropsWithRef<ElementProps>) {
         const { icon, styles: style, placeholder, ariaLabel } = props;
         return {
             //@ts-ignore
             icon,
             style,
-            placeholder: placeholder as string,
-            ariaLabel: ariaLabel as string,
+            placeholder,
+            ariaLabel
         }
     }
 

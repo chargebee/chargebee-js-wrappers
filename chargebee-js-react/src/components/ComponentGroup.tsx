@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { AriaLabel,
+import {
+    AriaLabel,
+    ChargebeeInstance,
     Classes,
     Fonts,
     Placeholder,
-    Styles 
-} from '@chargebee/chargebee-js-types/cb-types/hosted_fields/common/types';
-
-import ChargebeeInstance from '@chargebee/chargebee-js-types/cb-types/models/cb-instance';
+    Styles
+} from "@chargebee/chargebee-js-types";
 import FieldContainer from "./FieldContainer";
 import { CancellablePromise, makeCancelablePromise } from 'utils';
 
