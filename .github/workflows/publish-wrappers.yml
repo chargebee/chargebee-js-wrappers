@@ -1,0 +1,195 @@
+name: Publish New Package Version
+
+on:
+  push:
+    branches:
+      - feat/CHKOUTENGG-52904
+    paths:
+      - 'chargebee-js-vue/package.json'
+      - 'chargebee-js-react/package.json'
+      - 'chargebee-js-angular/projects/chargebee-js-angular-wrapper/package.json'
+
+jobs:
+  check-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Check for changed packages
+        id: check-changes
+        run: |
+          echo "Checking for changes in package.json files..."
+          
+          # Check Vue wrapper changes
+          if git diff --name-only HEAD^ HEAD | grep -q '^chargebee-js-vue/package.json'; then
+            echo "vue_changed=true" >> $GITHUB_OUTPUT
+            echo "Vue wrapper package.json has changes"
+          else
+            echo "vue_changed=false" >> $GITHUB_OUTPUT
+          fi
+          
+          # Check React wrapper changes
+          if git diff --name-only HEAD^ HEAD | grep -q '^chargebee-js-react/package.json'; then
+            echo "react_changed=true" >> $GITHUB_OUTPUT
+            echo "React wrapper package.json has changes"
+          else
+            echo "react_changed=false" >> $GITHUB_OUTPUT
+          fi
+          
+          # Check Angular wrapper changes
+          if git diff --name-only HEAD^ HEAD | grep -q '^chargebee-js-angular/projects/chargebee-js-angular-wrapper/package.json'; then
+            echo "angular_changed=true" >> $GITHUB_OUTPUT
+            echo "Angular wrapper package.json has changes"
+          else
+            echo "angular_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Extract Vue package info
+        id: vue-package
+        if: steps.check-changes.outputs.vue_changed == 'true'
+        run: |
+          cd chargebee-js-vue
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          echo "Package: $PACKAGE_NAME@$PACKAGE_VERSION"
+
+      - name: Check if Vue version exists in npm registry
+        id: vue-version-check
+        if: steps.check-changes.outputs.vue_changed == 'true'
+        run: |
+          NPM_PACKAGE_URL="https://registry.npmjs.org/${{ steps.vue-package.outputs.name }}/${{ steps.vue-package.outputs.version }}"
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $NPM_PACKAGE_URL)
+          
+          if [ $HTTP_STATUS -eq 200 ]; then
+            echo "Version ${{ steps.vue-package.outputs.version }} already exists in npm registry"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version ${{ steps.vue-package.outputs.version }} does not exist in npm registry"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install Vue dependencies and build
+        if: steps.vue-version-check.outputs.exists == 'false'
+        run: |
+          cd chargebee-js-vue
+          npm ci
+          npm run build
+
+      - name: Publish Vue wrapper to npm
+        if: steps.vue-version-check.outputs.exists == 'false'
+        run: |
+          cd chargebee-js-vue
+          echo "TEST MODE: Would publish @chargebee/chargebee-js-vue-wrapper"
+          # npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Vue package already exists
+        if: steps.vue-version-check.outputs.exists == 'true'
+        run: |
+          echo "Vue package version ${{ steps.vue-package.outputs.version }} already exists in the npm registry."
+          echo "Update the version in package.json to publish a new version."
+
+      - name: Extract React package info
+        id: react-package
+        if: steps.check-changes.outputs.react_changed == 'true'
+        run: |
+          cd chargebee-js-react
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          echo "Package: $PACKAGE_NAME@$PACKAGE_VERSION"
+
+      - name: Check if React version exists in npm registry
+        id: react-version-check
+        if: steps.check-changes.outputs.react_changed == 'true'
+        run: |
+          NPM_PACKAGE_URL="https://registry.npmjs.org/${{ steps.react-package.outputs.name }}/${{ steps.react-package.outputs.version }}"
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $NPM_PACKAGE_URL)
+          
+          if [ $HTTP_STATUS -eq 200 ]; then
+            echo "Version ${{ steps.react-package.outputs.version }} already exists in npm registry"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version ${{ steps.react-package.outputs.version }} does not exist in npm registry"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install React dependencies and build
+        if: steps.react-version-check.outputs.exists == 'false'
+        run: |
+          cd chargebee-js-react
+          npm ci
+          npm run build
+
+      - name: Publish React wrapper to npm
+        if: steps.react-version-check.outputs.exists == 'false'
+        run: |
+          cd chargebee-js-react
+          echo "TEST MODE: Would publish @chargebee/chargebee-js-react-wrapper"
+          # npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: React package already exists
+        if: steps.react-version-check.outputs.exists == 'true'
+        run: |
+          echo "React package version ${{ steps.react-package.outputs.version }} already exists in the npm registry."
+          echo "Update the version in package.json to publish a new version."
+
+      - name: Extract Angular package info
+        id: angular-package
+        if: steps.check-changes.outputs.angular_changed == 'true'
+        run: |
+          cd chargebee-js-angular/projects/chargebee-js-angular-wrapper
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          echo "Package: $PACKAGE_NAME@$PACKAGE_VERSION"
+
+      - name: Check if Angular version exists in npm registry
+        id: angular-version-check
+        if: steps.check-changes.outputs.angular_changed == 'true'
+        run: |
+          NPM_PACKAGE_URL="https://registry.npmjs.org/${{ steps.angular-package.outputs.name }}/${{ steps.angular-package.outputs.version }}"
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $NPM_PACKAGE_URL)
+          
+          if [ $HTTP_STATUS -eq 200 ]; then
+            echo "Version ${{ steps.angular-package.outputs.version }} already exists in npm registry"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version ${{ steps.angular-package.outputs.version }} does not exist in npm registry"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install Angular dependencies and build
+        if: steps.angular-version-check.outputs.exists == 'false'
+        run: |
+          cd chargebee-js-angular
+          npm ci
+          npm run build
+
+      - name: Publish Angular wrapper to npm
+        if: steps.angular-version-check.outputs.exists == 'false'
+        run: |
+          cd chargebee-js-angular
+          echo "TEST MODE: Would publish @chargebee/chargebee-js-angular-wrapper"
+          # npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Angular package already exists
+        if: steps.angular-version-check.outputs.exists == 'true'
+        run: |
+          echo "Angular package version ${{ steps.angular-package.outputs.version }} already exists in the npm registry."
+          echo "Update the version in package.json to publish a new version."
