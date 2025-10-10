@@ -48,7 +48,6 @@ export default class Element extends React.Component<ElementProps> {
     getPropOptions(props: React.PropsWithRef<ElementProps>) {
         const { icon, styles: style, placeholder, ariaLabel } = props;
         return {
-            //@ts-ignore
             icon,
             style,
             placeholder,
