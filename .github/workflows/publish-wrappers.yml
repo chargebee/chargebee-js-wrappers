@@ -3,7 +3,7 @@ name: Publish New Package Version
 on:
   push:
     branches:
-      - feat/CHKOUTENGG-52904
+      - feat/CHKOUTENGG-52904_1
     paths:
       - 'chargebee-js-vue/package.json'
       - 'chargebee-js-react/package.json'
