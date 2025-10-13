@@ -1,22 +1,25 @@
-name: Publish New Package Version
+name: Deploy Packages and Create Tags
 
 on:
   push:
     branches:
-      - feat/CHKOUTENGG-52904
+      - master
     paths:
       - 'chargebee-js-vue/package.json'
       - 'chargebee-js-react/package.json'
       - 'chargebee-js-angular/projects/chargebee-js-angular-wrapper/package.json'
 
 jobs:
-  check-and-publish:
+  deploy-and-tag:
     runs-on: ubuntu-latest
+    environment: production
+    # Restrict to specific users who can trigger publishing
+    if: github.actor == 'amal.george@chargebee.com' || github.actor == 'ajay.sharma@chargebee.com'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0  # Needed for tagging
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -89,8 +92,7 @@ jobs:
         if: steps.vue-version-check.outputs.exists == 'false'
         run: |
           cd chargebee-js-vue
-          echo "TEST MODE: Would publish @chargebee/chargebee-js-vue-wrapper"
-          # npm publish
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -137,8 +139,7 @@ jobs:
         if: steps.react-version-check.outputs.exists == 'false'
         run: |
           cd chargebee-js-react
-          echo "TEST MODE: Would publish @chargebee/chargebee-js-react-wrapper"
-          # npm publish
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -185,8 +186,7 @@ jobs:
         if: steps.angular-version-check.outputs.exists == 'false'
         run: |
           cd chargebee-js-angular
-          echo "TEST MODE: Would publish @chargebee/chargebee-js-angular-wrapper"
-          # npm publish
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -195,3 +195,22 @@ jobs:
         run: |
           echo "Angular package version ${{ steps.angular-package.outputs.version }} already exists in the npm registry."
           echo "Update the version in package.json to publish a new version."
+
+      - name: Extract branch name for tagging
+        id: extract-branch
+        if: startsWith(github.event.head_commit.message, 'Merge pull request')
+        run: |
+          # Find the source branch of the merge commit
+          branch=$(git log -1 --pretty=%b | grep -oE 'releases/[a-zA-Z0-9._-]+/[0-9.]+')
+          echo "branch=$branch" >> $GITHUB_OUTPUT
+          echo "Detected branch: $branch"
+
+      - name: Create release tag
+        if: startsWith(github.event.head_commit.message, 'Merge pull request') && startsWith(steps.extract-branch.outputs.branch, 'releases/')
+        run: |
+          app=$(echo "${{ steps.extract-branch.outputs.branch }}" | cut -d'/' -f2)
+          version=$(echo "${{ steps.extract-branch.outputs.branch }}" | cut -d'/' -f3)
+          tag="$app/$version"
+          echo "Creating tag $tag"
+          git tag "$tag"
+          git push origin "$tag"
