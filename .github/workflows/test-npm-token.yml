@@ -14,14 +14,14 @@ jobs:
 
       - name: Test NPM Token Access
         run: |
-          echo "Testing NPM_TOKEN access..."
+          echo "Testing NODE_AUTH_TOKEN access..."
           
-          if [ -n "$NPM_TOKEN" ]; then
-            echo "✅ NPM_TOKEN is available"
-            echo "Token length: ${#NPM_TOKEN}"
-            echo "Token starts with: ${NPM_TOKEN:0:10}..."
+          if [ -n "$NODE_AUTH_TOKEN" ]; then
+            echo "✅ NODE_AUTH_TOKEN is available"
+            echo "Token length: ${#NODE_AUTH_TOKEN}"
+            echo "Token starts with: ${NODE_AUTH_TOKEN:0:10}..."
           else
-            echo "❌ NPM_TOKEN is not available"
+            echo "❌ NODE_AUTH_TOKEN is not available"
           fi
           
           # Test npm registry access
