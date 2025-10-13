@@ -3,7 +3,7 @@ name: Test NPM Token Access
 on:
   push:
     branches:
-      - feat/CHKOUTENGG-52904
+      - feat/CHKOUTENGG-52904_2
 
 jobs:
   test-token:
