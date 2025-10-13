@@ -1,4 +1,4 @@
-name: Test NPM Token Access
+name: Test NPM Token Access v2
 
 on:
   push:
