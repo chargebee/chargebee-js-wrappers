@@ -25,9 +25,9 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue": "^6.0.10",
     "@vue/compiler-sfc": "^3.2.37",
-    "vite": "^2.9.9",
+    "vite": "^8.0.16",
     "vue": "^3.3.4"
   },
   "license": "MIT",
