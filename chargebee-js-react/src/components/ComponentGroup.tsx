@@ -6,7 +6,7 @@ import {
     Fonts,
     Placeholder,
     Styles
-} from "../types";
+} from "@chargebee/chargebee-js-types";
 import FieldContainer from "./FieldContainer";
 import { CancellablePromise, makeCancelablePromise } from 'utils';
 
